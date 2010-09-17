@@ -91,6 +91,7 @@ body {
 
 #top-bar-tbl-rhs {
     width: 25%;
+    align: right;
     border-left: 1px solid white;
 }
 
@@ -139,6 +140,10 @@ body {
 
 #searchbox input {
     width: 100%;
+}
+
+#searchbox-submit {
+    display: none;
 }
 
 /* -------------------------------------------------------------------------

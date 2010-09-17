@@ -66,13 +66,13 @@
                     </div>{% endblock %}
                     </td>{% endblock %}
 
-                    {% block top-bar-rhs %}<td id="top-bar-tbl-rhs" align="right">
+                    {% block top-bar-rhs %}<td id="top-bar-tbl-rhs">
                         <form name="cse" id="searchbox" action="http://www.google.com/cse">
                             <input type="hidden" name="cref" value="http://blackhan.ch/starwars/home" />
                             <input type="hidden" name="ie" value="utf-8" />
                             <input type="hidden" name="hl" value="" />
                             <input name="q" type="text" id="s"/>
-                            <input type="submit" name="sa" value="Search" style="display: none;"/>
+                            <input type="submit" name="sa" id="searchbox-submit" value="Search"/>
                         </form>
                         <script type="text/javascript" src="http://www.google.com/cse/tools/onthefly?form=searchbox&lang=en"></script>
                     </td>{% endblock %}
