@@ -1,0 +1,58 @@
+<html>{% block html %}
+<head>{% block head %}
+
+    {% block site-title %}
+    <title>Star Wars Micro Machines</title>
+    {% endblock %}
+
+    {% block css %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}css/style.css" />
+    {% endblock %}
+
+{% endblock %}</head>
+<body>{% block body %}
+
+    {% block header %}<div id="header">
+
+        <table id="header-tbl" style="width:100%">
+            <tbody>
+                <tr>
+                    <td id="header-tbl-lhs" align="center">
+                        {% block header-title-lhs %}<div id="title-lhs">
+                            <img alt="Micro Machines"src="{{ MEDIA_URL }}img/micro-machines.gif"/>
+                        </div>{% endblock %}
+                    </td>
+                    <td id="header-tbl-mid">
+                        {% block header-title %}<div id="title">
+                        <h1><a href="#">Star&nbsp;Wars Micro&nbsp;Machines</a></h1>
+                        <p>Complete Figure Collection</p>
+                        </div>{% endblock %}
+                    </td>
+                    <td id="header-tbl-rhs" align="center">
+                        {% block header-title-rhs %}<div id="title-rhs">
+                            <img alt="Star Wars" src="{{ MEDIA_URL }}img/star-wars.gif"/>
+                        </div>{% endblock %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+	
+    </div>{% endblock %}
+
+    {% block top-bar %}<div id="top-bar">
+	{% block menu %}<div id="menu">
+	</div>{% endblock %}
+    </div>{% endblock %}
+
+    {% block content %}<div id="content">
+    </div>{% endblock %}
+
+    {% block bottom-bar %}<div id="bottom-bar">
+    </div>{% endblock %}
+
+    {% block footer %}<div id="footer">
+        <p>&copy; 2010 &ndash; All Rights Reserved.</p>
+    </div>{% endblock %}
+
+{% endblock %}</body>
+{% endblock %}</html>
