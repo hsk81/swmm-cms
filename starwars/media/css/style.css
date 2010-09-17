@@ -75,10 +75,23 @@ body {
  * ------------------------------------------------------------------------- */
 
 #top-bar {
-    padding: 10px;
+    padding: 0px;
     background: #1f5967;
     border-left: 1px solid white;
     border-right: 1px solid white;
+}
+
+#top-bar-tbl {
+    width: 100%;
+}
+
+#top-bar-tbl-lhs {
+    width: 75%;
+}
+
+#top-bar-tbl-rhs {
+    width: 25%;
+    border-left: 1px solid white;
 }
 
 /* -------------------------------------------------------------------------
@@ -86,6 +99,46 @@ body {
  * ------------------------------------------------------------------------- */
 
 #menu {
+}
+
+#menu-tbl {
+    width: auto;
+    border: 0px dotted fuchsia;
+}
+
+#menu-tbl tbody tr td {
+    padding: 5px;
+    border: 1px dotted #1f5967;
+}
+
+#menu-tbl tbody tr td:hover {
+    background: #0f243f;
+    border: 1px dotted #1f5967;
+}
+
+#menu-tbl tbody tr td a {
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
+
+/* -------------------------------------------------------------------------
+ * Search Box
+ * ------------------------------------------------------------------------- */
+
+#searchbox {
+    padding: 5px;
+    border: 0px dotted fuchsia;
+    margin: 0px;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+}
+
+#searchbox input {
+    width: 100%;
 }
 
 /* -------------------------------------------------------------------------
