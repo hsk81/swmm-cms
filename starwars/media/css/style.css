@@ -91,7 +91,6 @@ body {
 
 #top-bar-tbl-rhs {
     width: 25%;
-    align: right;
     border-left: 1px solid white;
 }
 
@@ -151,10 +150,104 @@ body {
  * ------------------------------------------------------------------------- */
 
 #content {
-    padding: 5px;
-    height: 640px;
-    background: #0f243f;
+    padding: 4px;
+    height: auto;
     border: 1px solid white;
+    background: #0f243f;
+}
+
+#content h1 {
+    padding: 0;
+    margin: 0;
+}
+
+#content-tbl {
+    height: auto;
+    width: 100%;
+    border: 1px dotted fuchsia;
+}
+
+#content-tbl-center {
+    vertical-align: middle;
+    border: 1px dotted aqua;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery
+ * ------------------------------------------------------------------------- */
+
+.gallery-tbl {
+    height: 150px;
+    width: 100%;
+    border: 1px dotted fuchsia;
+    margin-bottom: 4px;
+}
+
+.gallery-tbl-portrait {
+    height: 100%;
+    width: 100px;
+    border: 1px dotted aqua;
+}
+
+.gallery-tbl-lhs, .gallery-tbl-rhs {
+    height: 100%;
+    width: 25px;
+    border: 1px dotted aqua;
+}
+
+.gallery-tbl-center {
+    height: 100%;
+    width: auto;
+    border: 1px dotted aqua;
+}
+
+.gallery-wrapper {
+    height: 100%;
+    width: 100%;
+    border: 0px dashed fuchsia;
+}
+
+.gallery-area {
+    height: 100%;
+    width: 100%;
+    border: 0px dotted aqua;
+    position: relative;
+    overflow: auto;
+}
+
+.gallery-imgs {
+    height: 100%;
+    width: 4096px;
+    border-right: 5px;
+    border: 0px dashed fuchsia;
+    margin: 0px;
+    padding: 0;
+    position: absolute;
+    list-style:none;
+}
+
+.gallery-imgs li {
+    float:left;
+    margin-right:4px;
+    cursor:pointer
+}
+
+.gallery-img {
+    height: 128px;
+    width: 100px;
+    border: 0px dotted aqua;
+    background: #1f5967;
+}
+
+.gallery-img {
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
 }
 
 /* -------------------------------------------------------------------------
