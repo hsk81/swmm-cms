@@ -1,122 +1,67 @@
 {% extends "base.html" %}
 
+{% block javascript-ext %}
+<script type="text/javascript">
+$(document).ready(function() {
+
+    var galleryWidth = parseInt($('.gallery').css('width'));
+    var portraitWidth = parseInt($('.gallery .portrait').css('width'));
+    var labelWidth = parseInt($('.gallery .label').css('width'));
+    var vspacerWidth = parseInt($('.gallery-v-spacer').css('width'));
+
+    $('.gallery .wrapper').css (
+        'width', galleryWidth - (
+            portraitWidth + labelWidth + 2*vspacerWidth
+        )
+    );
+
+});</script>
+{% endblock %}
+
 {% block content %}<div id="content">
-    <table id="content-tbl">
-        <tbody>
-            <tr>
-                <td id="content-tbl-center">
+    
+    <div class="gallery">
+        <div class="portrait"></div>
+        <div class="gallery-v-spacer">&nbsp;</div>
+        <div class="label"></div>
+        <div class="gallery-v-spacer">&nbsp;</div>
 
-                    <table class="gallery-tbl" align="center">
-                        <tbody>
-                            <tr>
-                                <td class="gallery-tbl-portrait">
-                                    <div></div>
-                                </td>
+        <div class="wrapper">
+            <div class="area">
+                <ul class="imgs">
+                    <li><div class="img-r"></div></li>
+                    <li><div class="img-g"></div></li>
+                    <li><div class="img-b"></div></li>
+                    <li><div class="img-r"></div></li>
+                    <li><div class="img-g"></div></li>
+                    <li><div class="img-b"></div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-                                <td class="gallery-tbl-lhs">
-                                    <div></div>
-                                </td>
+    <div class="gallery-h-spacer">
+        &nbsp;
+    </div>
 
-                                <td class="gallery-tbl-center" align="center">
-                                    <div class="gallery-wrapper">
-                                        <div class="gallery-area">
-                                            <ul class="gallery-imgs">
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </td>
+    <div class="gallery">
+        <div class="portrait"></div>
+        <div class="gallery-v-spacer">&nbsp;</div>
+        <div class="label"></div>
+        <div class="gallery-v-spacer">&nbsp;</div>
 
-                                <td class="gallery-tbl-rhs">
-                                    <div></div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <div class="wrapper">
+            <div class="area">
+                <ul class="imgs">
+                    <li><div class="img-r"></div></li>
+                    <li><div class="img-g"></div></li>
+                    <li><div class="img-b"></div></li>
+                    <li><div class="img-r"></div></li>
+                    <li><div class="img-g"></div></li>
+                    <li><div class="img-b"></div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-                    <table class="gallery-tbl" align="center">
-                        <tbody>
-                            <tr>
-                                <td class="gallery-tbl-portrait">
-                                    <div></div>
-                                </td>
-
-                                <td class="gallery-tbl-lhs">
-                                    <div></div>
-                                </td>
-
-                                <td class="gallery-tbl-center" align="center">
-                                    <div class="gallery-wrapper">
-                                        <div class="gallery-area">
-                                            <ul class="gallery-imgs">
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td class="gallery-tbl-rhs">
-                                    <div></div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table class="gallery-tbl" align="center">
-                        <tbody>
-                            <tr>
-                                <td class="gallery-tbl-portrait">
-                                    <div></div>
-                                </td>
-
-                                <td class="gallery-tbl-lhs">
-                                    <div></div>
-                                </td>
-
-                                <td class="gallery-tbl-center" align="center">
-                                    <div class="gallery-wrapper">
-                                        <div class="gallery-area">
-                                            <ul class="gallery-imgs">
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                                <li><div class="gallery-img">img</div></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td class="gallery-tbl-rhs">
-                                    <div></div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </div>{% endblock %}
