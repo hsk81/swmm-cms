@@ -177,78 +177,82 @@ body {
 }
 
 /* -------------------------------------------------------------------------
+ * Gallery Spacers
+ * ------------------------------------------------------------------------- */
+
+div.gallery-h-spacer {
+    clear: both;
+    height: 4px;
+    background-color: #0f243f;
+}
+
+div.gallery-v-spacer {
+    float: left;
+    width: 4px;
+    height: 100%;
+    background-color: aqua;
+}
+
+/* -------------------------------------------------------------------------
  * Gallery
  * ------------------------------------------------------------------------- */
 
-.gallery-tbl {
-    height: 150px;
+div.gallery {
+    height: 160px;
     width: 100%;
-    border: 1px dotted fuchsia;
-    margin-bottom: 4px;
+    background-color: lime;
 }
 
-.gallery-tbl-portrait {
+div.gallery .portrait {
+    float: left;
     height: 100%;
-    width: 100px;
-    border: 1px dotted aqua;
+    width: 136px;
 }
 
-.gallery-tbl-lhs, .gallery-tbl-rhs {
+div.gallery .label {
+    float: left;
     height: 100%;
-    width: 25px;
-    border: 1px dotted aqua;
+    width: 32px;
+    background-color: fuchsia;
 }
 
-.gallery-tbl-center {
+div.gallery .wrapper {
+    float: left;
     height: 100%;
-    width: auto;
-    border: 1px dotted aqua;
+    width: 640px;
 }
 
-.gallery-wrapper {
-    height: 100%;
-    width: 100%;
-    border: 0px dashed fuchsia;
-}
-
-.gallery-area {
+div.gallery .area {
     height: 100%;
     width: 100%;
-    border: 0px dotted aqua;
     position: relative;
-    overflow: auto;
+    overflow: hidden;
 }
 
-.gallery-imgs {
+div.gallery .imgs {
+    margin: 0;
+    padding: 0;
     height: 100%;
     width: 4096px;
-    border-right: 5px;
-    border: 0px dashed fuchsia;
-    margin: 0px;
-    padding: 0;
     position: absolute;
     list-style:none;
 }
 
-.gallery-imgs li {
-    float:left;
-    margin-right:4px;
-    cursor:pointer
+div.gallery .imgs li {
+    float: left;
+    cursor: pointer
 }
 
-.gallery-img {
-    height: 128px;
-    width: 100px;
-    border: 0px dotted aqua;
-    background: #1f5967;
+div.gallery .img-r,
+div.gallery .img-g,
+div.gallery .img-b {
+    height: 160px;
+    width: 172px;
 }
 
-.gallery-img {
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    color: white;
-}
+div.gallery .img-r { background-color: red; }
+div.gallery .img-g { background-color: green; }
+div.gallery .img-b { background-color: blue; }
 
 /* -------------------------------------------------------------------------
  * Bottom Bar
