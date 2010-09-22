@@ -11,7 +11,7 @@ $(document).ready(function() {
 
     $('.gallery .wrapper').css (
         'width', galleryWidth - (
-            portraitWidth + labelWidth + 2*vspacerWidth
+            portraitWidth + labelWidth + 4*vspacerWidth
         )
     );
 
@@ -21,6 +21,7 @@ $(document).ready(function() {
 {% block content %}<div id="content">
     
     <div class="gallery">
+        <div class="gallery-v-spacer">&nbsp;</div>
         <div class="portrait"></div>
         <div class="gallery-v-spacer">&nbsp;</div>
         <div class="label"></div>
@@ -38,6 +39,8 @@ $(document).ready(function() {
                 </ul>
             </div>
         </div>
+
+        <div class="gallery-v-spacer">&nbsp;</div>
     </div>
 
     <div class="gallery-h-spacer">
@@ -45,6 +48,7 @@ $(document).ready(function() {
     </div>
 
     <div class="gallery">
+        <div class="gallery-v-spacer">&nbsp;</div>
         <div class="portrait"></div>
         <div class="gallery-v-spacer">&nbsp;</div>
         <div class="label"></div>
@@ -62,6 +66,35 @@ $(document).ready(function() {
                 </ul>
             </div>
         </div>
+
+        <div class="gallery-v-spacer">&nbsp;</div>
+    </div>
+
+    <div class="gallery-h-spacer">
+        &nbsp;
+    </div>
+
+    <div class="gallery">
+        <div class="gallery-v-spacer">&nbsp;</div>
+        <div class="portrait"></div>
+        <div class="gallery-v-spacer">&nbsp;</div>
+        <div class="label"></div>
+        <div class="gallery-v-spacer">&nbsp;</div>
+
+        <div class="wrapper">
+            <div class="area">
+                <ul class="imgs">
+                    <li><div class="img-r"></div></li>
+                    <li><div class="img-g"></div></li>
+                    <li><div class="img-b"></div></li>
+                    <li><div class="img-r"></div></li>
+                    <li><div class="img-g"></div></li>
+                    <li><div class="img-b"></div></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="gallery-v-spacer">&nbsp;</div>
     </div>
 
 </div>{% endblock %}
