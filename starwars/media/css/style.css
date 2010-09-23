@@ -103,7 +103,6 @@ body {
 
 #menu-tbl {
     width: auto;
-    border: 0px dotted fuchsia;
 }
 
 #menu-tbl tbody tr td {
@@ -122,6 +121,16 @@ body {
     font-size: x-small;
     font-weight: normal;
     color: white;
+}
+
+/* -------------------------------------------------------------------------
+ * Menu Icons
+ * ------------------------------------------------------------------------- */
+
+.menu-tbl-item.icons {
+    width: 100%;
+    text-align: right;
+    cursor: pointer;
 }
 
 /* -------------------------------------------------------------------------
@@ -186,11 +195,42 @@ div.gallery-h-spacer {
     background-color: #0f243f;
 }
 
+div.gallery-h-spacer.last {
+    height: 0px;
+}
+
 div.gallery-v-spacer {
     float: left;
-    width: 2px;
+    width: 1px;
     height: 100%;
-    background-color: aqua;
+    background-color: white;
+}
+
+div.gallery-v-spacer.last {
+    display: inline;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery Top & Bottom Borders
+ * ------------------------------------------------------------------------- */
+
+div.gallery .area {
+    overflow: hidden;
+}
+
+div.gallery-v-spacer, div.gallery .portrait, div.gallery .label {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+div.gallery .wrapper {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+div.gallery .imgs {
+    border-top: 0px solid aqua;
+    border-bottom: 0px solid white;
 }
 
 /* -------------------------------------------------------------------------
@@ -200,20 +240,39 @@ div.gallery-v-spacer {
 div.gallery {
     height: 160px;
     width: 100%;
-    background-color: lime;
+    background-color: #0f243f;
 }
 
 div.gallery .portrait {
     float: left;
     height: 100%;
     width: 136px;
+    background-color: #1f5967;
 }
 
 div.gallery .label {
     float: left;
     height: 100%;
     width: 32px;
-    background-color: fuchsia;
+}
+
+/*div.gallery .label {
+     -moz-transform: rotate(270.0deg);
+       -o-transform: rotate(270.0deg);
+  -webkit-transform: rotate(270.0deg);
+         -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3.0)";
+}*/
+
+div.gallery .label.red {
+    background-color: #953735;
+}
+
+div.gallery .label.green {
+    background-color: #75923c;
+}
+
+div.gallery .label.blue {
+    background-color: #68697e;
 }
 
 div.gallery .wrapper {
@@ -226,7 +285,6 @@ div.gallery .area {
     height: 100%;
     width: 100%;
     position: relative;
-    overflow: hidden;
 }
 
 div.gallery .imgs {
@@ -248,12 +306,12 @@ div.gallery .img-g,
 div.gallery .img-b {
     height: 160px;
     width: 172px;
-    border-right: 2px solid fuchsia;
+    border-right: 1px solid white;
 }
 
-div.gallery .img-r { background-color: red; }
-div.gallery .img-g { background-color: green; }
-div.gallery .img-b { background-color: blue; }
+div.gallery .img-r { background-color: #808080; }
+div.gallery .img-g { background-color: #808080; }
+div.gallery .img-b { background-color: #808080; }
 
 /* -------------------------------------------------------------------------
  * Bottom Bar

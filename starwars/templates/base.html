@@ -57,7 +57,7 @@
                         {% block menu %}<div id="menu">
                         <table id="menu-tbl">
                             <tbody>
-                                <tr>
+                                <tr align="center">
                                     <td class="menu-tbl-item">
                                         <a href="{% url home:master %}">Home</a>
                                     </td>
@@ -70,6 +70,9 @@
                                     <td class="menu-tbl-item">
                                         <a href="{% url contact:master %}">Contact</a>
                                     </td>
+                                    
+                                    {% block menu-ext %}
+                                    {% endblock %}
                                 </tr>
                             </tbody>
                         </table>
