@@ -2,7 +2,7 @@
 
 {% block javascript-ext %}
 <script type="text/javascript">
-$(document).ready(function() {
+var fnAdjustGalleryWrapperWidth = function() {
 
     var galleryWidth = parseInt($('.gallery').css('width'));
     var portraitWidth = parseInt($('.gallery .portrait').css('width'));
@@ -14,17 +14,56 @@ $(document).ready(function() {
             portraitWidth + labelWidth + 4*vspacerWidth
         )
     );
+}
 
-});</script>
+$(window).resize(fnAdjustGalleryWrapperWidth);
+$(document).ready(fnAdjustGalleryWrapperWidth);
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    var fnClr = function (el) {
+        el.css ('border-top', '0px solid white');
+        el.css ('border-bottom', '0px solid white');
+    }
+
+    var fnSet = function (el) {
+        el.css ('border-top', '1px solid white');
+        el.css ('border-bottom', '1px solid white');
+    }
+
+    $('#icon-show-all').click(function (event) {
+        var galleryArea = $('div.gallery .area');
+        if (galleryArea.css ('overflow') != 'hidden') {
+            galleryArea.css ('overflow', 'hidden')
+            fnSet($('div.gallery .wrapper'));
+            fnClr($('div.gallery .imgs'));
+            $('div.gallery-v-spacer.last').css ('display','inline')
+        } else {
+            galleryArea.css ('overflow', 'visible')
+            fnClr($('div.gallery .wrapper'));
+            fnSet($('div.gallery .imgs'));
+            $('div.gallery-v-spacer.last').css ('display','none')
+        }
+    });
+});
+</script>
 {% endblock %}
+
+{% block menu-ext %}<td class="menu-tbl-item icons">
+    <img alt="Show All" 
+         src="{{ MEDIA_URL }}ico/silk/images.png"
+         title="Show All"
+         id="icon-show-all" />
+</td>{% endblock %}
 
 {% block content %}<div id="content">
     
     <div class="gallery">
         <div class="gallery-v-spacer">&nbsp;</div>
-        <div class="portrait"></div>
+        <div class="portrait red"></div>
         <div class="gallery-v-spacer">&nbsp;</div>
-        <div class="label"></div>
+        <div class="label blue"></div>
         <div class="gallery-v-spacer">&nbsp;</div>
 
         <div class="wrapper">
@@ -40,7 +79,37 @@ $(document).ready(function() {
             </div>
         </div>
 
+        <div class="gallery-v-spacer last">&nbsp;</div>
+    </div>
+
+    <div class="gallery-h-spacer">
+        &nbsp;
+    </div>
+    
+    <div class="gallery">
         <div class="gallery-v-spacer">&nbsp;</div>
+        <div class="portrait"></div>
+        <div class="gallery-v-spacer">&nbsp;</div>
+        <div class="label red"></div>
+        <div class="gallery-v-spacer">&nbsp;</div>
+
+        <div class="wrapper">
+            <div class="area">
+                <ul class="imgs">
+                    <li><div class="img-r"></div></li>
+                    <li><div class="img-g"></div></li>
+                    <li><div class="img-b"></div></li>
+                    <li><div class="img-r"></div></li>
+                    <li><div class="img-g"></div></li>
+                    <li><div class="img-b"></div></li>
+                    <li><div class="img-r"></div></li>
+                    <li><div class="img-g"></div></li>
+                    <li><div class="img-b"></div></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="gallery-v-spacer last">&nbsp;</div>
     </div>
 
     <div class="gallery-h-spacer">
@@ -51,7 +120,7 @@ $(document).ready(function() {
         <div class="gallery-v-spacer">&nbsp;</div>
         <div class="portrait"></div>
         <div class="gallery-v-spacer">&nbsp;</div>
-        <div class="label"></div>
+        <div class="label green"></div>
         <div class="gallery-v-spacer">&nbsp;</div>
 
         <div class="wrapper">
@@ -61,40 +130,15 @@ $(document).ready(function() {
                     <li><div class="img-g"></div></li>
                     <li><div class="img-b"></div></li>
                     <li><div class="img-r"></div></li>
-                    <li><div class="img-g"></div></li>
-                    <li><div class="img-b"></div></li>
                 </ul>
             </div>
         </div>
 
-        <div class="gallery-v-spacer">&nbsp;</div>
+        <div class="gallery-v-spacer last">&nbsp;</div>
     </div>
 
-    <div class="gallery-h-spacer">
+    <div class="gallery-h-spacer last">
         &nbsp;
-    </div>
-
-    <div class="gallery">
-        <div class="gallery-v-spacer">&nbsp;</div>
-        <div class="portrait"></div>
-        <div class="gallery-v-spacer">&nbsp;</div>
-        <div class="label"></div>
-        <div class="gallery-v-spacer">&nbsp;</div>
-
-        <div class="wrapper">
-            <div class="area">
-                <ul class="imgs">
-                    <li><div class="img-r"></div></li>
-                    <li><div class="img-g"></div></li>
-                    <li><div class="img-b"></div></li>
-                    <li><div class="img-r"></div></li>
-                    <li><div class="img-g"></div></li>
-                    <li><div class="img-b"></div></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="gallery-v-spacer">&nbsp;</div>
     </div>
 
 </div>{% endblock %}
