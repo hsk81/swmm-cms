@@ -36,18 +36,26 @@ $(document).ready(function () {
         var galleryArea = $('div.gallery .area');
         if (galleryArea.css ('overflow') != 'hidden') {
             galleryArea.css ('overflow', 'hidden')
-            fnSet($('div.gallery .wrapper'));
-            fnClr($('div.gallery .imgs'));
+            fnSet ($('div.gallery .wrapper'));
+            fnClr ($('div.gallery .imgs'));
             $('div.gallery-v-spacer.last').css ('display','inline')
         } else {
             galleryArea.css ('overflow', 'visible')
-            fnClr($('div.gallery .wrapper'));
-            fnSet($('div.gallery .imgs'));
+            fnClr ($('div.gallery .wrapper'));
+            fnSet ($('div.gallery .imgs'));
             $('div.gallery-v-spacer.last').css ('display','none')
         }
     });
-});
-</script>
+});</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('div.gallery .label').each(function (idx, gl) {
+        var labelHeight = parseInt ($(gl).css('height'));
+        var ulHeight = parseInt ($(gl).children ('ul').css ('height'));
+        $(gl).children ('ul').css ('top', (labelHeight - ulHeight) / 2.0);
+    });
+});</script>
 {% endblock %}
 
 {% block menu-ext %}<td class="menu-tbl-item icons">
@@ -63,7 +71,18 @@ $(document).ready(function () {
         <div class="gallery-v-spacer">&nbsp;</div>
         <div class="portrait red"></div>
         <div class="gallery-v-spacer">&nbsp;</div>
-        <div class="label blue"></div>
+        <div class="label blue">
+            <ul>
+                <li>H</li>
+                <li>a</li>
+                <li>n</li>
+                <li>&nbsp;</li>
+                <li>S</li>
+                <li>o</li>
+                <li>l</li>
+                <li>o</li>
+            </ul>
+        </div>
         <div class="gallery-v-spacer">&nbsp;</div>
 
         <div class="wrapper">
@@ -90,7 +109,21 @@ $(document).ready(function () {
         <div class="gallery-v-spacer">&nbsp;</div>
         <div class="portrait"></div>
         <div class="gallery-v-spacer">&nbsp;</div>
-        <div class="label red"></div>
+        <div class="label red">
+            <ul>
+                <li>D</li>
+                <li>a</li>
+                <li>r</li>
+                <li>t</li>
+                <li>h</li>
+                <li>&nbsp;</li>
+                <li>V</li>
+                <li>a</li>
+                <li>d</li>
+                <li>e</li>
+                <li>r</li>
+            </ul>
+        </div>
         <div class="gallery-v-spacer">&nbsp;</div>
 
         <div class="wrapper">
@@ -120,7 +153,22 @@ $(document).ready(function () {
         <div class="gallery-v-spacer">&nbsp;</div>
         <div class="portrait"></div>
         <div class="gallery-v-spacer">&nbsp;</div>
-        <div class="label green"></div>
+        <div class="label green">
+            <ul>
+                <li>S</li>
+                <li>w</li>
+                <li>o</li>
+                <li>o</li>
+                <li>p</li>
+                <li>&nbsp;</li>
+                <li>R</li>
+                <li>i</li>
+                <li>d</li>
+                <li>e</li>
+                <li>r</li>
+                <li>s</li>
+            </ul>
+        </div>
         <div class="gallery-v-spacer">&nbsp;</div>
 
         <div class="wrapper">

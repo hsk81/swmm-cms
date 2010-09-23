@@ -254,14 +254,32 @@ div.gallery .label {
     float: left;
     height: 100%;
     width: 32px;
+    overflow: hidden;
 }
 
-/*div.gallery .label {
-     -moz-transform: rotate(270.0deg);
-       -o-transform: rotate(270.0deg);
-  -webkit-transform: rotate(270.0deg);
-         -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3.0)";
-}*/
+div.gallery .label ul {
+    height: auto;
+    width: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    line-height: 90%;
+}
+
+div.gallery .label ul li {
+    height: auto;
+    width: 32px;
+}
+
+div.gallery .label ul li {
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
 
 div.gallery .label.red {
     background-color: #953735;
