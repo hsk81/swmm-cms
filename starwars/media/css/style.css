@@ -129,8 +129,15 @@ body {
 
 .menu-tbl-item.icons {
     width: 100%;
-    text-align: right;
     cursor: pointer;
+}
+
+.menu-tbl-item.icons {
+    text-align: right;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
 }
 
 /* -------------------------------------------------------------------------
@@ -179,9 +186,136 @@ body {
 #content-tbl-center {
     vertical-align: middle;
     border: 1px dotted aqua;
+}
+
+#content-tbl-center {
     text-align: center;
     text-decoration: none;
     font-weight: bold;
+    color: white;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery
+ * ------------------------------------------------------------------------- */
+
+div.gallery {
+    height: 160px;
+    width: 100%;
+    background-color: #0f243f;
+}
+
+div.gallery .portrait {
+    float: left;
+    height: 100%;
+    width: 136px;
+    background-color: #1f5967;
+}
+
+div.gallery .label {
+    float: left;
+    height: 100%;
+    width: 32px;
+    overflow: hidden;
+}
+
+div.gallery .label ul {
+    height: auto;
+    width: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    line-height: 90%;
+}
+
+div.gallery .label ul li {
+    height: auto;
+    width: 32px;
+}
+
+div.gallery .label ul li {
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
+
+div.gallery .label.red {
+    background-color: #953735;
+}
+
+div.gallery .label.green {
+    background-color: #75923c;
+}
+
+div.gallery .label.blue {
+    background-color: #68697e;
+}
+
+div.gallery .wrapper {
+    float: left;
+    height: 100%;
+    width: 640px;
+}
+
+div.gallery .arrow {
+    height: 100%;
+    width: 32px;
+    position: relative;
+    cursor: pointer;
+    z-index: +1;
+}
+
+div.gallery .arrow.lhs {
+    float: left;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div.gallery .arrow.rhs {
+    float: right;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div.gallery .area {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+div.gallery .imgs {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 4096px;
+    position: absolute;
+    list-style:none;
+    z-index: 0;
+}
+
+div.gallery .imgs li {
+    float: left;
+    cursor: pointer;
+}
+
+div.gallery .img {
+    height: 160px;
+    width: 172px;
+    border-right: 1px solid white;
+    background-color: #808080;
+}
+
+div.gallery .img {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
     color: white;
 }
 
@@ -232,104 +366,6 @@ div.gallery .imgs {
     border-top: 0px solid aqua;
     border-bottom: 0px solid white;
 }
-
-/* -------------------------------------------------------------------------
- * Gallery
- * ------------------------------------------------------------------------- */
-
-div.gallery {
-    height: 160px;
-    width: 100%;
-    background-color: #0f243f;
-}
-
-div.gallery .portrait {
-    float: left;
-    height: 100%;
-    width: 136px;
-    background-color: #1f5967;
-}
-
-div.gallery .label {
-    float: left;
-    height: 100%;
-    width: 32px;
-    overflow: hidden;
-}
-
-div.gallery .label ul {
-    height: auto;
-    width: 32px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    position: relative;
-    line-height: 90%;
-}
-
-div.gallery .label ul li {
-    height: auto;
-    width: 32px;
-}
-
-div.gallery .label ul li {
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: x-small;
-    font-weight: normal;
-    color: white;
-}
-
-div.gallery .label.red {
-    background-color: #953735;
-}
-
-div.gallery .label.green {
-    background-color: #75923c;
-}
-
-div.gallery .label.blue {
-    background-color: #68697e;
-}
-
-div.gallery .wrapper {
-    float: left;
-    height: 100%;
-    width: 640px;
-}
-
-div.gallery .area {
-    height: 100%;
-    width: 100%;
-    position: relative;
-}
-
-div.gallery .imgs {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 4096px;
-    position: absolute;
-    list-style:none;
-}
-
-div.gallery .imgs li {
-    float: left;
-    cursor: pointer
-}
-
-div.gallery .img-r,
-div.gallery .img-g,
-div.gallery .img-b {
-    height: 160px;
-    width: 172px;
-    border-right: 1px solid white;
-}
-
-div.gallery .img-r { background-color: #808080; }
-div.gallery .img-g { background-color: #808080; }
-div.gallery .img-b { background-color: #808080; }
 
 /* -------------------------------------------------------------------------
  * Bottom Bar

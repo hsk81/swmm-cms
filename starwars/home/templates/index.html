@@ -2,26 +2,37 @@
 
 {% block javascript-ext %}
 <script type="text/javascript">
+var fnAdjustGalleryAreaWidth = function() {
+    $('div.gallery .area .imgs').each (function (idx, gai) {
+        var img = $(gai).find ('.img')
+        if (img.size () > 0) {
+            $(gai).css ('width', img[0].offsetWidth * img.size ());
+        } else {
+            ;
+        }
+    });
+}
+
+$(document).ready(fnAdjustGalleryAreaWidth);
+
 var fnAdjustGalleryWrapperWidth = function() {
+    var galleryWidth = parseInt($('div.gallery').css('width'));
+    var portraitWidth = parseInt($('div.gallery .portrait').css('width'));
+    var labelWidth = parseInt($('div.gallery .label').css('width'));
+    var vspacerWidth = parseInt($('div.gallery-v-spacer').css('width'));
 
-    var galleryWidth = parseInt($('.gallery').css('width'));
-    var portraitWidth = parseInt($('.gallery .portrait').css('width'));
-    var labelWidth = parseInt($('.gallery .label').css('width'));
-    var vspacerWidth = parseInt($('.gallery-v-spacer').css('width'));
-
-    $('.gallery .wrapper').css (
+    $('div.gallery .wrapper').css (
         'width', galleryWidth - (
             portraitWidth + labelWidth + 4*vspacerWidth
         )
     );
 }
 
-$(window).resize(fnAdjustGalleryWrapperWidth);
-$(document).ready(fnAdjustGalleryWrapperWidth);
+$(document).ready (fnAdjustGalleryWrapperWidth);
 </script>
 
 <script type="text/javascript">
-$(document).ready(function () {
+fnToggleGalleryLayout = function () {
     var fnClr = function (el) {
         el.css ('border-top', '0px solid white');
         el.css ('border-bottom', '0px solid white');
@@ -39,34 +50,133 @@ $(document).ready(function () {
             fnSet ($('div.gallery .wrapper'));
             fnClr ($('div.gallery .imgs'));
             $('div.gallery-v-spacer.last').css ('display','inline')
+            $('div.gallery .arrow').css ('display','inline')
         } else {
             galleryArea.css ('overflow', 'visible')
             fnClr ($('div.gallery .wrapper'));
             fnSet ($('div.gallery .imgs'));
             $('div.gallery-v-spacer.last').css ('display','none')
+            $('div.gallery .arrow').css ('display','none')
+            $('div.gallery .imgs').css ('left','0px')
         }
     });
-});</script>
+};
+
+$(document).ready (fnToggleGalleryLayout);
+</script>
 
 <script type="text/javascript">
-$(document).ready(function () {
+var fnAlignGalleryLabelVertically = function () {
     $('div.gallery .label').each(function (idx, gl) {
         var labelHeight = parseInt ($(gl).css('height'));
         var ulHeight = parseInt ($(gl).children ('ul').css ('height'));
         $(gl).children ('ul').css ('top', (labelHeight - ulHeight) / 2.0);
     });
+};
+
+$(document).ready(fnAlignGalleryLabelVertically);
+</script>
+
+<script type="text/javascript">
+var fnSetGalleryArrowBackgroundImage = function () {
+    $('div.gallery .arrow.lhs').css('background-image',
+        'url("{{ MEDIA_URL }}ico/silk/arrow_left.png")'
+    );
+
+    $('div.gallery .arrow.rhs').css('background-image',
+        'url("{{ MEDIA_URL }}ico/silk/arrow_right.png")'
+    );
+};
+
+$(document).ready (fnSetGalleryArrowBackgroundImage);
+</script>
+
+<script type="text/javascript">
+var fnToggleGalleryArrowOpacity = function () {
+    $('div.gallery .arrow').hover(function (event) {
+        var area = $(event.target).parent ('.area');
+        var imgs = $(event.target).find ('~.imgs');
+
+        if (event.type != 'mouseenter') {
+            $(event.target).css('opacity','0.0625');
+        } else {
+            if (imgs[0].offsetWidth > area[0].offsetWidth) {
+                $(event.target).css('opacity','1.0000');
+            } else {
+                var left = parseInt (imgs.css ('left'));
+                if ((left < 0.0) || (left > parseInt (area.css('width')) -
+                    parseInt (imgs.css ('width')))) {
+                    $(event.target).css('opacity','1.0000');
+                } else {
+                    $(event.target).css('opacity','0.0625');
+                    $(event.target).css('cursor','default');
+                }
+            }
+        }
+    });
+
+    $('div.gallery .arrow').css('opacity','0.0625');
+};
+
+$(document).ready (fnToggleGalleryArrowOpacity);
+</script>
+
+<script type="text/javascript">
+var fnSetGalleryArrowOnClick = function () {
+    $('div.gallery .arrow.rhs').unbind ('click');
+    $('div.gallery .arrow.rhs').click (function (event) {
+        var area = $(event.target).parent ('.area');
+        var imgs = $(event.target).find ('~.imgs');
+        var img = imgs.find ('.img');
+        if (img.size () > 0) {
+            var left = parseInt (imgs.css ('left'));
+            if (left > parseInt (area.css('width')) -
+                parseInt (imgs.css ('width'))) {
+                imgs.css ('left', left - img[0].offsetWidth);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    });
+
+    $('div.gallery .arrow.lhs').unbind ('click');
+    $('div.gallery .arrow.lhs').click (function (event) {
+        var imgs = $(event.target).find ('~.imgs');
+        var img = imgs.find ('.img');
+        if (img.size () > 0) {
+            var left = parseInt (imgs.css ('left'));
+            if (left < 0.0) {
+                imgs.css ('left', left + img[0].offsetWidth);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    });
+};
+
+$(document).ready (fnSetGalleryArrowOnClick);
+</script>
+
+<script type="text/javascript">
+$(window).resize (function () {
+    fnAdjustGalleryAreaWidth ();
+    fnAdjustGalleryWrapperWidth ();
+    fnSetGalleryArrowOnClick ();
 });</script>
 {% endblock %}
 
 {% block menu-ext %}<td class="menu-tbl-item icons">
     <img alt="Show All" 
-         src="{{ MEDIA_URL }}ico/silk/images.png"
+         src="{{ MEDIA_URL }}ico/silk/layout.png"
          title="Show All"
          id="icon-show-all" />
 </td>{% endblock %}
 
-{% block content %}<div id="content">
-    
+{% block content %}<div id="content">    
     <div class="gallery">
         <div class="gallery-v-spacer">&nbsp;</div>
         <div class="portrait red"></div>
@@ -87,13 +197,15 @@ $(document).ready(function () {
 
         <div class="wrapper">
             <div class="area">
+                <div class="arrow lhs"></div>
+                <div class="arrow rhs"></div>
                 <ul class="imgs">
-                    <li><div class="img-r"></div></li>
-                    <li><div class="img-g"></div></li>
-                    <li><div class="img-b"></div></li>
-                    <li><div class="img-r"></div></li>
-                    <li><div class="img-g"></div></li>
-                    <li><div class="img-b"></div></li>
+                    <li><div class="img">&alpha;</div></li>
+                    <li><div class="img">&beta;</div></li>
+                    <li><div class="img">&gamma;</div></li>
+                    <li><div class="img">&delta;</div></li>
+                    <li><div class="img">&epsilon;</div></li>
+                    <li><div class="img">&zeta;</div></li>
                 </ul>
             </div>
         </div>
@@ -128,16 +240,18 @@ $(document).ready(function () {
 
         <div class="wrapper">
             <div class="area">
+                <div class="arrow lhs"></div>
+                <div class="arrow rhs"></div>
                 <ul class="imgs">
-                    <li><div class="img-r"></div></li>
-                    <li><div class="img-g"></div></li>
-                    <li><div class="img-b"></div></li>
-                    <li><div class="img-r"></div></li>
-                    <li><div class="img-g"></div></li>
-                    <li><div class="img-b"></div></li>
-                    <li><div class="img-r"></div></li>
-                    <li><div class="img-g"></div></li>
-                    <li><div class="img-b"></div></li>
+                    <li><div class="img">&alpha;</div></li>
+                    <li><div class="img">&beta;</div></li>
+                    <li><div class="img">&gamma;</div></li>
+                    <li><div class="img">&delta;</div></li>
+                    <li><div class="img">&epsilon;</div></li>
+                    <li><div class="img">&zeta;</div></li>
+                    <li><div class="img">&eta;</div></li>
+                    <li><div class="img">&theta;</div></li>
+                    <li><div class="img">&iota;</div></li>
                 </ul>
             </div>
         </div>
@@ -173,11 +287,13 @@ $(document).ready(function () {
 
         <div class="wrapper">
             <div class="area">
+                <div class="arrow lhs"></div>
+                <div class="arrow rhs"></div>
                 <ul class="imgs">
-                    <li><div class="img-r"></div></li>
-                    <li><div class="img-g"></div></li>
-                    <li><div class="img-b"></div></li>
-                    <li><div class="img-r"></div></li>
+                    <li><div class="img">&alpha;</div></li>
+                    <li><div class="img">&beta;</div></li>
+                    <li><div class="img">&gamma;</div></li>
+                    <li><div class="img">&delta;</div></li>
                 </ul>
             </div>
         </div>
