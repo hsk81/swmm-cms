@@ -200,7 +200,7 @@ body {
  * ------------------------------------------------------------------------- */
 
 div.gallery {
-    height: 160px;
+    height: 162px;
     width: 100%;
     background-color: #0f243f;
 }
@@ -208,8 +208,14 @@ div.gallery {
 div.gallery .portrait {
     float: left;
     height: 100%;
+    width: 138px;
+}
+
+div.gallery .portrait .frame {
+    height: 160px;
     width: 136px;
-    background-color: #1f5967;
+    border: 1px dotted white;
+    background-color: #808080;
 }
 
 div.gallery .label {
@@ -262,7 +268,8 @@ div.gallery .wrapper {
 }
 
 div.gallery .arrow {
-    height: 100%;
+    top: 65px;
+    height: 32px;
     width: 32px;
     position: relative;
     cursor: pointer;
@@ -273,12 +280,28 @@ div.gallery .arrow.lhs {
     float: left;
     background-position: center;
     background-repeat: no-repeat;
+    border: 1px dotted white;
+}
+
+div.gallery .arrow.lhs {
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
 }
 
 div.gallery .arrow.rhs {
     float: right;
     background-position: center;
     background-repeat: no-repeat;
+    border: 1px dotted white;
+}
+
+div.gallery .arrow.rhs {
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-bottomleft: 3px;
 }
 
 div.gallery .area {
@@ -303,8 +326,6 @@ div.gallery .imgs li {
 }
 
 div.gallery .img {
-    height: 160px;
-    width: 172px;
     border-right: 1px solid white;
     background-color: #808080;
 }
@@ -317,6 +338,39 @@ div.gallery .img {
     font-size: x-small;
     font-weight: normal;
     color: white;
+}
+
+div.gallery .img .img-content {
+    height: 155px;
+    width: 248px;
+    border: 1px dotted white;
+}
+
+div.gallery .img .img-content {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
+
+div.gallery .img .img-footer {
+    height: 7px;
+    width: 100%;
+}
+
+div.gallery .img .img-footer.red {
+    background-color: #953735;
+}
+
+div.gallery .img .img-footer.green {
+    background-color: #75923c;
+}
+
+div.gallery .img .img-footer.blue {
+    background-color: #68697e;
 }
 
 /* -------------------------------------------------------------------------
