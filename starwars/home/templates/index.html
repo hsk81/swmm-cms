@@ -654,10 +654,14 @@ $(window).resize (function () {
         &nbsp;
     </div>
 
-    <div id="gallery-img-rating-cache">
-       <img width="1" height="1" alt="Grey" src='{{ MEDIA_URL }}ico/silk/star_grey.png' />
-       <img width="1" height="1" alt="Half" src='{{ MEDIA_URL }}ico/silk/star_half_grey.png' />
-       <img width="1" height="1" alt="Star" src='{{ MEDIA_URL }}ico/silk/star.png' />
-    </div>
+</div>{% endblock %}
 
+<!-- --------------------------------------------------------------------------
+ Image Cache:
+--------------------------------------------------------------------------- -->
+
+{% block image-cache %}<div id="image-cache">
+   <img alt="Grey" src='{{ MEDIA_URL }}ico/silk/star_grey.png' />
+   <img alt="Half" src='{{ MEDIA_URL }}ico/silk/star_half_grey.png' />
+   <img alt="Star" src='{{ MEDIA_URL }}ico/silk/star.png' />
 </div>{% endblock %}

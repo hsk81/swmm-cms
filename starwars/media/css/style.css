@@ -417,10 +417,6 @@ div.gallery .img .rating .star {
     background-image: url("http://media.localhost/starwars/ico/silk/star.png");
 }
 
-div#gallery-img-rating-cache {
-    display: none;
-}
-
 /* -------------------------------------------------------------------------
  * Gallery Spacers
  * ------------------------------------------------------------------------- */
@@ -492,4 +488,17 @@ div.gallery .imgs {
     text-align: center;
     font-size: smaller;
     color: #FFFFFF;
+}
+
+/* -------------------------------------------------------------------------
+ * Image Cache
+ * ------------------------------------------------------------------------- */
+
+div#image-cache {
+    display: none;
+}
+
+div#image-cache img {
+    height: 0;
+    width: 0;
 }
