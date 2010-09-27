@@ -304,7 +304,7 @@ var fnGalleryImageRatingOnClick = function () {
         }
 
         if ($(event.target).attr ('rate') == '0.0') {
-
+            
             st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
             nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
             rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
@@ -652,6 +652,12 @@ $(window).resize (function () {
 
     <div class="gallery-h-spacer last">
         &nbsp;
+    </div>
+
+    <div id="gallery-img-rating-cache">
+       <img width="1" height="1" alt="Grey" src='{{ MEDIA_URL }}ico/silk/star_grey.png' />
+       <img width="1" height="1" alt="Half" src='{{ MEDIA_URL }}ico/silk/star_half_grey.png' />
+       <img width="1" height="1" alt="Star" src='{{ MEDIA_URL }}ico/silk/star.png' />
     </div>
 
 </div>{% endblock %}

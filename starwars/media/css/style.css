@@ -405,6 +405,22 @@ div.gallery .img .rating.st {
     margin-left: 6px;
 }
 
+div.gallery .img .rating .grey {
+    background-image: url("http://media.localhost/starwars/ico/silk/star_grey.png");
+}
+
+div.gallery .img .rating .half {
+    background-image: url("http://media.localhost/starwars/ico/silk/star_half_grey.png");
+}
+
+div.gallery .img .rating .star {
+    background-image: url("http://media.localhost/starwars/ico/silk/star.png");
+}
+
+div#gallery-img-rating-cache {
+    display: none;
+}
+
 /* -------------------------------------------------------------------------
  * Gallery Spacers
  * ------------------------------------------------------------------------- */
