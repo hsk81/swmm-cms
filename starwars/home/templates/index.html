@@ -242,7 +242,7 @@ var fnGalleryImageRatingOnInit = function () {
         'url("{{ MEDIA_URL }}ico/silk/star_grey.png")'
     );
 
-    $('div.gallery .img .rating').css ('opacity','0.0625');
+    $('div.gallery .img .rating').css ('opacity','0.3725');
 };
 
 $(document).ready (fnGalleryImageRatingOnInit);
@@ -256,9 +256,9 @@ var fnGalleryImageRatingOnHover = function () {
         var rd = $(event.target).parent ('.img').find ('.rd')
 
         if (event.type != 'mouseenter') {
-            $(st).css ('opacity','0.0625');
-            $(nd).css ('opacity','0.0625');
-            $(rd).css ('opacity','0.0625');
+            $(st).css ('opacity','0.3725');
+            $(nd).css ('opacity','0.3725');
+            $(rd).css ('opacity','0.3725');
         } else {
             $(st).css ('opacity','1.0000');
             $(nd).css ('opacity','1.0000');
@@ -640,6 +640,9 @@ $(window).resize (function () {
                         <div class="img">
                             <div class="content">&epsilon;</div>
                             <div class="footer green"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
                             <div class="info"></div>
                         </div>
                     </li>
