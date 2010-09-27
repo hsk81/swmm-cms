@@ -1,40 +1,12 @@
 {% extends "base.html" %}
 
 {% block javascript-ext %}
-<script type="text/javascript">
-var fnAdjustGalleryAreaWidth = function() {
-    $('div.gallery .area .imgs').each (function (idx, gai) {
-        var img = $(gai).find ('.img')
-        if (img.size () > 0) {
-            $(gai).css ('width', img[0].offsetWidth * img.size ());
-        } else {
-            ;
-        }
-    });
-}
-
-$(document).ready(fnAdjustGalleryAreaWidth);
-</script>
+<!-- --------------------------------------------------------------------------
+ Gallery: Icon Layout
+--------------------------------------------------------------------------- -->
 
 <script type="text/javascript">
-var fnAdjustGalleryWrapperWidth = function() {
-    var galleryWidth = parseInt($('div.gallery').css('width'));
-    var portraitWidth = parseInt($('div.gallery .portrait').css('width'));
-    var labelWidth = parseInt($('div.gallery .label').css('width'));
-    var vspacerWidth = parseInt($('div.gallery-v-spacer').css('width'));
-
-    $('div.gallery .wrapper').css (
-        'width', galleryWidth - (
-            portraitWidth + labelWidth + 4*vspacerWidth
-        )
-    );
-}
-
-$(document).ready (fnAdjustGalleryWrapperWidth);
-</script>
-
-<script type="text/javascript">
-fnToggleGalleryLayout = function () {
+fnGalleryIconLayoutOnClick = function () {
     var fnClr = function (el) {
         el.css ('border-top', '0px solid white');
         el.css ('border-bottom', '0px solid white');
@@ -45,7 +17,7 @@ fnToggleGalleryLayout = function () {
         el.css ('border-bottom', '1px solid white');
     }
 
-    $('#icon-show-all').click(function (event) {
+    $('#icon-layout').click(function (event) {
         var galleryArea = $('div.gallery .area');
         if (galleryArea.css ('overflow') != 'hidden') {
             galleryArea.css ('overflow', 'hidden')
@@ -64,11 +36,55 @@ fnToggleGalleryLayout = function () {
     });
 };
 
-$(document).ready (fnToggleGalleryLayout);
+$(document).ready (fnGalleryIconLayoutOnClick);
 </script>
 
+<!-- --------------------------------------------------------------------------
+ Gallery: Area
+--------------------------------------------------------------------------- -->
+
 <script type="text/javascript">
-var fnAlignGalleryLabelVertically = function () {
+var fnGalleryAreaOnInit = function() {
+    $('div.gallery .area .imgs').each (function (idx, gai) {
+        var img = $(gai).find ('.img')
+        if (img.size () > 0) {
+            $(gai).css ('width', img[0].offsetWidth * img.size ());
+        } else {
+            ;
+        }
+    });
+}
+
+$(document).ready(fnGalleryAreaOnInit);
+</script>
+
+<!-- --------------------------------------------------------------------------
+ Gallery: Wrapper
+--------------------------------------------------------------------------- -->
+
+<script type="text/javascript">
+var fnGalleryWrapperOnInit = function() {
+    var galleryWidth = parseInt($('div.gallery').css('width'));
+    var portraitWidth = parseInt($('div.gallery .portrait').css('width'));
+    var labelWidth = parseInt($('div.gallery .label').css('width'));
+    var vspacerWidth = parseInt($('div.gallery-v-spacer').css('width'));
+
+    $('div.gallery .wrapper').css (
+        'width', galleryWidth - (
+            portraitWidth + labelWidth + 4*vspacerWidth
+        )
+    );
+}
+
+$(document).ready (fnGalleryWrapperOnInit);
+</script>
+
+<!-- --------------------------------------------------------------------------
+ Gallery: Label
+--------------------------------------------------------------------------- -->
+
+<script type="text/javascript">
+var fnGalleryLabelOnInit = function () {
     $('div.gallery .label').each(function (idx, gl) {
         var labelHeight = parseInt ($(gl).css('height'));
         var ulHeight = parseInt ($(gl).children ('ul').css ('height'));
@@ -76,11 +92,15 @@ var fnAlignGalleryLabelVertically = function () {
     });
 };
 
-$(document).ready(fnAlignGalleryLabelVertically);
+$(document).ready(fnGalleryLabelOnInit);
 </script>
 
+<!-- --------------------------------------------------------------------------
+ Gallery: Arrow
+--------------------------------------------------------------------------- -->
+
 <script type="text/javascript">
-var fnSetGalleryArrowBackgroundImage = function () {
+var fnGalleryArrowOnInit = function () {
     $('div.gallery .arrow.lhs').css('background-image',
         'url("{{ MEDIA_URL }}ico/silk/arrow_left.png")'
     );
@@ -90,11 +110,11 @@ var fnSetGalleryArrowBackgroundImage = function () {
     );
 };
 
-$(document).ready (fnSetGalleryArrowBackgroundImage);
+$(document).ready (fnGalleryArrowOnInit);
 </script>
 
 <script type="text/javascript">
-var fnToggleGalleryArrowOpacity = function () {
+var fnGalleryArrowOnHover = function () {
     $('div.gallery .arrow').hover(function (event) {
         var area = $(event.target).parent ('.area');
         var imgs = $(event.target).find ('~.imgs');
@@ -124,11 +144,11 @@ var fnToggleGalleryArrowOpacity = function () {
     $('div.gallery .arrow').css('opacity','0.0625');
 };
 
-$(document).ready (fnToggleGalleryArrowOpacity);
+$(document).ready (fnGalleryArrowOnHover);
 </script>
 
 <script type="text/javascript">
-var fnSetGalleryArrowOnClickHandler = function () {
+var fnGalleryArrowOnClick = function () {
     $('div.gallery .arrow.rhs').unbind ('click');
     $('div.gallery .arrow.rhs').click (function (event) {
         var area = $(event.target).parent ('.area');
@@ -164,23 +184,200 @@ var fnSetGalleryArrowOnClickHandler = function () {
     });
 };
 
-$(document).ready (fnSetGalleryArrowOnClickHandler);
+$(document).ready (fnGalleryArrowOnClick);
+</script>
+
+<!-- --------------------------------------------------------------------------
+ Gallery: Image Info
+--------------------------------------------------------------------------- -->
+
+<script type="text/javascript">
+var fnGalleryImageInfoOnInit = function () {
+    $('div.gallery .img .info').css('background-image',
+        'url("{{ MEDIA_URL }}ico/silk/information.png")'
+    );
+
+    $('div.gallery .img .info').css('opacity','0.0625');
+};
+
+$(document).ready (fnGalleryImageInfoOnInit);
 </script>
 
 <script type="text/javascript">
+var fnGalleryImageInfoOnHover = function () {
+    $('div.gallery .img .info').hover(function (event) {
+        if (event.type != 'mouseenter') {
+            $(event.target).css ('opacity','0.0625');
+        } else {
+            $(event.target).css ('opacity','1.0000');
+        }
+    });
+};
+
+$(document).ready (fnGalleryImageInfoOnHover);
+</script>
+
+<!-- --------------------------------------------------------------------------
+ Gallery: Image Rating
+--------------------------------------------------------------------------- -->
+
+<script type="text/javascript">
+var fnGalleryImageRatingOnInit = function () {
+
+    $('div.gallery .img .rating.st').attr ('name', 'rating.st')
+    $('div.gallery .img .rating.st').attr ('rate', '0.0')
+    $('div.gallery .img .rating.st').css('background-image',
+        'url("{{ MEDIA_URL }}ico/silk/star_grey.png")'
+    );
+
+    $('div.gallery .img .rating.nd').attr ('name', 'rating.nd')
+    $('div.gallery .img .rating.nd').attr ('rate', '0.0')
+    $('div.gallery .img .rating.nd').css('background-image',
+        'url("{{ MEDIA_URL }}ico/silk/star_grey.png")'
+    );
+    
+    $('div.gallery .img .rating.rd').attr ('name', 'rating.rd')
+    $('div.gallery .img .rating.rd').attr ('rate', '0.0')
+    $('div.gallery .img .rating.rd').css('background-image',
+        'url("{{ MEDIA_URL }}ico/silk/star_grey.png")'
+    );
+
+    $('div.gallery .img .rating').css ('opacity','0.0625');
+};
+
+$(document).ready (fnGalleryImageRatingOnInit);
+</script>
+
+<script type="text/javascript">
+var fnGalleryImageRatingOnHover = function () {
+    $('div.gallery .img .rating').hover (function (event) {
+        var st = $(event.target).parent ('.img').find ('.st')
+        var nd = $(event.target).parent ('.img').find ('.nd')
+        var rd = $(event.target).parent ('.img').find ('.rd')
+
+        if (event.type != 'mouseenter') {
+            $(st).css ('opacity','0.0625');
+            $(nd).css ('opacity','0.0625');
+            $(rd).css ('opacity','0.0625');
+        } else {
+            $(st).css ('opacity','1.0000');
+            $(nd).css ('opacity','1.0000');
+            $(rd).css ('opacity','1.0000');
+        }
+    });
+};
+
+$(document).ready (fnGalleryImageRatingOnHover);
+</script>
+
+<script type="text/javascript">
+var fnGalleryImageRatingOnClick = function () {
+    $('div.gallery .img .rating').click (function (event) {
+        var st = $(event.target).parent ('.img').find ('.st')
+        var nd = $(event.target).parent ('.img').find ('.nd')
+        var rd = $(event.target).parent ('.img').find ('.rd')
+
+        if ($(event.target).attr ('name') == 'rating.st') {
+            if ($(event.target).attr ('rate') == '1.0') {
+                st.attr ('rate','0.5'); nd.attr ('rate','0.5'); rd.attr ('rate','0.5');
+            } else if ($(event.target).attr ('rate') == '0.5') {
+                st.attr ('rate','0.0'); nd.attr ('rate','0.0'); rd.attr ('rate','0.0');
+            } else {
+                st.attr ('rate','1.0'); nd.attr ('rate','1.0'); rd.attr ('rate','1.0');
+            }
+        } else if ($(event.target).attr ('name') == 'rating.nd') {
+            if ($(event.target).attr ('rate') == '2.0') {
+                st.attr ('rate','1.5'); nd.attr ('rate','1.5'); rd.attr ('rate','1.5');
+            } else if ($(event.target).attr ('rate') == '1.5') {
+                st.attr ('rate','1.0'); nd.attr ('rate','1.0'); rd.attr ('rate','1.0');
+            } else {
+                st.attr ('rate','2.0'); nd.attr ('rate','2.0'); rd.attr ('rate','2.0');
+            }
+        } else if ($(event.target).attr ('name') == 'rating.rd') {
+            if ($(event.target).attr ('rate') == '3.0') {
+                st.attr ('rate','2.5'); nd.attr ('rate','2.5'); rd.attr ('rate','2.5');
+            } else if ($(event.target).attr ('rate') == '2.5') {
+                st.attr ('rate','2.0'); nd.attr ('rate','2.0'); rd.attr ('rate','2.0');
+            } else {
+                st.attr ('rate','3.0'); nd.attr ('rate','3.0'); rd.attr ('rate','3.0');
+            }
+        }
+
+        if ($(event.target).attr ('rate') == '0.0') {
+
+            st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+            nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+            rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+
+        } else if ($(event.target).attr ('rate') == '0.5') {
+
+            st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_half_grey.png")')
+            nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+            rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+
+        } else if ($(event.target).attr ('rate') == '1.0') {
+
+            st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+            nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+            rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+
+        } else if ($(event.target).attr ('rate') == '1.5') {
+
+            st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+            nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_half_grey.png")')
+            rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+
+        } else if ($(event.target).attr ('rate') == '2.0') {
+
+            st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+            nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+            rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+
+        } else if ($(event.target).attr ('rate') == '2.5') {
+
+            st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+            nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+            rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_half_grey.png")')
+
+        } else if ($(event.target).attr ('rate') == '3.0') {
+
+            st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+            nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+            rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+
+        }
+    });
+};
+
+$(document).ready (fnGalleryImageRatingOnClick);
+</script>
+
+<!-- --------------------------------------------------------------------------
+ Gallery: Resize
+--------------------------------------------------------------------------- -->
+
+<script type="text/javascript">
 $(window).resize (function () {
-    fnAdjustGalleryAreaWidth ();
-    fnAdjustGalleryWrapperWidth ();
-    fnSetGalleryArrowOnClickHandler ();
+    fnGalleryAreaOnInit ();
+    fnGalleryWrapperOnInit ();
+    fnGalleryArrowOnClick ();
 });</script>
 {% endblock %}
+
+<!-- --------------------------------------------------------------------------
+ Menu:
+--------------------------------------------------------------------------- -->
 
 {% block menu-ext %}<td class="menu-tbl-item icons">
     <img alt="Show All" 
          src="{{ MEDIA_URL }}ico/silk/layout.png"
          title="Show All"
-         id="icon-show-all" />
+         id="icon-layout" />
 </td>{% endblock %}
+
+<!-- --------------------------------------------------------------------------
+ Content:
+--------------------------------------------------------------------------- -->
 
 {% block content %}<div id="content">    
     <div class="gallery">
@@ -210,36 +407,56 @@ $(window).resize (function () {
                 <ul class="imgs">
                     <li>
                         <div class="img">
-                            <div class="img-content">&alpha;</div>
-                            <div class="img-footer blue"></div>
+                            <div class="content">&alpha;</div>
+                            <div class="footer blue"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
 
                     <li>
                         <div class="img">
-                            <div class="img-content">&beta;</div>
-                            <div class="img-footer blue"></div>
+                            <div class="content">&beta;</div>
+                            <div class="footer blue"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
 
                     <li>
                         <div class="img">
-                            <div class="img-content">&gamma;</div>
-                            <div class="img-footer blue"></div>
+                            <div class="content">&gamma;</div>
+                            <div class="footer blue"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
 
                     <li>
                         <div class="img">
-                            <div class="img-content">&delta;</div>
-                            <div class="img-footer blue"></div>
+                            <div class="content">&delta;</div>
+                            <div class="footer blue"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
 
                     <li>
                         <div class="img">
-                            <div class="img-content">&epsilon;</div>
-                            <div class="img-footer blue"></div>
+                            <div class="content">&epsilon;</div>
+                            <div class="footer blue"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
                 </ul>
@@ -283,36 +500,56 @@ $(window).resize (function () {
                 <ul class="imgs">
                     <li>
                         <div class="img">
-                            <div class="img-content">&alpha;</div>
-                            <div class="img-footer red"></div>
+                            <div class="content">&alpha;</div>
+                            <div class="footer red"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
 
                     <li>
                         <div class="img">
-                            <div class="img-content">&beta;</div>
-                            <div class="img-footer red"></div>
+                            <div class="content">&beta;</div>
+                            <div class="footer red"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
 
                     <li>
                         <div class="img">
-                            <div class="img-content">&gamma;</div>
-                            <div class="img-footer red"></div>
+                            <div class="content">&gamma;</div>
+                            <div class="footer red"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
 
                     <li>
                         <div class="img">
-                            <div class="img-content">&delta;</div>
-                            <div class="img-footer red"></div>
+                            <div class="content">&delta;</div>
+                            <div class="footer red"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
 
                     <li>
                         <div class="img">
-                            <div class="img-content">&epsilon;</div>
-                            <div class="img-footer red"></div>
+                            <div class="content">&epsilon;</div>
+                            <div class="footer red"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
                 </ul>
@@ -357,36 +594,53 @@ $(window).resize (function () {
                 <ul class="imgs">
                     <li>
                         <div class="img">
-                            <div class="img-content">&alpha;</div>
-                            <div class="img-footer green"></div>
+                            <div class="content">&alpha;</div>
+                            <div class="footer green"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
 
                     <li>
                         <div class="img">
-                            <div class="img-content">&beta;</div>
-                            <div class="img-footer green"></div>
+                            <div class="content">&beta;</div>
+                            <div class="footer green"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
 
                     <li>
                         <div class="img">
-                            <div class="img-content">&gamma;</div>
-                            <div class="img-footer green"></div>
+                            <div class="content">&gamma;</div>
+                            <div class="footer green"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
 
                     <li>
                         <div class="img">
-                            <div class="img-content">&delta;</div>
-                            <div class="img-footer green"></div>
+                            <div class="content">&delta;</div>
+                            <div class="footer green"></div>
+                            <div class="rating st"></div>
+                            <div class="rating nd"></div>
+                            <div class="rating rd"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
 
                     <li>
                         <div class="img">
-                            <div class="img-content">&epsilon;</div>
-                            <div class="img-footer green"></div>
+                            <div class="content">&epsilon;</div>
+                            <div class="footer green"></div>
+                            <div class="info"></div>
                         </div>
                     </li>
                 </ul>
