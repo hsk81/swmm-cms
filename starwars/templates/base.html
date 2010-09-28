@@ -22,8 +22,11 @@
 {% endblock %}</head>
 <body>{% block body %}
 
-    {% block header %}<div id="header">
+    <!-- ----------------------------------------------------------------------
+    + Header:
+    ----------------------------------------------------------------------- -->
 
+    {% block header %}<div id="header">
         <table id="header-tbl">
             <tbody>
                 <tr>
@@ -45,8 +48,14 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
-	
+        </table>	
+    </div>{% endblock %}
+
+    <!-- ----------------------------------------------------------------------
+    + Top Bar:
+    ----------------------------------------------------------------------- -->
+
+    {% block super-top-bar %}<div id="super-top-bar">
     </div>{% endblock %}
 
     {% block top-bar %}<div id="top-bar">
@@ -96,15 +105,40 @@
         </table>
     </div>{% endblock %}
 
+    {% block sub-top-bar %}<div id="sub-top-bar">
+    </div>{% endblock %}
+
+    <!-- ----------------------------------------------------------------------
+    + Content:
+    ----------------------------------------------------------------------- -->
+
     {% block content %}<div id="content">
+    </div>{% endblock %}
+
+    <!-- ----------------------------------------------------------------------
+    + Bottom Bar:
+    ----------------------------------------------------------------------- -->
+
+    {% block super-bottom-bar %}<div id="super-bottom-bar">
     </div>{% endblock %}
 
     {% block bottom-bar %}<div id="bottom-bar">
     </div>{% endblock %}
 
+    {% block sub-bottom-bar %}<div id="sub-bottom-bar">
+    </div>{% endblock %}
+
+    <!-- ----------------------------------------------------------------------
+    + Footer:
+    ----------------------------------------------------------------------- -->
+
     {% block footer %}<div id="footer">
         <p>&copy; 2010 &ndash; All Rights Reserved.</p>
     </div>{% endblock %}
+
+    <!-- ----------------------------------------------------------------------
+    + Image Cache:
+    ----------------------------------------------------------------------- -->
 
     {% block image-cache %}<div id="image-cache">
     </div>{% endblock %}

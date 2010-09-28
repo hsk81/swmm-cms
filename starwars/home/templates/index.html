@@ -376,6 +376,47 @@ $(window).resize (function () {
 </td>{% endblock %}
 
 <!-- --------------------------------------------------------------------------
+ Sub-Top Bar:
+--------------------------------------------------------------------------- -->
+
+{% block sub-top-bar %}<div id="sub-top-bar">
+    <table id="sub-top-bar-tbl">
+        <tbody>
+            <tr>
+                {% block sub-top-bar-center %}<td id="sub-top-bar-tbl-center">
+                    {% block sub-menu %}<div id="sub-menu">
+                    <table id="sub-menu-tbl">
+                        <tbody>
+                            <tr align="center">
+                                <td class="sub-menu-tbl-item">
+                                    <a href="#">Episode I</a>
+                                </td>
+                                <td class="sub-menu-tbl-item">
+                                    <a href="#">Episode II</a>
+                                </td>
+                                <td class="sub-menu-tbl-item">
+                                    <a href="#">Episode III</a>
+                                </td>
+                                <td class="sub-menu-tbl-item">
+                                    <a href="#">Episode IV</a>
+                                </td>
+                                <td class="sub-menu-tbl-item">
+                                    <a href="#">Episode V</a>
+                                </td>
+                                <td class="sub-menu-tbl-item">
+                                    <a href="#">Episode VI</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>{% endblock %}
+                </td>{% endblock %}
+            </tr>
+        </tbody>
+    </table>
+</div>{% endblock %}
+
+<!-- --------------------------------------------------------------------------
  Content:
 --------------------------------------------------------------------------- -->
 
