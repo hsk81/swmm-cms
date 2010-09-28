@@ -141,6 +141,60 @@ body {
 }
 
 /* -------------------------------------------------------------------------
+ * Sub Top Bar
+ * ------------------------------------------------------------------------- */
+
+#sub-top-bar {
+    padding: 0px;
+    background: #948b54;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+}
+
+#sub-top-bar-tbl {
+    width: 100%;
+}
+
+#sub-top-bar-tbl-lhs {
+    width: 75%;
+}
+
+#sub-top-bar-tbl-rhs {
+    width: 25%;
+    border-left: 1px solid white;
+}
+
+/* -------------------------------------------------------------------------
+ * Sub Menu
+ * ------------------------------------------------------------------------- */
+
+#sub-menu {
+}
+
+#sub-menu-tbl {
+    width: auto;
+}
+
+#sub-menu-tbl tbody tr td {
+    padding: 5px;
+    border: 1px dotted #948b54;
+}
+
+#sub-menu-tbl tbody tr td:hover {
+    background: highlight;
+    border: 1px dotted #948b54;
+}
+
+#sub-menu-tbl tbody tr td a {
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: black;
+}
+
+/* -------------------------------------------------------------------------
  * Search Box
  * ------------------------------------------------------------------------- */
 
