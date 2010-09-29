@@ -16,6 +16,18 @@
     <script type="text/javascript" src="{{ MEDIA_URL }}lib/jquery/jquery.min.js"></script>
     {% endblock %}
 
+    {% block javascript-util %}
+    <script type="text/javascript">
+    String.prototype.format = function() {
+        var txt = this, i = arguments.length; while (i--) {
+            txt = txt.replace (
+                new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]
+            );
+        }; return txt;
+    };
+    </script>
+    {% endblock %}
+
     {% block javascript-ext %}
     {% endblock %}
 
@@ -68,7 +80,7 @@
                             <tbody>
                                 <tr align="center">
                                     <td class="menu-tbl-item">
-                                        <a href="{% url home:master %}">Home</a>
+                                        <a href="{% url home:galleries_all %}">Home</a>
                                     </td>
                                     <td class="menu-tbl-item">
                                         <a href="{% url about:master %}">About</a>
