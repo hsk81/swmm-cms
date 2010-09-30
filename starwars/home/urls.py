@@ -40,12 +40,6 @@ urlpatterns = patterns('django.views.generic.simple',
     ##
 
     url (
-        r'^ajax/info/$',
-        Ajax.info,
-        name='ajax.info'
-    ),
-
-    url (
         r'^ajax/query-layout/$',
         Ajax.query_layout,
         name='ajax.query-layout'
@@ -55,6 +49,18 @@ urlpatterns = patterns('django.views.generic.simple',
         r'^ajax/toggle-layout/$',
         Ajax.toggle_layout,
         name='ajax.toggle-layout'
+    ),
+
+    url (
+        r'^ajax/show-vehicle/$',
+        Ajax.show_vehicle,
+        name='ajax.show-vehicle'
+    ),
+
+    url (
+        r'^ajax/show-figure/$',
+        Ajax.show_figure,
+        name='ajax.show-figure'
     ),
 
 )

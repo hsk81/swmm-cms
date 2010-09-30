@@ -41,7 +41,11 @@ class View:
     def galleries_all (request):
 
         cs = Collection.objects.all ()
-        gs = Gallery.objects.filter (ignore=False)
+        gs = Gallery.objects.filter (
+            ignore=False,
+            type=request.session.has_key ('type') and request.session['type']
+                or 'figure'
+        )
 
         try: return direct_to_template (
             request,
@@ -60,7 +64,12 @@ class View:
 
         collection = Collection.objects.get (pk=id)
         cs = Collection.objects.all ()
-        gs = collection.galleries ()
+        gs = Gallery.objects.filter (
+            collection=collection,
+            ignore=False,
+            type=request.session.has_key ('type') and request.session['type']
+                or 'figure'
+        )
 
         try: return direct_to_template (
             request,
@@ -77,16 +86,6 @@ class View:
     galleries_by_collection = staticmethod (galleries_by_collection)
 
 class Ajax:
-
-    def info (request):
-
-        js_string = json.dumps ({
-            'version' : '0.1'
-        })
-
-        return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
-
-    info = staticmethod (info)
 
     def query_layout (request):
 
@@ -126,3 +125,29 @@ class Ajax:
         return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
 
     toggle_layout = staticmethod (toggle_layout)
+
+    def show_vehicle (request):
+
+        request.session['type'] = 'vehicle'
+
+        js_string = json.dumps ({
+            'type': request.session['type'],
+            'success': True
+        })
+
+        return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
+
+    show_vehicle = staticmethod (show_vehicle)
+
+    def show_figure (request):
+
+        request.session['type'] = 'figure'
+
+        js_string = json.dumps ({
+            'type': request.session['type'],
+            'success': True
+        })
+
+        return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
+
+    show_figure = staticmethod (show_figure)
