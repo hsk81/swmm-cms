@@ -276,6 +276,19 @@ div.gallery .portrait .frame {
     background-color: #808080;
 }
 
+div.gallery .portrait .frame img {
+    height: 100%;
+    width: 100%;
+}
+
+div.gallery .portrait .frame img {
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
+
 /* -------------------------------------------------------------------------
  * Gallery: Label
  * ------------------------------------------------------------------------- */
@@ -432,6 +445,11 @@ div.gallery .img .content {
 div.gallery .img .content {
     display: table-cell;
     vertical-align: middle;
+}
+
+div.gallery .img .content img {
+    height: 153px;
+    width: 248px;
 }
 
 /* -------------------------------------------------------------------------
