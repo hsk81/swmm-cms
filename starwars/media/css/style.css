@@ -181,7 +181,8 @@ body {
     border: 1px dotted #948b54;
 }
 
-#sub-menu-tbl tbody tr td:hover {
+#sub-menu-tbl tbody tr td:hover,
+.sub-menu-tbl-item.active {
     background: highlight;
     border: 1px dotted #948b54;
 }

@@ -85,18 +85,18 @@
                         <table id="menu-tbl">
                             <tbody>
                                 <tr align="center">
-                                    <td class="menu-tbl-item">
-                                        <a href="{% url home:galleries_all %}">Home</a>
-                                    </td>
-                                    <td class="menu-tbl-item">
+                                    {% block menu-home %}<td class="menu-tbl-item">
+                                        <a href="{% url home:view.main %}">Home</a>
+                                    </td>{% endblock %}
+                                    {% block menu-about %}<td class="menu-tbl-item">
                                         <a href="{% url about:master %}">About</a>
-                                    </td>
-                                    <td class="menu-tbl-item">
+                                    </td>{% endblock %}
+                                    {% block menu-comment %}<td class="menu-tbl-item">
                                         <a href="{% url comment:master %}">Comment</a>
-                                    </td>
-                                    <td class="menu-tbl-item">
+                                    </td>{% endblock %}
+                                    {% block menu-contact %}<td class="menu-tbl-item">
                                         <a href="{% url contact:master %}">Contact</a>
-                                    </td>
+                                    </td>{% endblock %}
                                     
                                     {% block menu-ext %}
                                     {% endblock %}
