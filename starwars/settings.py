@@ -64,7 +64,7 @@ TEMPLATE_DIRS = (
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 SESSION_FILE_PATH = os.path.join (SITE_ROOT, 'session/')
-SESSION_COOKIE_AGE = 259200 ## secs: three days
+SESSION_COOKIE_AGE = 28800 ## secs: 8h
 SESSION_COOKIE_DOMAIN = None
 SESSION_COOKIE_NAME = 'sid.'
 SESSION_COOKIE_PATH = '/'
