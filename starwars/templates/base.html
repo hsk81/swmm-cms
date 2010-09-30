@@ -35,6 +35,20 @@
 <body>{% block body %}
 
     <!-- ----------------------------------------------------------------------
+    + Google Analytics:
+    ----------------------------------------------------------------------- -->
+
+    {% block google-analytics %}<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-6838945-3");
+        pageTracker._trackPageview();
+    } catch(err) {}</script>
+    {% endblock %}
+
+    <!-- ----------------------------------------------------------------------
     + Header:
     ----------------------------------------------------------------------- -->
 
@@ -108,9 +122,7 @@
                             <input name="q" type="text" id="s"/>
                             <input type="submit" name="sa" id="searchbox-submit" value="Search"/>
                         </form>
-                        <!--
                         <script type="text/javascript" src="http://www.google.com/cse/tools/onthefly?form=searchbox&lang=en"></script>
-                        -->
                     </td>{% endblock %}
                 </tr>
             </tbody>
