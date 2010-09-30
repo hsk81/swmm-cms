@@ -6,6 +6,39 @@
 --------------------------------------------------------------------------- -->
 
 <script type="text/javascript">
+fnGalleryIconLayoutOnInit = function () {
+    var fnClr = function (el) {
+        el.css ('border-top', '0px solid white');
+        el.css ('border-bottom', '0px solid white');
+    }
+
+    var fnSet = function (el) {
+        el.css ('border-top', '1px solid white');
+        el.css ('border-bottom', '1px solid white');
+    }
+
+    $.post ('{% url home:ajax.query-layout %}', function (data) {
+        if (data.overflow == 'hidden') {
+            $('div.gallery .area').css ('overflow', 'hidden')
+            fnSet ($('div.gallery .wrapper'));
+            fnClr ($('div.gallery .imgs'));
+            $('div.gallery-v-spacer.last').css ('display','inline')
+            $('div.gallery .arrow').css ('display','inline')
+        } else {
+            $('div.gallery .area').css ('overflow', 'visible')
+            fnClr ($('div.gallery .wrapper'));
+            fnSet ($('div.gallery .imgs'));
+            $('div.gallery-v-spacer.last').css ('display','none')
+            $('div.gallery .arrow').css ('display','none')
+            $('div.gallery .imgs').css ('left','0px')
+        }
+    });
+};
+
+$(document).ready (fnGalleryIconLayoutOnInit);
+</script>
+
+<script type="text/javascript">
 fnGalleryIconLayoutOnClick = function () {
     var fnClr = function (el) {
         el.css ('border-top', '0px solid white');
@@ -33,6 +66,10 @@ fnGalleryIconLayoutOnClick = function () {
             $('div.gallery .arrow').css ('display','none')
             $('div.gallery .imgs').css ('left','0px')
         }
+
+        $.post ('{% url home:ajax.toggle-layout %}', {
+            'overflow': galleryArea.css ('overflow')
+        });
     });
 };
 
@@ -381,10 +418,10 @@ $(window).resize (function () {
 --------------------------------------------------------------------------- -->
 
 {% block menu-ext %}<td class="menu-tbl-item icons">
-    <img alt="Toggle Layout"
-         src="{{ MEDIA_URL }}ico/silk/layout.png"
-         title="Toggle Layout"
-         id="icon-layout" />
+<img alt="Toggle Layout"
+     src="{{ MEDIA_URL }}ico/silk/layout.png"
+     title="Toggle Layout"
+     id="icon-layout" />
 </td>{% endblock %}
 
 <!-- --------------------------------------------------------------------------
@@ -400,11 +437,13 @@ $(window).resize (function () {
                     <table id="sub-menu-tbl">
                         <tbody>
                             <tr align="center">
-                            {% for collection in collections %}<td class="sub-menu-tbl-item">
-                            <a href="{% url home:galleries_by_collection collection.id %}">
-                                {{ collection }}
-                            </a>
-                            </td> {% endfor %}
+                            {% for cc in collections %}{% ifequal collection cc %}
+                            <td class="sub-menu-tbl-item active">
+                                <a href="{% url home:view.galleries_by_collection cc.id %}">{{ cc }}</a>
+                            </td>{% else %}
+                            <td class="sub-menu-tbl-item">
+                                <a href="{% url home:view.galleries_by_collection cc.id %}">{{ cc }}</a>
+                            </td>{% endifequal %}{% endfor %}
                             </tr>
                         </tbody>
                     </table>
