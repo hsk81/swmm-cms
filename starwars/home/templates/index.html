@@ -297,7 +297,7 @@ var fnGalleryImageRatingOnInitRate = function (gid, iid, rate) {
     rd.attr ('rate', rate); fnGalleryImageRatingSetBackgroundImage (rd)
 };</script>
 
-{% for gallery in galleries %}{% for image in gallery.image_set.all %}
+{% for gallery in galleries %}{% for image in gallery.images %}
 <script type="text/javascript">$(document).ready (function () {
     fnGalleryImageRatingOnInitRate ('{{ gallery.id }}', '{{ image.id }}', '{{ image.rate }}');
 });</script>{% endfor %}{% endfor %}
@@ -400,24 +400,11 @@ $(window).resize (function () {
                     <table id="sub-menu-tbl">
                         <tbody>
                             <tr align="center">
-                                <td class="sub-menu-tbl-item">
-                                    <a href="#">Episode I</a>
-                                </td>
-                                <td class="sub-menu-tbl-item">
-                                    <a href="#">Episode II</a>
-                                </td>
-                                <td class="sub-menu-tbl-item">
-                                    <a href="#">Episode III</a>
-                                </td>
-                                <td class="sub-menu-tbl-item">
-                                    <a href="#">Episode IV</a>
-                                </td>
-                                <td class="sub-menu-tbl-item">
-                                    <a href="#">Episode V</a>
-                                </td>
-                                <td class="sub-menu-tbl-item">
-                                    <a href="#">Episode VI</a>
-                                </td>
+                            {% for collection in collections %}<td class="sub-menu-tbl-item">
+                            <a href="{% url home:galleries_by_collection collection.id %}">
+                                {{ collection }}
+                            </a>
+                            </td> {% endfor %}
                             </tr>
                         </tbody>
                     </table>
@@ -437,7 +424,9 @@ $(window).resize (function () {
     <div id="gallery-id{{ gallery.id }}" class="gallery">
         <div class="gallery-v-spacer">&nbsp;</div>
         <div class="portrait">
-            <div class="frame"></div>
+            <div class="frame">
+                <img alt="{{ gallery.name }}" src="{{ gallery.url }}"/>
+            </div>
         </div>
 
         <div class="gallery-v-spacer">&nbsp;</div>
@@ -459,10 +448,12 @@ $(window).resize (function () {
                 <div class="arrow lhs"></div>
                 <div class="arrow rhs"></div>
                 <ul class="imgs">
-                    {% for image in gallery.image_set.all %}
+                    {% for image in gallery.images %}
                     <li>
                         <div id="img-id{{ image.id }}" title="{{ image.name }}" class="img">
-                            <div class="content">{{ image.url }}</div>
+                            <div class="content">
+                                <img alt="{{ image.name }}" src="{{ image.url }}"/>
+                            </div>
                             <div class="footer {{ gallery.color }}"></div>
                             <div class="rating st"></div>
                             <div class="rating nd"></div>
@@ -477,13 +468,15 @@ $(window).resize (function () {
         <div class="gallery-v-spacer last">&nbsp;</div>
     </div>
 
+    {% if forloop.last %}
+    <div class="gallery-h-spacer last">
+        &nbsp;
+    </div>
+    {% else %}
     <div class="gallery-h-spacer">
         &nbsp;
     </div>
-
-    <!-- <div class="gallery-h-spacer last">
-        &nbsp;
-    </div> -->
+    {% endif %}
 
     {% endfor %}
 </div>{% endblock %}

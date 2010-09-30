@@ -1,6 +1,21 @@
 from django.contrib import admin
 from home.models import *
 
+class GalleryInline (admin.TabularInline):
+
+    model = Gallery
+    extra = 2
+
+class CollectionAdmin (admin.ModelAdmin):
+
+    fieldsets = [
+        (None, {'fields': ['name']})
+    ]
+
+    inlines = [GalleryInline]
+    list_display = ('id','name')
+    search_fields = ['name','id']
+
 class ImageInline (admin.TabularInline):
 
     model = Image
@@ -9,12 +24,12 @@ class ImageInline (admin.TabularInline):
 class GalleryAdmin (admin.ModelAdmin):
 
     fieldsets = [
-        (None, {'fields': ['color','name','url','ignore']})
+        (None, {'fields': ['collection','name','color','type','url','ignore']})
     ]
 
     inlines = [ImageInline]
-    list_display = ('id','name','color','url','ignore')
-    list_filter = ['color','ignore']
+    list_display = ('id','collection','name','color','type','url','ignore')
+    list_filter = ['collection','color','ignore']
     search_fields = ['name','id']
 
 class ImageAdmin (admin.ModelAdmin):
@@ -27,5 +42,6 @@ class ImageAdmin (admin.ModelAdmin):
     list_filter = ['ignore','rate']
     search_fields = ['name','id']
 
+admin.site.register (Collection, CollectionAdmin)
 admin.site.register (Gallery, GalleryAdmin)
 admin.site.register (Image, ImageAdmin)

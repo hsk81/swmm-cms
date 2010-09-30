@@ -20,8 +20,8 @@ urlpatterns = patterns('django.views.generic.simple',
 
     url(
         r'^(?P<id>\d+)/$',
-        galleries_by_episode,
-        name="galleries_by_episode"
+        galleries_by_collection,
+        name="galleries_by_collection"
     ),
 
 )

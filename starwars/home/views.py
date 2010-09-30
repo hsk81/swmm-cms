@@ -5,28 +5,30 @@ from home.models import *
 
 def galleries_all (request):
 
-    gs = Gallery.objects.all()
- ## gs = sorted (gs, lambda x,y: x.id > y.id)
+    cs = Collection.objects.all ()
+    gs = Gallery.objects.filter (ignore=False)
 
     try: return direct_to_template (
         request,
         template = 'index.html',
         extra_context = {
+            'collections': cs,
             'galleries': gs
         }
     )
 
     except TemplateDoesNotExist: raise Http404()
 
-def galleries_by_episode (request, episode_id):
+def galleries_by_collection (request, id):
 
-    gs = filter (lambda g: true, Gallery.objects.all())
- ## gs = sorted (gs, lambda x,y: x.id > y.id)
-
+    cs = Collection.objects.all ()
+    gs = Collection.objects.get (pk=id).galleries ()
+ 
     try: return direct_to_template (
         request,
         template = 'index.html',
         extra_context = {
+            'collections': cs,
             'galleries': gs
         }
     )
