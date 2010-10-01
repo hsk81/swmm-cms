@@ -368,7 +368,7 @@ var fnGalleryImageRatingOnInitRate = function (gid, iid, rate) {
 
 {% for gallery in galleries %}{% for image in gallery.images %}
 <script type="text/javascript">$(document).ready (function () {
-    fnGalleryImageRatingOnInitRate ('{{ gallery.id }}', '{{ image.id }}', '{{ image.rate }}');
+    fnGalleryImageRatingOnInitRate ('{{ gallery.id }}', '{{ image.id }}', '{{ image.avg_rate }}');
 });</script>{% endfor %}{% endfor %}
 
 <script type="text/javascript">
@@ -394,6 +394,13 @@ $(document).ready (fnGalleryImageRatingOnHover);
 </script>
 
 <script type="text/javascript">
+var fnGalleryImageRatingOnTimer = function (target) {
+    $.post ('{% url home:ajax.update-rate %}', {
+        'rate': $(target).parent ('.img').find ('.st').attr ('rate'),
+        'id': $(target).parent ('.img').attr ('id').replace ('img-id','')
+    });
+};
+
 var fnGalleryImageRatingOnClick = function () {
     $('div.gallery .img .rating').click (function (event) {
         var st = $(event.target).parent ('.img').find ('.st')
@@ -402,31 +409,38 @@ var fnGalleryImageRatingOnClick = function () {
 
         if ($(event.target).attr ('name') == 'rating.st') {
             if ($(event.target).attr ('rate') == 1.0) {
-                st.attr ('rate',0.5); nd.attr ('rate',0.5); rd.attr ('rate',0.5);
+                st.attr ('rate',0.0); nd.attr ('rate',0.0); rd.attr ('rate',0.0)
             } else if ($(event.target).attr ('rate') == 0.5) {
-                st.attr ('rate',0.0); nd.attr ('rate',0.0); rd.attr ('rate',0.0);
+                st.attr ('rate',1.0); nd.attr ('rate',1.0); rd.attr ('rate',1.0)
+            } else if ($(event.target).attr ('rate') == 0.0) {
+                st.attr ('rate',0.5); nd.attr ('rate',0.5); rd.attr ('rate',0.5)
             } else {
-                st.attr ('rate',1.0); nd.attr ('rate',1.0); rd.attr ('rate',1.0);
+                st.attr ('rate',1.0); nd.attr ('rate',1.0); rd.attr ('rate',1.0)
             }
         } else if ($(event.target).attr ('name') == 'rating.nd') {
             if ($(event.target).attr ('rate') == 2.0) {
-                st.attr ('rate',1.5); nd.attr ('rate',1.5); rd.attr ('rate',1.5);
+                st.attr ('rate',1.0); nd.attr ('rate',1.0); rd.attr ('rate',1.0)
             } else if ($(event.target).attr ('rate') == 1.5) {
-                st.attr ('rate',1.0); nd.attr ('rate',1.0); rd.attr ('rate',1.0);
+                st.attr ('rate',2.0); nd.attr ('rate',2.0); rd.attr ('rate',2.0)
+            } else if ($(event.target).attr ('rate') == 1.0) {
+                st.attr ('rate',1.5); nd.attr ('rate',1.5); rd.attr ('rate',1.5)
             } else {
-                st.attr ('rate',2.0); nd.attr ('rate',2.0); rd.attr ('rate',2.0);
+                st.attr ('rate',2.0); nd.attr ('rate',2.0); rd.attr ('rate',2.0)
             }
         } else if ($(event.target).attr ('name') == 'rating.rd') {
             if ($(event.target).attr ('rate') == 3.0) {
-                st.attr ('rate',2.5); nd.attr ('rate',2.5); rd.attr ('rate',2.5);
+                st.attr ('rate',2.0); nd.attr ('rate',2.0); rd.attr ('rate',2.0)
             } else if ($(event.target).attr ('rate') == 2.5) {
-                st.attr ('rate',2.0); nd.attr ('rate',2.0); rd.attr ('rate',2.0);
+                st.attr ('rate',3.0); nd.attr ('rate',3.0); rd.attr ('rate',3.0)
+            } else if ($(event.target).attr ('rate') == 2.0) {
+                st.attr ('rate',2.5); nd.attr ('rate',2.5); rd.attr ('rate',2.5)
             } else {
-                st.attr ('rate',3.0); nd.attr ('rate',3.0); rd.attr ('rate',3.0);
+                st.attr ('rate',3.0); nd.attr ('rate',3.0); rd.attr ('rate',3.0)
             }
         }
 
         fnGalleryImageRatingSetBackgroundImage (event.target)
+        fnGalleryImageRatingOnTimer (event.target)
     });
 };
 

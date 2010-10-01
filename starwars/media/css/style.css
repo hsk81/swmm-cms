@@ -523,15 +523,21 @@ div.gallery .img .rating.st {
 }
 
 div.gallery .img .rating .grey {
-    background-image: url("http://media.localhost/starwars/ico/silk/star_grey.png");
+    background-image: url(
+        "http://media.localhost/starwars/ico/silk/star_grey.png"
+    );
 }
 
 div.gallery .img .rating .half {
-    background-image: url("http://media.localhost/starwars/ico/silk/star_half_grey.png");
+    background-image: url(
+        "http://media.localhost/starwars/ico/silk/star_half_grey.png"
+    );
 }
 
 div.gallery .img .rating .star {
-    background-image: url("http://media.localhost/starwars/ico/silk/star.png");
+    background-image: url(
+        "http://media.localhost/starwars/ico/silk/star.png"
+    );
 }
 
 /* -------------------------------------------------------------------------

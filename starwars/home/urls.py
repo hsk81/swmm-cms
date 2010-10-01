@@ -63,4 +63,10 @@ urlpatterns = patterns('django.views.generic.simple',
         name='ajax.show-figure'
     ),
 
+    url (
+        r'^ajax/update-rate/$',
+        Ajax.update_rate,
+        name='ajax.update-rate'
+    ),
+
 )

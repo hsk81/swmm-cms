@@ -16,17 +16,14 @@
     <script type="text/javascript" src="{{ MEDIA_URL }}lib/jquery/jquery.min.js"></script>
     {% endblock %}
 
-    {% block javascript-util %}
-    <script type="text/javascript">
+    {% block javascript-util %}<script type="text/javascript">
     String.prototype.format = function() {
         var txt = this, i = arguments.length; while (i--) {
             txt = txt.replace (
                 new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]
             );
         }; return txt;
-    };
-    </script>
-    {% endblock %}
+    };</script>{% endblock %}
 
     {% block javascript-ext %}
     {% endblock %}
