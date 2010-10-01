@@ -91,16 +91,12 @@ class Ajax:
 
         if request.session.has_key ('overflow') != True:
 
-            js_string = json.dumps ({
-                'success' : False
-            })
+            request.session['overflow'] = 'hidden'
 
-        else:
-
-            js_string = json.dumps ({
-                'overflow': request.session['overflow'],
-                'success': True
-            })
+        js_string = json.dumps ({
+            'overflow': request.session['overflow'],
+            'success': True
+        })
 
         return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
 
@@ -151,3 +147,26 @@ class Ajax:
         return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
 
     show_figure = staticmethod (show_figure)
+
+    def update_rate (request):
+
+        if request.POST.has_key ('id') and request.POST.has_key ('rate'):
+
+            image = Image.objects.get (pk = request.POST['id'])
+            image.update_rate (float (request.POST['rate']))
+            image.save ()
+
+            js_string = json.dumps ({
+                'success': True,
+                'rate': image.rate
+            })
+
+        else:
+
+            js_string = json.dumps ({
+                'success': False
+            })
+
+        return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
+
+    update_rate = staticmethod (update_rate)
