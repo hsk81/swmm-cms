@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 
-{% block javascript-ext %}
 <!-- --------------------------------------------------------------------------
- Gallery: Icon Layout
++ JavaScript Ext:
 --------------------------------------------------------------------------- -->
 
+{% block javascript-ext %}
 <script type="text/javascript">
+
+/* -------------------------------------------------------------------------
+ * Gallery: Icon Layout
+ * ------------------------------------------------------------------------- */
+
 fnGalleryIconLayoutOnInit = function () {
     var fnClr = function (el) {
         el.css ('border-top', '0px solid white');
@@ -36,9 +41,7 @@ fnGalleryIconLayoutOnInit = function () {
 };
 
 $(document).ready (fnGalleryIconLayoutOnInit);
-</script>
 
-<script type="text/javascript">
 fnGalleryIconLayoutOnClick = function () {
     var fnClr = function (el) {
         el.css ('border-top', '0px solid white');
@@ -74,13 +77,11 @@ fnGalleryIconLayoutOnClick = function () {
 };
 
 $(document).ready (fnGalleryIconLayoutOnClick);
-</script>
 
-<!-- --------------------------------------------------------------------------
- Gallery: Icon Vehicle
---------------------------------------------------------------------------- -->
+/* -------------------------------------------------------------------------
+ * Gallery: Icon Vehicle
+ * ------------------------------------------------------------------------- */
 
-<script type="text/javascript">
 fnGalleryIconVehicleOnClick = function () {
     $('#icon-vehicle').click(function (event) {
         $.post ('{% url home:ajax.show-vehicle %}', function (data) {
@@ -90,13 +91,11 @@ fnGalleryIconVehicleOnClick = function () {
 };
 
 $(document).ready (fnGalleryIconVehicleOnClick);
-</script>
 
- <!-- --------------------------------------------------------------------------
- Gallery: Icon Figure
---------------------------------------------------------------------------- -->
+/* -------------------------------------------------------------------------
+ * Gallery: Icon Figure
+ * ------------------------------------------------------------------------- */
 
-<script type="text/javascript">
 fnGalleryIconFigureOnClick = function () {
     $('#icon-figure').click(function (event) {
         $.post ('{% url home:ajax.show-figure %}', function (data) {
@@ -106,32 +105,26 @@ fnGalleryIconFigureOnClick = function () {
 };
 
 $(document).ready (fnGalleryIconFigureOnClick);
-</script>
 
-<!-- --------------------------------------------------------------------------
- Gallery: Area
---------------------------------------------------------------------------- -->
+/* -------------------------------------------------------------------------
+ * Gallery: Area
+ * ------------------------------------------------------------------------- */
 
-<script type="text/javascript">
 var fnGalleryAreaOnInit = function() {
     $('div.gallery .area .imgs').each (function (idx, gai) {
         var img = $(gai).find ('.img')
         if (img.size () > 0) {
             $(gai).css ('width', img[0].offsetWidth * img.size ());
-        } else {
-            ;
         }
     });
 }
 
 $(document).ready(fnGalleryAreaOnInit);
-</script>
 
-<!-- --------------------------------------------------------------------------
- Gallery: Wrapper
---------------------------------------------------------------------------- -->
+/* -------------------------------------------------------------------------
+ * Gallery: Wrapper
+ * ------------------------------------------------------------------------- */
 
-<script type="text/javascript">
 var fnGalleryWrapperOnInit = function() {
     var galleryWidth = parseInt($('div.gallery').css('width'));
     var portraitWidth = parseInt($('div.gallery .portrait').css('width'));
@@ -146,13 +139,11 @@ var fnGalleryWrapperOnInit = function() {
 }
 
 $(document).ready (fnGalleryWrapperOnInit);
-</script>
 
-<!-- --------------------------------------------------------------------------
- Gallery: Label
---------------------------------------------------------------------------- -->
+/* -------------------------------------------------------------------------
+ * Gallery: Label
+ * ------------------------------------------------------------------------- */
 
-<script type="text/javascript">
 var fnGalleryLabelOnInit = function () {
     $('div.gallery .label').each(function (idx, gl) {
         var labelHeight = parseInt ($(gl).css('height'));
@@ -162,13 +153,11 @@ var fnGalleryLabelOnInit = function () {
 };
 
 $(document).ready(fnGalleryLabelOnInit);
-</script>
 
-<!-- --------------------------------------------------------------------------
- Gallery: Arrow
---------------------------------------------------------------------------- -->
+/* -------------------------------------------------------------------------
+ * Gallery: Arrow
+ * ------------------------------------------------------------------------- */
 
-<script type="text/javascript">
 var fnGalleryArrowOnInit = function () {
     $('div.gallery .arrow.lhs').css('background-image',
         'url("{{ MEDIA_URL }}ico/silk/arrow_left.png")'
@@ -180,9 +169,7 @@ var fnGalleryArrowOnInit = function () {
 };
 
 $(document).ready (fnGalleryArrowOnInit);
-</script>
 
-<script type="text/javascript">
 var fnGalleryArrowOnHover = function () {
     $('div.gallery .arrow').hover(function (event) {
         var area = $(event.target).parent ('.area');
@@ -214,9 +201,7 @@ var fnGalleryArrowOnHover = function () {
 };
 
 $(document).ready (fnGalleryArrowOnHover);
-</script>
 
-<script type="text/javascript">
 var fnGalleryArrowOnClick = function () {
     $('div.gallery .arrow.rhs').unbind ('click');
     $('div.gallery .arrow.rhs').click (function (event) {
@@ -228,11 +213,7 @@ var fnGalleryArrowOnClick = function () {
             if (left > parseInt (area.css('width')) -
                 parseInt (imgs.css ('width'))) {
                 imgs.css ('left', left - img[0].offsetWidth);
-            } else {
-                return false;
             }
-        } else {
-            return false;
         }
     });
 
@@ -244,23 +225,17 @@ var fnGalleryArrowOnClick = function () {
             var left = parseInt (imgs.css ('left'));
             if (left < 0.0) {
                 imgs.css ('left', left + img[0].offsetWidth);
-            } else {
-                return false;
             }
-        } else {
-            return false;
         }
     });
 };
 
 $(document).ready (fnGalleryArrowOnClick);
-</script>
 
-<!-- --------------------------------------------------------------------------
- Gallery: Image Info
---------------------------------------------------------------------------- -->
+/* -------------------------------------------------------------------------
+ * Gallery: Image Info
+ * ------------------------------------------------------------------------- */
 
-<script type="text/javascript">
 var fnGalleryImageInfoOnInit = function () {
     $('div.gallery .img .info').css('background-image',
         'url("{{ MEDIA_URL }}ico/silk/information.png")'
@@ -270,9 +245,7 @@ var fnGalleryImageInfoOnInit = function () {
 };
 
 $(document).ready (fnGalleryImageInfoOnInit);
-</script>
 
-<script type="text/javascript">
 var fnGalleryImageInfoOnHover = function () {
     $('div.gallery .img .info').hover(function (event) {
         if (event.type != 'mouseenter') {
@@ -284,13 +257,11 @@ var fnGalleryImageInfoOnHover = function () {
 };
 
 $(document).ready (fnGalleryImageInfoOnHover);
-</script>
 
-<!-- --------------------------------------------------------------------------
- Gallery: Image Rating
---------------------------------------------------------------------------- -->
+/* -------------------------------------------------------------------------
+ * Gallery: Image Rating
+ * ------------------------------------------------------------------------- */
 
-<script type="text/javascript">
 var fnGalleryImageRatingSetBackgroundImage = function (target) {
     var st = $(target).parent ('.img').find ('.st')
     var nd = $(target).parent ('.img').find ('.nd')
@@ -339,9 +310,8 @@ var fnGalleryImageRatingSetBackgroundImage = function (target) {
         rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
 
     }
-};</script>
+};
 
-<script type="text/javascript">
 var fnGalleryImageRatingOnInit = function () {
 
     $('div.gallery div.img .rating.st').attr ('name', 'rating.st')
@@ -352,9 +322,7 @@ var fnGalleryImageRatingOnInit = function () {
 };
 
 $(document).ready (fnGalleryImageRatingOnInit);
-</script>
 
-<script type="text/javascript">
 var fnGalleryImageRatingOnInitRate = function (gid, iid, rate) {
 
     var st = $('div#gallery-id{0}.gallery div#img-id{1}.img .rating.st'.format (gid, iid))
@@ -364,14 +332,8 @@ var fnGalleryImageRatingOnInitRate = function (gid, iid, rate) {
     st.attr ('rate', rate); fnGalleryImageRatingSetBackgroundImage (st)
     nd.attr ('rate', rate); fnGalleryImageRatingSetBackgroundImage (nd)
     rd.attr ('rate', rate); fnGalleryImageRatingSetBackgroundImage (rd)
-};</script>
+};
 
-{% for gallery in galleries %}{% for image in gallery.images %}
-<script type="text/javascript">$(document).ready (function () {
-    fnGalleryImageRatingOnInitRate ('{{ gallery.id }}', '{{ image.id }}', '{{ image.avg_rate }}');
-});</script>{% endfor %}{% endfor %}
-
-<script type="text/javascript">
 var fnGalleryImageRatingOnHover = function () {
     $('div.gallery .img .rating').hover (function (event) {
         var st = $(event.target).parent ('.img').find ('.st')
@@ -391,9 +353,7 @@ var fnGalleryImageRatingOnHover = function () {
 };
 
 $(document).ready (fnGalleryImageRatingOnHover);
-</script>
 
-<script type="text/javascript">
 var fnGalleryImageRatingOnTimer = function (target) {
     $.post ('{% url home:ajax.update-rate %}', {
         'rate': $(target).parent ('.img').find ('.st').attr ('rate'),
@@ -445,22 +405,32 @@ var fnGalleryImageRatingOnClick = function () {
 };
 
 $(document).ready (fnGalleryImageRatingOnClick);
-</script>
 
-<!-- --------------------------------------------------------------------------
- Gallery: Resize
---------------------------------------------------------------------------- -->
+/* -------------------------------------------------------------------------
+ * Gallery: Resize
+ * ------------------------------------------------------------------------- */
 
-<script type="text/javascript">
 $(window).resize (function () {
     fnGalleryAreaOnInit ();
     fnGalleryWrapperOnInit ();
     fnGalleryArrowOnClick ();
-});</script>
-{% endblock %}
+});
+
+</script>
 
 <!-- --------------------------------------------------------------------------
- Menu:
++ Gallery:  Image Rating
+--------------------------------------------------------------------------- -->
+
+{% for gallery in galleries %}{% for image in gallery.images %}
+<script type="text/javascript">$(document).ready (function () { 
+    fnGalleryImageRatingOnInitRate ('{{ gallery.id }}', '{{ image.id }}', '{{ image.avg_rate }}');
+});</script>{% endfor %}{% endfor %}
+
+{% endblock javascript-ext %}
+
+<!-- --------------------------------------------------------------------------
++ Menu:
 --------------------------------------------------------------------------- -->
 
 {% block menu-ext %}
@@ -490,7 +460,7 @@ $(window).resize (function () {
 {% endblock %}
 
 <!-- --------------------------------------------------------------------------
- Sub-Top Bar:
++ Sub-Top Bar:
 --------------------------------------------------------------------------- -->
 
 {% block sub-top-bar %}<div id="sub-top-bar">
@@ -520,7 +490,7 @@ $(window).resize (function () {
 </div>{% endblock %}
 
 <!-- --------------------------------------------------------------------------
- Content:
++ Content:
 --------------------------------------------------------------------------- -->
 
 {% block content %}<div id="content">
@@ -586,7 +556,7 @@ $(window).resize (function () {
 </div>{% endblock %}
 
 <!-- --------------------------------------------------------------------------
- Image Cache:
++ Image Cache:
 --------------------------------------------------------------------------- -->
 
 {% block image-cache %}<div id="image-cache">

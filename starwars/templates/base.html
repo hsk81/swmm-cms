@@ -6,26 +6,10 @@
     {% endblock %}
 
     {% block css-base %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}css/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}css/style.min.css" />
     {% endblock %}
 
     {% block css-base-ext %}
-    {% endblock %}
-
-    {% block java-script %}
-    <script type="text/javascript" src="{{ MEDIA_URL }}lib/jquery/jquery.min.js"></script>
-    {% endblock %}
-
-    {% block javascript-util %}<script type="text/javascript">
-    String.prototype.format = function() {
-        var txt = this, i = arguments.length; while (i--) {
-            txt = txt.replace (
-                new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]
-            );
-        }; return txt;
-    };</script>{% endblock %}
-
-    {% block javascript-ext %}
     {% endblock %}
 
 {% endblock %}</head>
@@ -157,4 +141,20 @@
     </div>{% endblock %}
 
 {% endblock %}</body>
+
+<!-- --------------------------------------------------------------------------
++ Java Script:
+--------------------------------------------------------------------------- -->
+
+{% block java-script %}
+<script type="text/javascript" src="{{ MEDIA_URL }}lib/jquery/jquery.min.js"></script>
+{% endblock %}
+
+{% block javascript-util %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/util.min.js"></script>
+{% endblock %}
+
+{% block javascript-ext %}
+{% endblock %}
+
 {% endblock %}</html>
