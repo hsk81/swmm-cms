@@ -62,6 +62,16 @@ TEMPLATE_DIRS = (
     os.path.join (SITE_ROOT, 'templates/'),
 )
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.file'
+SESSION_FILE_PATH = os.path.join (SITE_ROOT, 'session/')
+SESSION_COOKIE_AGE = 28800 ## secs: 8h
+SESSION_COOKIE_DOMAIN = None
+SESSION_COOKIE_NAME = 'sid.'
+SESSION_COOKIE_PATH = '/'
+SESSION_COOKIE_SECURE = False
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = False
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,5 +84,5 @@ INSTALLED_APPS = (
  ## 'django.contrib.flatpages',
  ## 'django.contrib.comments',
 
-    'home' ## 'about', 'comment', 'contact'
+    'home', 'about', 'comment', 'contact'
 )

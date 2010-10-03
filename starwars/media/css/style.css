@@ -75,10 +75,23 @@ body {
  * ------------------------------------------------------------------------- */
 
 #top-bar {
-    padding: 10px;
+    padding: 0px;
     background: #1f5967;
     border-left: 1px solid white;
     border-right: 1px solid white;
+}
+
+#top-bar-tbl {
+    width: 100%;
+}
+
+#top-bar-tbl-lhs {
+    width: 75%;
+}
+
+#top-bar-tbl-rhs {
+    width: 25%;
+    border-left: 1px solid white;
 }
 
 /* -------------------------------------------------------------------------
@@ -88,15 +101,512 @@ body {
 #menu {
 }
 
+#menu-tbl {
+    width: auto;
+}
+
+#menu-tbl tbody tr td {
+    padding: 5px;
+    border: 1px dotted #1f5967;
+}
+
+#menu-tbl tbody tr td:hover {
+    background: #0f243f;
+    border: 1px dotted #1f5967;
+}
+
+#menu-tbl tbody tr td a {
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
+
+/* -------------------------------------------------------------------------
+ * Menu Icons
+ * ------------------------------------------------------------------------- */
+
+.menu-tbl-item.icons {
+    width: 100%;
+    cursor: pointer;
+}
+
+.menu-tbl-item.icons {
+    text-align: right;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
+
+/* -------------------------------------------------------------------------
+ * Sub Top Bar
+ * ------------------------------------------------------------------------- */
+
+#sub-top-bar {
+    padding: 0px;
+    background: #948b54;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+#sub-top-bar-tbl {
+    width: 100%;
+}
+
+#sub-top-bar-tbl-lhs {
+    width: 75%;
+}
+
+#sub-top-bar-tbl-rhs {
+    width: 25%;
+    border-left: 1px solid white;
+}
+
+/* -------------------------------------------------------------------------
+ * Sub Menu
+ * ------------------------------------------------------------------------- */
+
+#sub-menu {
+}
+
+#sub-menu-tbl {
+    width: auto;
+}
+
+#sub-menu-tbl tbody tr td {
+    padding: 5px;
+    border: 1px dotted #948b54;
+}
+
+#sub-menu-tbl tbody tr td:hover,
+.sub-menu-tbl-item.active {
+    background: highlight;
+    border: 1px dotted #948b54;
+}
+
+#sub-menu-tbl tbody tr td a {
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: black;
+}
+
+/* -------------------------------------------------------------------------
+ * Search Box
+ * ------------------------------------------------------------------------- */
+
+#searchbox {
+    padding: 5px;
+    border: 0px dotted fuchsia;
+    margin: 0px;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+}
+
+#searchbox input {
+    width: 100%;
+}
+
+#searchbox-submit {
+    display: none;
+}
+
 /* -------------------------------------------------------------------------
  * Content
  * ------------------------------------------------------------------------- */
 
 #content {
-    padding: 5px;
-    height: 640px;
-    background: #0f243f;
+    padding: 4px;
+    height: auto;
     border: 1px solid white;
+    background: #0f243f;
+}
+
+#content h1 {
+    padding: 0;
+    margin: 0;
+}
+
+#content-tbl {
+    height: auto;
+    width: 100%;
+    border: 1px dotted fuchsia;
+}
+
+#content-tbl-center {
+    vertical-align: middle;
+    border: 1px dotted aqua;
+}
+
+#content-tbl-center {
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery:
+ * ------------------------------------------------------------------------- */
+
+div.gallery {
+    height: 162px;
+    width: 100%;
+    background-color: #0f243f;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Portrait
+ * ------------------------------------------------------------------------- */
+
+div.gallery .portrait {
+    float: left;
+    height: 100%;
+    width: 138px;
+}
+
+div.gallery .portrait .frame {
+    height: 160px;
+    width: 136px;
+    border: 1px dotted white;
+    background-color: #808080;
+}
+
+div.gallery .portrait .frame img {
+    height: 100%;
+    width: 100%;
+}
+
+div.gallery .portrait .frame img {
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Label
+ * ------------------------------------------------------------------------- */
+
+div.gallery .label {
+    float: left;
+    height: 100%;
+    width: 32px;
+    overflow: hidden;
+}
+
+div.gallery .label ul {
+    height: auto;
+    width: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    line-height: 90%;
+}
+
+div.gallery .label ul li {
+    height: auto;
+    width: 32px;
+}
+
+div.gallery .label ul li {
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
+
+div.gallery .label.red {
+    background-color: #953735;
+}
+
+div.gallery .label.green {
+    background-color: #75923c;
+}
+
+div.gallery .label.blue {
+    background-color: #68697e;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Wrapper
+ * ------------------------------------------------------------------------- */
+
+div.gallery .wrapper {
+    float: left;
+    height: 100%;
+    width: 640px;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Arrow
+ * ------------------------------------------------------------------------- */
+
+div.gallery .arrow {
+    top: 65px;
+    height: 32px;
+    width: 32px;
+    position: relative;
+    cursor: pointer;
+    z-index: +1;
+}
+
+div.gallery .arrow.lhs {
+    float: left;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px dotted white;
+}
+
+div.gallery .arrow.lhs {
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+}
+
+div.gallery .arrow.rhs {
+    float: right;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px dotted white;
+}
+
+div.gallery .arrow.rhs {
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-bottomleft: 3px;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Area
+ * ------------------------------------------------------------------------- */
+
+div.gallery .area {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Images
+ * ------------------------------------------------------------------------- */
+
+div.gallery .imgs {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 4096px;
+    position: absolute;
+    list-style:none;
+    z-index: 0;
+}
+
+div.gallery .imgs li {
+    float: left;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Image
+ * ------------------------------------------------------------------------- */
+
+div.gallery .img {
+    border-right: 1px solid white;
+    background-color: #808080;
+}
+
+div.gallery .img {
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Image Content
+ * ------------------------------------------------------------------------- */
+
+div.gallery .img .content {
+    height: 155px;
+    width: 248px;
+    border: 1px dotted white;
+}
+
+div.gallery .img .content {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+div.gallery .img .content img {
+    height: 153px;
+    width: 248px;
+}
+
+/* -------------------------------------------------------------------------
+ * Image X-Large
+ * ------------------------------------------------------------------------- */
+
+div.img.x-large {
+    background-color: #808080;
+}
+
+div.img.x-large {
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
+
+div.img.x-large img {
+    height: 100%;
+    width: 100%;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Image Footer
+ * ------------------------------------------------------------------------- */
+
+div.gallery .img .footer {
+    height: 7px;
+    width: 248px;
+    border-right: 1px dotted white;
+    border-left: 1px dotted white;
+}
+
+div.gallery .img .footer.red {
+    background-color: #953735;
+}
+
+div.gallery .img .footer.green {
+    background-color: #75923c;
+}
+
+div.gallery .img .footer.blue {
+    background-color: #68697e;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Image Info
+ * ------------------------------------------------------------------------- */
+
+div.gallery .img .info {
+    float: right;
+    height: 32px;
+    width: 32px;
+    position: relative;
+    top: -162px;
+}
+
+div.gallery .img .info {
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div.gallery .img .info {
+    cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Image Rating
+ * ------------------------------------------------------------------------- */
+
+div.gallery .img .rating {
+    float: left;
+    height: 32px;
+    width: 20px;
+    position: relative;
+    top: -28px;
+}
+
+div.gallery .img .rating {
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div.gallery .img .rating {
+    cursor: pointer;
+}
+
+div.gallery .img .rating.st {
+    margin-left: 6px;
+}
+
+div.gallery .img .rating .grey {
+    background-image: url(
+        "http://media.localhost/starwars/ico/silk/star_grey.png"
+    );
+}
+
+div.gallery .img .rating .half {
+    background-image: url(
+        "http://media.localhost/starwars/ico/silk/star_half_grey.png"
+    );
+}
+
+div.gallery .img .rating .star {
+    background-image: url(
+        "http://media.localhost/starwars/ico/silk/star.png"
+    );
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Spacers
+ * ------------------------------------------------------------------------- */
+
+div.gallery-h-spacer {
+    clear: both;
+    height: 4px;
+    background-color: #0f243f;
+}
+
+div.gallery-h-spacer.last {
+    height: 0px;
+}
+
+div.gallery-v-spacer {
+    float: left;
+    width: 1px;
+    height: 100%;
+    background-color: white;
+}
+
+div.gallery-v-spacer.last {
+    display: inline;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Top & Bottom Borders
+ * ------------------------------------------------------------------------- */
+
+div.gallery .area {
+    overflow: hidden;
+}
+
+div.gallery-v-spacer, div.gallery .portrait, div.gallery .label {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+div.gallery .wrapper {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+div.gallery .imgs {
+    border-top: 0px solid aqua;
+    border-bottom: 0px solid white;
 }
 
 /* -------------------------------------------------------------------------
@@ -109,6 +619,7 @@ body {
     border-left: 1px solid white;
     border-right: 1px solid white;
 }
+
 /* -------------------------------------------------------------------------
  * Footer
  * ------------------------------------------------------------------------- */
@@ -122,4 +633,17 @@ body {
     text-align: center;
     font-size: smaller;
     color: #FFFFFF;
+}
+
+/* -------------------------------------------------------------------------
+ * Image Cache
+ * ------------------------------------------------------------------------- */
+
+div#image-cache {
+    display: none;
+}
+
+div#image-cache img {
+    height: 0;
+    width: 0;
 }
