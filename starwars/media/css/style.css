@@ -454,6 +454,27 @@ div.gallery .img .content img {
 }
 
 /* -------------------------------------------------------------------------
+ * Image X-Large
+ * ------------------------------------------------------------------------- */
+
+div.img.x-large {
+    background-color: #808080;
+}
+
+div.img.x-large {
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
+
+div.img.x-large img {
+    height: 100%;
+    width: 100%;
+}
+
+/* -------------------------------------------------------------------------
  * Gallery: Image Footer
  * ------------------------------------------------------------------------- */
 

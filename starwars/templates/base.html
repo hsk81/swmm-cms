@@ -6,7 +6,7 @@
     {% endblock %}
 
     {% block css-base %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}css/style.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}css/style.css" />
     {% endblock %}
 
     {% block css-base-ext %}
@@ -148,9 +148,7 @@
 
 {% block java-script %}
 <script type="text/javascript" src="{{ MEDIA_URL }}lib/jquery/jquery.min.js"></script>
-{% endblock %}
-
-{% block javascript-util %}
+<script type="text/javascript" src="{{ MEDIA_URL }}lib/jquery/jquery.blockUI.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/util.min.js"></script>
 {% endblock %}
 

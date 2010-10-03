@@ -237,11 +237,11 @@ $(document).ready (fnGalleryArrowOnClick);
  * ------------------------------------------------------------------------- */
 
 var fnGalleryImageInfoOnInit = function () {
-    $('div.gallery .img .info').css('background-image',
-        'url("{{ MEDIA_URL }}ico/silk/information.png")'
+    $('div.gallery .img .info').css ('background-image',
+        'url("{{ MEDIA_URL }}ico/silk/image_magnify.png")'
     );
 
-    $('div.gallery .img .info').css('opacity','0.0625');
+    $('div.gallery .img .info').css ('opacity','0.1250');
 };
 
 $(document).ready (fnGalleryImageInfoOnInit);
@@ -249,7 +249,7 @@ $(document).ready (fnGalleryImageInfoOnInit);
 var fnGalleryImageInfoOnHover = function () {
     $('div.gallery .img .info').hover(function (event) {
         if (event.type != 'mouseenter') {
-            $(event.target).css ('opacity','0.0625');
+            $(event.target).css ('opacity','0.1250');
         } else {
             $(event.target).css ('opacity','1.0000');
         }
@@ -257,6 +257,52 @@ var fnGalleryImageInfoOnHover = function () {
 };
 
 $(document).ready (fnGalleryImageInfoOnHover);
+
+var fnGalleryImageInfoOnClick = function () {
+    $("div.gallery .img .info").click (
+        function() {
+
+            var imgRatio = 1.620;
+            var fraction = 0.750;
+
+            css = ($(window).height() >= $(window).width() * fraction/imgRatio)
+                ? { 
+                    top: ($(window).height() * 1.000 - $(window).width() * fraction/imgRatio) * 0.500 + 'px',
+                    left: $(window).width() * (1.000-fraction)*0.500 + 'px',
+                    height: $(window).width() * fraction/imgRatio + 'px',
+                    width: $(window).width() * fraction + 'px',
+                } : { 
+                    top: $(window).height() * (1.000-fraction)*0.500 + 'px',
+                    left: ($(window).width() * 1.000 - $(window).height() * fraction*imgRatio) * 0.500 + 'px',
+                    height: $(window).height() * fraction + 'px',
+                    width: $(window).height() * fraction*imgRatio + 'px',
+                }
+
+            css.cursor = 'default'
+            css.border = '4px solid highlight'
+
+            if ($(window).height() >= $(window).width() * fraction/imgRatio) {
+                $.blockUI ({
+                    message: '<div class="img x-large"><img alt="{0}" src="{1}"/></div>'.format (
+                        $(this).parent ('.img').find('img').attr ('alt'),
+                        $(this).parent ('.img').find('img').attr ('src')
+                    ), css: css
+                })
+            } else {
+                $.blockUI ({
+                    message: '<div class="img x-large"><img alt="{0}" src="{1}"/></div>'.format (
+                        $(this).parent ('.img').find('img').attr ('alt'),
+                        $(this).find('img').attr ('src')
+                    ), css: css
+                })
+            }
+
+            $('.blockOverlay').click ($.unblockUI)
+        }
+    );
+}
+
+$(document).ready (fnGalleryImageInfoOnClick);
 
 /* -------------------------------------------------------------------------
  * Gallery: Image Rating
@@ -423,7 +469,7 @@ $(window).resize (function () {
 --------------------------------------------------------------------------- -->
 
 {% for gallery in galleries %}{% for image in gallery.images %}
-<script type="text/javascript">$(document).ready (function () { 
+<script type="text/javascript">$(document).ready (function () {
     fnGalleryImageRatingOnInitRate ('{{ gallery.id }}', '{{ image.id }}', '{{ image.avg_rate }}');
 });</script>{% endfor %}{% endfor %}
 
