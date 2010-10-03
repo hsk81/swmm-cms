@@ -5,16 +5,28 @@
     <title>Star Wars Micro Machines</title>
     {% endblock %}
 
-    {% block css %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}css/style.css" />
+    {% block css-base %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}css/style.min.css" />
+    {% endblock %}
+
+    {% block css-base-ext %}
     {% endblock %}
 
 {% endblock %}</head>
 <body>{% block body %}
 
-    {% block header %}<div id="header">
+    <!-- ----------------------------------------------------------------------
+    + Google Analytics:
+    ----------------------------------------------------------------------- -->
 
-        <table id="header-tbl" style="width:100%">
+    {% block google-analytics %}{% endblock %}
+
+    <!-- ----------------------------------------------------------------------
+    + Header:
+    ----------------------------------------------------------------------- -->
+
+    {% block header %}<div id="header">
+        <table id="header-tbl">
             <tbody>
                 <tr>
                     <td id="header-tbl-lhs" align="center">
@@ -35,24 +47,114 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
-	
+        </table>	
     </div>{% endblock %}
 
+    <!-- ----------------------------------------------------------------------
+    + Top Bar:
+    ----------------------------------------------------------------------- -->
+
+    {% block super-top-bar %}
+    {% endblock %}
+
     {% block top-bar %}<div id="top-bar">
-	{% block menu %}<div id="menu">
-	</div>{% endblock %}
+        <table id="top-bar-tbl">
+            <tbody>
+                <tr>
+                    {% block top-bar-lhs %}<td id="top-bar-tbl-lhs">
+                        {% block menu %}<div id="menu">
+                        <table id="menu-tbl">
+                            <tbody>
+                                <tr align="center">
+                                    {% block menu-home %}<td class="menu-tbl-item">
+                                        <a href="{% url home:view.main %}">Home</a>
+                                    </td>{% endblock %}
+                                    {% block menu-about %}<td class="menu-tbl-item">
+                                        <a href="{% url about:master %}">About</a>
+                                    </td>{% endblock %}
+                                    {% block menu-comment %}<td class="menu-tbl-item">
+                                        <a href="{% url comment:master %}">Comment</a>
+                                    </td>{% endblock %}
+                                    {% block menu-contact %}<td class="menu-tbl-item">
+                                        <a href="{% url contact:master %}">Contact</a>
+                                    </td>{% endblock %}
+                                    
+                                    {% block menu-ext %}
+                                    {% endblock %}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>{% endblock %}
+                    </td>{% endblock %}
+
+                    {% block top-bar-rhs %}<td id="top-bar-tbl-rhs">
+                        <form name="cse" id="searchbox" action="http://www.google.com/cse">
+                            <input type="hidden" name="cref" value="http://blackhan.ch/starwars/home" />
+                            <input type="hidden" name="ie" value="utf-8" />
+                            <input type="hidden" name="hl" value="" />
+                            <input name="q" type="text" id="s"/>
+                            <input type="submit" name="sa" id="searchbox-submit" value="Search"/>
+                        </form>
+                        <script type="text/javascript" src="http://www.google.com/cse/tools/onthefly?form=searchbox&lang=en"></script>
+                    </td>{% endblock %}
+                </tr>
+            </tbody>
+        </table>
     </div>{% endblock %}
+
+    {% block sub-top-bar %}
+    {% endblock %}
+
+    <!-- ----------------------------------------------------------------------
+    + Content:
+    ----------------------------------------------------------------------- -->
 
     {% block content %}<div id="content">
     </div>{% endblock %}
 
+    <!-- ----------------------------------------------------------------------
+    + Bottom Bar:
+    ----------------------------------------------------------------------- -->
+
+    {% block super-bottom-bar %}
+    {% endblock %}
+
     {% block bottom-bar %}<div id="bottom-bar">
     </div>{% endblock %}
+
+    {% block sub-bottom-bar %}
+    {% endblock %}
+
+    <!-- ----------------------------------------------------------------------
+    + Footer:
+    ----------------------------------------------------------------------- -->
 
     {% block footer %}<div id="footer">
         <p>&copy; 2010 &ndash; All Rights Reserved.</p>
     </div>{% endblock %}
 
+    <!-- ----------------------------------------------------------------------
+    + Image Cache:
+    ----------------------------------------------------------------------- -->
+
+    {% block image-cache %}<div id="image-cache">
+    </div>{% endblock %}
+
 {% endblock %}</body>
+
+<!-- --------------------------------------------------------------------------
++ Java Script:
+--------------------------------------------------------------------------- -->
+
+{% block java-script %}
+<script type="text/javascript" src="{{ MEDIA_URL }}lib/jquery/jquery.min.js"></script>
+{% endblock %}
+
+{% block javascript-util %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/util.min.js"></script>
+{% endblock %}
+
+{% block javascript-ext %}
+{% endblock %}
+
 {% endblock %}</html>

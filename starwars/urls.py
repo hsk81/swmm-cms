@@ -7,7 +7,8 @@ urlpatterns = patterns ('',
 
     (r'^home/', include('home.urls', namespace='home')),
     (r'^about/', include('about.urls', namespace='about')),
- ## (r'^comment/', include('comment.urls', namespace='comment')),
+    (r'^comment/', include('comment.urls', namespace='comment')),
+    (r'^contact/', include('contact.urls', namespace='contact')),
 
     (r'^admin/', include(admin.site.urls)),
  ## (r'^admin/doc/', include('django.contrib.admindocs.urls')),
