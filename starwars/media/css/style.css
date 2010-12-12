@@ -156,35 +156,36 @@ body {
     width: 100%;
 }
 
-#sub-top-bar-tbl-lhs {
-    width: 75%;
-}
-
-#sub-top-bar-tbl-rhs {
-    width: 25%;
-    border-left: 1px solid white;
-}
-
 /* -------------------------------------------------------------------------
- * Sub Menu
+ * Sub Menu:
  * ------------------------------------------------------------------------- */
 
 #sub-menu {
 }
 
 #sub-menu-tbl {
-    width: auto;
+    width: 100%;
 }
 
 #sub-menu-tbl tbody tr td {
+    height: 16px;
     padding: 5px;
     border: 1px dotted #948b54;
 }
 
+.sub-menu-tbl-item-lhs {
+    float: left;
+    margin-right: 1px;
+}
+
 #sub-menu-tbl tbody tr td:hover,
-.sub-menu-tbl-item.active {
+.sub-menu-tbl-item-lhs.active {
     background: highlight;
     border: 1px dotted #948b54;
+}
+
+#sub-menu-tbl tbody tr td a {
+    display: table-cell;
 }
 
 #sub-menu-tbl tbody tr td a {
@@ -193,6 +194,40 @@ body {
     font-size: x-small;
     font-weight: normal;
     color: black;
+}
+
+/* -------------------------------------------------------------------------
+ * Sub Menu: Icon & Text
+ * ------------------------------------------------------------------------- */
+
+.sub-menu-tbl-item-rhs {
+    float: right;
+}
+
+.sub-menu-tbl-item-rhs {
+    cursor: pointer;
+}
+
+.sub-menu-tbl-item-rhs {
+    text-align: right;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: normal;
+    color: white;
+}
+
+#sub-menu-tbl tbody tr td.text {
+    padding-left: 0px;
+    border-left: none;
+}
+
+#sub-menu-tbl tbody tr td.text:hover {
+    background: none;
+}
+
+#sub-menu-tbl tbody tr td.icon {
+    padding-right: 0px;
+    border-right: none;
 }
 
 /* -------------------------------------------------------------------------
@@ -506,7 +541,7 @@ div.gallery .img .info {
     height: 32px;
     width: 32px;
     position: relative;
-    top: -162px;
+    top: -28px;
 }
 
 div.gallery .img .info {
@@ -536,7 +571,7 @@ div.gallery .img .rating {
 }
 
 div.gallery .img .rating {
-    cursor: pointer;
+    cursor: default;
 }
 
 div.gallery .img .rating.st {

@@ -8,6 +8,30 @@
 <script type="text/javascript">
 
 /* -------------------------------------------------------------------------
+ * Sub Menu: Icon & Text
+ * ------------------------------------------------------------------------- */
+
+fnSubMenuIconOnHover = function () {
+    $('#show-figures-icon').hover (function (event) {
+        if (event.type != 'mouseenter') {
+            $('#show-figures-text').css ('background','none')
+        } else {
+            $('#show-figures-text').css ('background','highlight')
+        }
+    });
+
+    $('#show-vehicles-icon').hover (function (event) {
+        if (event.type != 'mouseenter') {
+            $('#show-vehicles-text').css ('background','none')
+        } else {
+            $('#show-vehicles-text').css ('background','highlight')
+        }
+    });
+}
+
+$(document).ready (fnSubMenuIconOnHover);
+
+/* -------------------------------------------------------------------------
  * Gallery: Icon Layout
  * ------------------------------------------------------------------------- */
 
@@ -38,7 +62,7 @@ fnGalleryIconLayoutOnInit = function () {
             $('div.gallery .imgs').css ('left','0px')
         }
     });
-};
+}
 
 $(document).ready (fnGalleryIconLayoutOnInit);
 
@@ -74,13 +98,23 @@ fnGalleryIconLayoutOnClick = function () {
             'overflow': galleryArea.css ('overflow')
         });
     });
-};
+}
 
 $(document).ready (fnGalleryIconLayoutOnClick);
 
 /* -------------------------------------------------------------------------
- * Gallery: Icon Vehicle
+ * Gallery: Icon/Text Vehicle
  * ------------------------------------------------------------------------- */
+
+fnGalleryTextVehicleOnClick = function () {
+    $('#text-vehicle').click(function (event) {
+        $.post ('{% url home:ajax.show-vehicle %}', function (data) {
+            location.reload ();
+        });
+    });
+}
+
+$(document).ready (fnGalleryTextVehicleOnClick);
 
 fnGalleryIconVehicleOnClick = function () {
     $('#icon-vehicle').click(function (event) {
@@ -88,7 +122,7 @@ fnGalleryIconVehicleOnClick = function () {
             location.reload ();
         });
     });
-};
+}
 
 $(document).ready (fnGalleryIconVehicleOnClick);
 
@@ -96,13 +130,23 @@ $(document).ready (fnGalleryIconVehicleOnClick);
  * Gallery: Icon Figure
  * ------------------------------------------------------------------------- */
 
+fnGalleryTextFigureOnClick = function () {
+    $('#text-figure').click(function (event) {
+        $.post ('{% url home:ajax.show-figure %}', function (data) {
+            location.reload ();
+        });
+    });
+}
+
+$(document).ready (fnGalleryTextFigureOnClick);
+
 fnGalleryIconFigureOnClick = function () {
     $('#icon-figure').click(function (event) {
         $.post ('{% url home:ajax.show-figure %}', function (data) {
             location.reload ();
         });
     });
-};
+}
 
 $(document).ready (fnGalleryIconFigureOnClick);
 
@@ -150,7 +194,7 @@ var fnGalleryLabelOnInit = function () {
         var ulHeight = parseInt ($(gl).children ('ul').css ('height'));
         $(gl).children ('ul').css ('top', (labelHeight - ulHeight) / 2.0);
     });
-};
+}
 
 $(document).ready(fnGalleryLabelOnInit);
 
@@ -166,7 +210,7 @@ var fnGalleryArrowOnInit = function () {
     $('div.gallery .arrow.rhs').css('background-image',
         'url("{{ MEDIA_URL }}ico/silk/arrow_right.png")'
     );
-};
+}
 
 $(document).ready (fnGalleryArrowOnInit);
 
@@ -198,7 +242,7 @@ var fnGalleryArrowOnHover = function () {
     });
 
     $('div.gallery .arrow').css('opacity','0.0625');
-};
+}
 
 $(document).ready (fnGalleryArrowOnHover);
 
@@ -228,7 +272,7 @@ var fnGalleryArrowOnClick = function () {
             }
         }
     });
-};
+}
 
 $(document).ready (fnGalleryArrowOnClick);
 
@@ -238,23 +282,23 @@ $(document).ready (fnGalleryArrowOnClick);
 
 var fnGalleryImageInfoOnInit = function () {
     $('div.gallery .img .info').css ('background-image',
-        'url("{{ MEDIA_URL }}ico/silk/image_magnify.png")'
+        'url("{{ MEDIA_URL }}ico/silk/information.png")'
     );
 
-    $('div.gallery .img .info').css ('opacity','0.1250');
-};
+    $('div.gallery .img .info').css ('opacity','0.0625');
+}
 
 $(document).ready (fnGalleryImageInfoOnInit);
 
 var fnGalleryImageInfoOnHover = function () {
     $('div.gallery .img .info').hover(function (event) {
         if (event.type != 'mouseenter') {
-            $(event.target).css ('opacity','0.1250');
+            $(event.target).css ('opacity','0.0625');
         } else {
             $(event.target).css ('opacity','1.0000');
         }
     });
-};
+}
 
 $(document).ready (fnGalleryImageInfoOnHover);
 
@@ -270,12 +314,12 @@ var fnGalleryImageInfoOnClick = function () {
                     top: ($(window).height() * 1.000 - $(window).width() * fraction/imgRatio) * 0.500 + 'px',
                     left: $(window).width() * (1.000-fraction)*0.500 + 'px',
                     height: $(window).width() * fraction/imgRatio + 'px',
-                    width: $(window).width() * fraction + 'px',
+                    width: $(window).width() * fraction + 'px'
                 } : { 
                     top: $(window).height() * (1.000-fraction)*0.500 + 'px',
                     left: ($(window).width() * 1.000 - $(window).height() * fraction*imgRatio) * 0.500 + 'px',
                     height: $(window).height() * fraction + 'px',
-                    width: $(window).height() * fraction*imgRatio + 'px',
+                    width: $(window).height() * fraction*imgRatio + 'px'
                 }
 
             css.cursor = 'default'
@@ -312,60 +356,110 @@ var fnGalleryImageRatingSetBackgroundImage = function (target) {
     var st = $(target).parent ('.img').find ('.st')
     var nd = $(target).parent ('.img').find ('.nd')
     var rd = $(target).parent ('.img').find ('.rd')
+    var qd = $(target).parent ('.img').find ('.qd')
+    var qt = $(target).parent ('.img').find ('.qt')
 
     if ($(target).attr ('rate') == 0.0) {
 
         st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
         nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
         rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+        qd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+        qt.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
 
     } else if ($(target).attr ('rate') == 0.5) {
 
         st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_half_grey.png")')
         nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
         rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+        qd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+        qt.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
 
     } else if ($(target).attr ('rate') == 1.0) {
 
         st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
         nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
         rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+        qd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+        qt.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
 
     } else if ($(target).attr ('rate') == 1.5) {
 
         st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
         nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_half_grey.png")')
         rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+        qd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+        qt.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
 
     } else if ($(target).attr ('rate') == 2.0) {
 
         st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
         nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
         rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+        qd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+        qt.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
 
     } else if ($(target).attr ('rate') == 2.5) {
 
         st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
         nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
         rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_half_grey.png")')
+        qd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+        qt.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
 
     } else if ($(target).attr ('rate') == 3.0) {
 
         st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
         nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
         rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        qd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+        qt.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+
+    } else if ($(target).attr ('rate') == 3.5) {
+
+        st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        qd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_half_grey.png")')
+        qt.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+
+    } else if ($(target).attr ('rate') == 4.0) {
+
+        st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        qd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        qt.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_grey.png")')
+
+    } else if ($(target).attr ('rate') == 4.5) {
+
+        st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        qd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        qt.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star_half_grey.png")')
+
+    } else if ($(target).attr ('rate') == 5.0) {
+
+        st.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        nd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        rd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        qd.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
+        qt.css ('background-image', 'url("{{ MEDIA_URL }}ico/silk/star.png")')
 
     }
-};
+}
 
 var fnGalleryImageRatingOnInit = function () {
 
     $('div.gallery div.img .rating.st').attr ('name', 'rating.st')
     $('div.gallery div.img .rating.nd').attr ('name', 'rating.nd')
     $('div.gallery div.img .rating.rd').attr ('name', 'rating.rd')
+    $('div.gallery div.img .rating.qd').attr ('name', 'rating.qd')
+    $('div.gallery div.img .rating.qt').attr ('name', 'rating.qt')
 
     $('div.gallery div.img .rating').css ('opacity','0.3725')
-};
+}
 
 $(document).ready (fnGalleryImageRatingOnInit);
 
@@ -374,29 +468,39 @@ var fnGalleryImageRatingOnInitRate = function (gid, iid, rate) {
     var st = $('div#gallery-id{0}.gallery div#img-id{1}.img .rating.st'.format (gid, iid))
     var nd = $('div#gallery-id{0}.gallery div#img-id{1}.img .rating.nd'.format (gid, iid))
     var rd = $('div#gallery-id{0}.gallery div#img-id{1}.img .rating.rd'.format (gid, iid))
+    var qd = $('div#gallery-id{0}.gallery div#img-id{1}.img .rating.qd'.format (gid, iid))
+    var qt = $('div#gallery-id{0}.gallery div#img-id{1}.img .rating.qt'.format (gid, iid))
 
     st.attr ('rate', rate); fnGalleryImageRatingSetBackgroundImage (st)
     nd.attr ('rate', rate); fnGalleryImageRatingSetBackgroundImage (nd)
     rd.attr ('rate', rate); fnGalleryImageRatingSetBackgroundImage (rd)
-};
+    qd.attr ('rate', rate); fnGalleryImageRatingSetBackgroundImage (qd)
+    qt.attr ('rate', rate); fnGalleryImageRatingSetBackgroundImage (qt)
+}
 
 var fnGalleryImageRatingOnHover = function () {
     $('div.gallery .img .rating').hover (function (event) {
         var st = $(event.target).parent ('.img').find ('.st')
         var nd = $(event.target).parent ('.img').find ('.nd')
         var rd = $(event.target).parent ('.img').find ('.rd')
+        var qd = $(event.target).parent ('.img').find ('.qd')
+        var qt = $(event.target).parent ('.img').find ('.qt')
 
         if (event.type != 'mouseenter') {
-            $(st).css ('opacity','0.3725');
-            $(nd).css ('opacity','0.3725');
-            $(rd).css ('opacity','0.3725');
+            $(st).css ('opacity','0.3725')
+            $(nd).css ('opacity','0.3725')
+            $(rd).css ('opacity','0.3725')
+            $(qd).css ('opacity','0.3725')
+            $(qt).css ('opacity','0.3725')
         } else {
-            $(st).css ('opacity','1.0000');
-            $(nd).css ('opacity','1.0000');
-            $(rd).css ('opacity','1.0000');
+            $(st).css ('opacity','1.0000')
+            $(nd).css ('opacity','1.0000')
+            $(rd).css ('opacity','1.0000')
+            $(qd).css ('opacity','1.0000')
+            $(qt).css ('opacity','1.0000')
         }
     });
-};
+}
 
 $(document).ready (fnGalleryImageRatingOnHover);
 
@@ -404,51 +508,70 @@ var fnGalleryImageRatingOnTimer = function (target) {
     $.post ('{% url home:ajax.update-rate %}', {
         'rate': $(target).parent ('.img').find ('.st').attr ('rate'),
         'id': $(target).parent ('.img').attr ('id').replace ('img-id','')
-    });
-};
+    })
+}
 
 var fnGalleryImageRatingOnClick = function () {
     $('div.gallery .img .rating').click (function (event) {
-        var st = $(event.target).parent ('.img').find ('.st')
-        var nd = $(event.target).parent ('.img').find ('.nd')
-        var rd = $(event.target).parent ('.img').find ('.rd')
+        
+        var el = $(event.target).parent ('.img').find ('.rating')
 
         if ($(event.target).attr ('name') == 'rating.st') {
             if ($(event.target).attr ('rate') == 1.0) {
-                st.attr ('rate',0.0); nd.attr ('rate',0.0); rd.attr ('rate',0.0)
+                el.attr ('rate',0.0)
             } else if ($(event.target).attr ('rate') == 0.5) {
-                st.attr ('rate',1.0); nd.attr ('rate',1.0); rd.attr ('rate',1.0)
+                el.attr ('rate',1.0)
             } else if ($(event.target).attr ('rate') == 0.0) {
-                st.attr ('rate',0.5); nd.attr ('rate',0.5); rd.attr ('rate',0.5)
+                el.attr ('rate',0.5)
             } else {
-                st.attr ('rate',1.0); nd.attr ('rate',1.0); rd.attr ('rate',1.0)
+                el.attr ('rate',1.0)
             }
         } else if ($(event.target).attr ('name') == 'rating.nd') {
             if ($(event.target).attr ('rate') == 2.0) {
-                st.attr ('rate',1.0); nd.attr ('rate',1.0); rd.attr ('rate',1.0)
+                el.attr ('rate',1.0)
             } else if ($(event.target).attr ('rate') == 1.5) {
-                st.attr ('rate',2.0); nd.attr ('rate',2.0); rd.attr ('rate',2.0)
+                el.attr ('rate',2.0)
             } else if ($(event.target).attr ('rate') == 1.0) {
-                st.attr ('rate',1.5); nd.attr ('rate',1.5); rd.attr ('rate',1.5)
+                el.attr ('rate',1.5)
             } else {
-                st.attr ('rate',2.0); nd.attr ('rate',2.0); rd.attr ('rate',2.0)
+                el.attr ('rate',2.0)
             }
         } else if ($(event.target).attr ('name') == 'rating.rd') {
             if ($(event.target).attr ('rate') == 3.0) {
-                st.attr ('rate',2.0); nd.attr ('rate',2.0); rd.attr ('rate',2.0)
+                el.attr ('rate',2.0)
             } else if ($(event.target).attr ('rate') == 2.5) {
-                st.attr ('rate',3.0); nd.attr ('rate',3.0); rd.attr ('rate',3.0)
+                el.attr ('rate',3.0)
             } else if ($(event.target).attr ('rate') == 2.0) {
-                st.attr ('rate',2.5); nd.attr ('rate',2.5); rd.attr ('rate',2.5)
+                el.attr ('rate',2.5)
             } else {
-                st.attr ('rate',3.0); nd.attr ('rate',3.0); rd.attr ('rate',3.0)
+                el.attr ('rate',3.0)
+            }
+        } else if ($(event.target).attr ('name') == 'rating.qd') {
+            if ($(event.target).attr ('rate') == 4.0) {
+                el.attr ('rate',3.0)
+            } else if ($(event.target).attr ('rate') == 3.5) {
+                el.attr ('rate',4.0)
+            } else if ($(event.target).attr ('rate') == 3.0) {
+                el.attr ('rate',3.5)
+            } else {
+                el.attr ('rate',4.0)
+            }
+        } else if ($(event.target).attr ('name') == 'rating.qt') {
+            if ($(event.target).attr ('rate') == 5.0) {
+                el.attr ('rate',4.0)
+            } else if ($(event.target).attr ('rate') == 4.5) {
+                el.attr ('rate',5.0)
+            } else if ($(event.target).attr ('rate') == 4.0) {
+                el.attr ('rate',4.5)
+            } else {
+                el.attr ('rate',5.0)
             }
         }
 
         fnGalleryImageRatingSetBackgroundImage (event.target)
         fnGalleryImageRatingOnTimer (event.target)
     });
-};
+}
 
 $(document).ready (fnGalleryImageRatingOnClick);
 
@@ -484,20 +607,6 @@ $(window).resize (function () {
 </td>
 
 <td class="menu-tbl-item icons">
-<img alt="Show Vehicles"
-     src="{{ MEDIA_URL }}ico/silk/car.png"
-     title="Show Vehicles"
-     id="icon-vehicle" />
-</td>
-
-<td class="menu-tbl-item icons">
-<img alt="Show Figures"
-     src="{{ MEDIA_URL }}ico/silk/user_suit.png"
-     title="Show Figures"
-     id="icon-figure" />
-</td>
-
-<td class="menu-tbl-item icons">
 <img alt="Toggle Layout"
      src="{{ MEDIA_URL }}ico/silk/layout.png"
      title="Toggle Layout"
@@ -519,12 +628,29 @@ $(window).resize (function () {
                         <tbody>
                             <tr align="center">
                             {% for cc in collections %}{% ifequal collection cc %}
-                            <td class="sub-menu-tbl-item active">
+                            <td class="sub-menu-tbl-item-lhs active">
                                 <a href="{% url home:view.galleries_by_collection cc.id %}">{{ cc }}</a>
                             </td>{% else %}
-                            <td class="sub-menu-tbl-item">
+                            <td class="sub-menu-tbl-item-lhs">
                                 <a href="{% url home:view.galleries_by_collection cc.id %}">{{ cc }}</a>
                             </td>{% endifequal %}{% endfor %}
+
+                            <td class="sub-menu-tbl-item-rhs text" id="show-vehicles-text">
+                                <a id="text-vehicle">Show Vehicles</a>
+                            </td>
+                            <td class="sub-menu-tbl-item-rhs icon" id="show-vehicles-icon">
+                            <img alt="Show Vehicles"
+                                 src="{{ MEDIA_URL }}ico/silk/car.png"
+                                 id="icon-vehicle" />
+                            </td>
+
+                            <td class="sub-menu-tbl-item-rhs text" id="show-figures-text">
+                                <a id="text-figure">Show Figures</a>
+                            </td>
+                            <td class="sub-menu-tbl-item-rhs icon" id="show-figures-icon">
+                            <img alt="Show Figures"
+                                 src="{{ MEDIA_URL }}ico/silk/user_suit.png"
+                                 id="icon-figure" />
                             </tr>
                         </tbody>
                     </table>
@@ -578,6 +704,8 @@ $(window).resize (function () {
                             <div class="rating st"></div>
                             <div class="rating nd"></div>
                             <div class="rating rd"></div>
+                            <div class="rating qd"></div>
+                            <div class="rating qt"></div>
                             <div class="info"></div>
                         </div>
                     </li>{% endfor %}
