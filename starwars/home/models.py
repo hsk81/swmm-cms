@@ -53,7 +53,7 @@ class Image (models.Model):
 
     def update_rate (self, value):
 
-        self.rate = '%s' % ((255.0/256.0)*float (self.rate) + (1.0/256.0)*value)
+        self.rate = '%s' % ((63.0/64.0)*float (self.rate) + (1.0/64.0)*value)
 
     def round (rate):
 
