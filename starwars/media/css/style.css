@@ -536,12 +536,34 @@ div.gallery .img .footer.blue {
  * Gallery: Image Info
  * ------------------------------------------------------------------------- */
 
+div.gallery .img .magnify {
+    float: right;
+    height: 32px;
+    width: 32px;
+    position: relative;
+    top: -164px;
+}
+
+div.gallery .img .magnify {
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div.gallery .img .magnify {
+    cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+ * Gallery: Image Info
+ * ------------------------------------------------------------------------- */
+
 div.gallery .img .info {
     float: right;
     height: 32px;
     width: 32px;
     position: relative;
     top: -28px;
+    left: 32px;
 }
 
 div.gallery .img .info {
@@ -571,7 +593,7 @@ div.gallery .img .rating {
 }
 
 div.gallery .img .rating {
-    cursor: default;
+    cursor: pointer;
 }
 
 div.gallery .img .rating.st {
@@ -667,7 +689,7 @@ div.gallery .imgs {
 #footer p {
     text-align: center;
     font-size: smaller;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 /* -------------------------------------------------------------------------

@@ -46,6 +46,7 @@ class Image (models.Model):
 
     name = models.CharField (max_length=256)
     url = models.URLField (max_length=256, verify_exists=False)
+    url_large = models.URLField (max_length=256, verify_exists=False)
     ignore = models.BooleanField (default=False)
 
     gallery = models.ForeignKey (Gallery)

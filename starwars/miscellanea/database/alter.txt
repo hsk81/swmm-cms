@@ -1,0 +1,5 @@
+1. Make changes to the model, but don’t save
+2. $ python manage.py dumpdata [app] > dump.json
+3. Save the changed models.py
+4. $ python manage.py reset [app]
+5. $ python manage.py loaddata dump.json
