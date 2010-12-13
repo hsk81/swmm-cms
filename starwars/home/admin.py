@@ -17,7 +17,11 @@ class CollectionAdmin (admin.ModelAdmin):
     list_display = ('id','name')
     search_fields = ['name','id']
 
-class ImageInline (admin.TabularInline):
+class ImageInline (admin.StackedInline):
+
+    fieldsets = [
+        (None, {'fields': ['gallery','name','rate','url','url_large','ignore']})
+    ]
 
     model = Image
     extra = 2
@@ -36,7 +40,7 @@ class GalleryAdmin (admin.ModelAdmin):
 class ImageAdmin (admin.ModelAdmin):
 
     fieldsets = [
-        (None, {'fields': ['gallery','name','url','rate','ignore']})
+        (None, {'fields': ['gallery','name','url','url_large','rate','ignore']})
     ]
 
     list_display = ('id','gallery','name','url','rate','ignore')

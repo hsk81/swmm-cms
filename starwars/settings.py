@@ -29,6 +29,10 @@ DATABASES = {
     }
 }
 
+FIXTURE_DIRS = (
+    os.path.join (SITE_ROOT, 'fixtures/'),
+)
+
 TIME_ZONE = 'Europe/Zurich'
 LANGUAGE_CODE = 'en-us'
 USE_I18N = True

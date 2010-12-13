@@ -127,7 +127,7 @@ fnGalleryIconVehicleOnClick = function () {
 $(document).ready (fnGalleryIconVehicleOnClick);
 
 /* -------------------------------------------------------------------------
- * Gallery: Icon Figure
+ * Gallery: Icon/Text Figure
  * ------------------------------------------------------------------------- */
 
 fnGalleryTextFigureOnClick = function () {
@@ -221,7 +221,7 @@ var fnGalleryArrowOnHover = function () {
 
         if (event.type != 'mouseenter') {
             $(event.target).css ('background-color','transparent');
-            $(event.target).css ('opacity','0.0625');
+            $(event.target).css ('opacity','0.3725');
         } else {
             if (imgs[0].offsetWidth > area[0].offsetWidth) {
                 $(event.target).css ('background-color','highlight');
@@ -234,14 +234,14 @@ var fnGalleryArrowOnHover = function () {
                     $(event.target).css ('opacity','1.0000');
                 } else {
                     $(event.target).css ('background-color','transparent');
-                    $(event.target).css ('opacity','0.0625');
+                    $(event.target).css ('opacity','0.3725');
                     $(event.target).css ('cursor','default');
                 }
             }
         }
     });
 
-    $('div.gallery .arrow').css('opacity','0.0625');
+    $('div.gallery .arrow').css('opacity','0.3725');
 }
 
 $(document).ready (fnGalleryArrowOnHover);
@@ -277,6 +277,85 @@ var fnGalleryArrowOnClick = function () {
 $(document).ready (fnGalleryArrowOnClick);
 
 /* -------------------------------------------------------------------------
+ * Gallery: Image Magnify
+ * ------------------------------------------------------------------------- */
+
+var fnGalleryImageMagnifyOnInit = function () {
+    $('div.gallery .img .magnify').css ('background-image',
+        'url("{{ MEDIA_URL }}ico/silk/image_magnify.png")'
+    );
+
+    $('div.gallery .img .magnify').css ('opacity','0.3725');
+    $('div.gallery .img .magnify').css ('caption','...');
+}
+
+$(document).ready (fnGalleryImageMagnifyOnInit);
+
+var fnGalleryImageMagnifyOnHover = function () {
+    $('div.gallery .img .magnify').hover(function (event) {
+        if (event.type != 'mouseenter') {
+            $(event.target).css ('opacity','0.3725');
+        } else {
+            $(event.target).css ('opacity','1.0000');
+        }
+    });
+}
+
+$(document).ready (fnGalleryImageMagnifyOnHover);
+
+var fnGalleryImageMagnifyOnClick = function () {
+    $("div.gallery .img .magnify").click (
+        function() {
+
+            var imgRatio = 1.620;
+            var fraction = 0.750;
+
+            css = ($(window).height() >= $(window).width() * fraction/imgRatio)
+                ? {
+                    left: $(window).width() * (1.000-fraction)*0.500 + 'px',
+                    top: (
+                        $(window).height() * 1.000 -
+                        $(window).width() * fraction/imgRatio
+                    ) * 0.500 + 'px',
+                    height: $(window).width() * fraction/imgRatio + 'px',
+                    width: $(window).width() * fraction + 'px'
+                } : {
+                    top: $(window).height() * (1.000-fraction)*0.500 + 'px',
+                    left: (
+                        $(window).width() * 1.000 -
+                        $(window).height() * fraction*imgRatio
+                    ) * 0.500 + 'px',
+                    height: $(window).height() * fraction + 'px',
+                    width: $(window).height() * fraction*imgRatio + 'px'
+                }
+
+            css.cursor = 'default'
+            css.border = '4px solid highlight'
+
+            if ($(window).height() >= $(window).width() * fraction/imgRatio) {
+                $.blockUI ({
+                    message: '<div class="img x-large"><img alt="{0}" src="{1}"/></div>'.format (
+                        $(this).parent ('.img').find('img').attr ('alt'),
+                        $(this).parent ('.img').find('img').attr ('src')
+                    ), css: css
+                })
+            } else {
+                $.blockUI ({
+                    message: '<div class="img x-large"><img alt="{0}" src="{1}"/></div>'.format (
+                        $(this).parent ('.img').find('img').attr ('alt'),
+                        $(this).find('img').attr ('src')
+                    ), css: css
+                })
+            }
+
+            $('.blockOverlay').click ($.unblockUI)
+        }
+    );
+}
+
+$(document).ready (fnGalleryImageMagnifyOnClick);
+
+/* -------------------------------------------------------------------------
  * Gallery: Image Info
  * ------------------------------------------------------------------------- */
 
@@ -285,7 +364,7 @@ var fnGalleryImageInfoOnInit = function () {
         'url("{{ MEDIA_URL }}ico/silk/information.png")'
     );
 
-    $('div.gallery .img .info').css ('opacity','0.0625');
+    $('div.gallery .img .info').css ('opacity','0.3725');
 }
 
 $(document).ready (fnGalleryImageInfoOnInit);
@@ -293,7 +372,7 @@ $(document).ready (fnGalleryImageInfoOnInit);
 var fnGalleryImageInfoOnHover = function () {
     $('div.gallery .img .info').hover(function (event) {
         if (event.type != 'mouseenter') {
-            $(event.target).css ('opacity','0.0625');
+            $(event.target).css ('opacity','0.3725');
         } else {
             $(event.target).css ('opacity','1.0000');
         }
@@ -310,14 +389,20 @@ var fnGalleryImageInfoOnClick = function () {
             var fraction = 0.750;
 
             css = ($(window).height() >= $(window).width() * fraction/imgRatio)
-                ? { 
-                    top: ($(window).height() * 1.000 - $(window).width() * fraction/imgRatio) * 0.500 + 'px',
+                ? {
                     left: $(window).width() * (1.000-fraction)*0.500 + 'px',
+                    top: (
+                        $(window).height() * 1.000 -
+                        $(window).width() * fraction/imgRatio
+                    ) * 0.500 + 'px',
                     height: $(window).width() * fraction/imgRatio + 'px',
                     width: $(window).width() * fraction + 'px'
-                } : { 
+                } : {
                     top: $(window).height() * (1.000-fraction)*0.500 + 'px',
-                    left: ($(window).width() * 1.000 - $(window).height() * fraction*imgRatio) * 0.500 + 'px',
+                    left: (
+                        $(window).width() * 1.000 -
+                        $(window).height() * fraction*imgRatio
+                    ) * 0.500 + 'px',
                     height: $(window).height() * fraction + 'px',
                     width: $(window).height() * fraction*imgRatio + 'px'
                 }
@@ -706,6 +791,7 @@ $(window).resize (function () {
                             <div class="rating rd"></div>
                             <div class="rating qd"></div>
                             <div class="rating qt"></div>
+                            <div class="magnify"></div>
                             <div class="info"></div>
                         </div>
                     </li>{% endfor %}
