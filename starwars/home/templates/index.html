@@ -303,57 +303,41 @@ var fnGalleryImageMagnifyOnHover = function () {
 
 $(document).ready (fnGalleryImageMagnifyOnHover);
 
-var fnGalleryImageMagnifyOnClick = function () {
-    $("div.gallery .img .magnify").click (
-        function() {
+var fnGalleryImageMagnifyOnClick = function (obj) {
 
-            var imgRatio = 1.620;
-            var fraction = 0.750;
+    var imgRatio = 1.620;
+    var fraction = 0.750;
 
-            css = ($(window).height() >= $(window).width() * fraction/imgRatio)
-                ? {
-                    left: $(window).width() * (1.000-fraction)*0.500 + 'px',
-                    top: (
-                        $(window).height() * 1.000 -
-                        $(window).width() * fraction/imgRatio
-                    ) * 0.500 + 'px',
-                    height: $(window).width() * fraction/imgRatio + 'px',
-                    width: $(window).width() * fraction + 'px'
-                } : {
-                    top: $(window).height() * (1.000-fraction)*0.500 + 'px',
-                    left: (
-                        $(window).width() * 1.000 -
-                        $(window).height() * fraction*imgRatio
-                    ) * 0.500 + 'px',
-                    height: $(window).height() * fraction + 'px',
-                    width: $(window).height() * fraction*imgRatio + 'px'
-                }
-
-            css.cursor = 'default'
-            css.border = '4px solid highlight'
-
-            if ($(window).height() >= $(window).width() * fraction/imgRatio) {
-                $.blockUI ({
-                    message: '<div class="img x-large"><img alt="{0}" src="{1}"/></div>'.format (
-                        $(this).parent ('.img').find('img').attr ('alt'),
-                        $(this).parent ('.img').find('img').attr ('src')
-                    ), css: css
-                })
-            } else {
-                $.blockUI ({
-                    message: '<div class="img x-large"><img alt="{0}" src="{1}"/></div>'.format (
-                        $(this).parent ('.img').find('img').attr ('alt'),
-                        $(this).find('img').attr ('src')
-                    ), css: css
-                })
-            }
-
-            $('.blockOverlay').click ($.unblockUI)
+    css = ($(window).height() >= $(window).width() * fraction/imgRatio)
+        ? {
+            left: $(window).width() * (1.000-fraction)*0.500 + 'px',
+            top: (
+                $(window).height() * 1.000 -
+                $(window).width() * fraction/imgRatio
+            ) * 0.500 + 'px',
+            height: $(window).width() * fraction/imgRatio + 'px',
+            width: $(window).width() * fraction + 'px'
+        } : {
+            top: $(window).height() * (1.000-fraction)*0.500 + 'px',
+            left: (
+                $(window).width() * 1.000 -
+                $(window).height() * fraction*imgRatio
+            ) * 0.500 + 'px',
+            height: $(window).height() * fraction + 'px',
+            width: $(window).height() * fraction*imgRatio + 'px'
         }
-    );
-}
 
-$(document).ready (fnGalleryImageMagnifyOnClick);
+    css.cursor = 'default'
+    css.border = '4px solid highlight'
+
+    $.blockUI ({
+        message: '<div class="img x-large"><img alt="{0} [magnified; H1.00:W1.62]" src="{1}"/></div>'.format (
+            obj.alt, obj.src
+        ), css: css
+    })
+
+    $('.blockOverlay').click ($.unblockUI)
+}
 
 /* -------------------------------------------------------------------------
  * Gallery: Image Info
@@ -381,57 +365,41 @@ var fnGalleryImageInfoOnHover = function () {
 
 $(document).ready (fnGalleryImageInfoOnHover);
 
-var fnGalleryImageInfoOnClick = function () {
-    $("div.gallery .img .info").click (
-        function() {
+var fnGalleryImageInfoOnClick = function (obj) {
 
-            var imgRatio = 1.620;
-            var fraction = 0.750;
+    var imgRatio = 1.620;
+    var fraction = 0.750;
 
-            css = ($(window).height() >= $(window).width() * fraction/imgRatio)
-                ? {
-                    left: $(window).width() * (1.000-fraction)*0.500 + 'px',
-                    top: (
-                        $(window).height() * 1.000 -
-                        $(window).width() * fraction/imgRatio
-                    ) * 0.500 + 'px',
-                    height: $(window).width() * fraction/imgRatio + 'px',
-                    width: $(window).width() * fraction + 'px'
-                } : {
-                    top: $(window).height() * (1.000-fraction)*0.500 + 'px',
-                    left: (
-                        $(window).width() * 1.000 -
-                        $(window).height() * fraction*imgRatio
-                    ) * 0.500 + 'px',
-                    height: $(window).height() * fraction + 'px',
-                    width: $(window).height() * fraction*imgRatio + 'px'
-                }
-
-            css.cursor = 'default'
-            css.border = '4px solid highlight'
-
-            if ($(window).height() >= $(window).width() * fraction/imgRatio) {
-                $.blockUI ({
-                    message: '<div class="img x-large"><img alt="{0}" src="{1}"/></div>'.format (
-                        $(this).parent ('.img').find('img').attr ('alt'),
-                        $(this).parent ('.img').find('img').attr ('src')
-                    ), css: css
-                })
-            } else {
-                $.blockUI ({
-                    message: '<div class="img x-large"><img alt="{0}" src="{1}"/></div>'.format (
-                        $(this).parent ('.img').find('img').attr ('alt'),
-                        $(this).find('img').attr ('src')
-                    ), css: css
-                })
-            }
-
-            $('.blockOverlay').click ($.unblockUI)
+    css = ($(window).height() >= $(window).width() * fraction/imgRatio)
+        ? {
+            left: $(window).width() * (1.000-fraction)*0.500 + 'px',
+            top: (
+                $(window).height() * 1.000 -
+                $(window).width() * fraction/imgRatio
+            ) * 0.500 + 'px',
+            height: $(window).width() * fraction/imgRatio + 'px',
+            width: $(window).width() * fraction + 'px'
+        } : {
+            top: $(window).height() * (1.000-fraction)*0.500 + 'px',
+            left: (
+                $(window).width() * 1.000 -
+                $(window).height() * fraction*imgRatio
+            ) * 0.500 + 'px',
+            height: $(window).height() * fraction + 'px',
+            width: $(window).height() * fraction*imgRatio + 'px'
         }
-    );
-}
 
-$(document).ready (fnGalleryImageInfoOnClick);
+    css.cursor = 'default'
+    css.border = '4px solid highlight'
+
+    $.blockUI ({
+        message: '<div class="img x-info"><img alt="{0} [info; H1.00:W?.??]" src="{1}"/></div>'.format (
+            obj.alt, obj.src
+        ), css: css
+    })
+
+    $('.blockOverlay').click ($.unblockUI)
+}
 
 /* -------------------------------------------------------------------------
  * Gallery: Image Rating
@@ -756,7 +724,7 @@ $(window).resize (function () {
         <div class="gallery-v-spacer">&nbsp;</div>
         <div class="portrait">
             <div class="frame">
-                <img alt="{{ gallery.name }}" src="{{ gallery.url }}"/>
+                <img alt="{{ gallery.name }} [H160:W130px]" src="{{ gallery.url }}"/>
             </div>
         </div>
 
@@ -783,7 +751,7 @@ $(window).resize (function () {
                     <li>
                         <div id="img-id{{ image.id }}" title="{{ image.name }}" class="img">
                             <div class="content">
-                                <img alt="{{ image.name }}" src="{{ image.url }}"/>
+                                <img alt="{{ image.name }} [H153:W248px]" src="{{ image.url }}"/>
                             </div>
                             <div class="footer {{ gallery.color }}"></div>
                             <div class="rating st"></div>
@@ -791,8 +759,8 @@ $(window).resize (function () {
                             <div class="rating rd"></div>
                             <div class="rating qd"></div>
                             <div class="rating qt"></div>
-                            <div class="magnify"></div>
-                            <div class="info"></div>
+                            <div class="magnify" onclick="fnGalleryImageMagnifyOnClick ({alt:'{{ image.name }}', src:'{{ image.url_large }}'});"></div>
+                            <div class="info" onclick="fnGalleryImageInfoOnClick ({alt:'{{ image.name }}', src:'{{ image.url_info }}'});"></div>
                         </div>
                     </li>{% endfor %}
                 </ul>

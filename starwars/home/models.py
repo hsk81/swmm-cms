@@ -30,10 +30,13 @@ class Gallery (models.Model):
     )
 
     type = models.CharField (max_length=7, choices=TYPE_CHOICES)
-
     collection = models.ForeignKey (Collection)
     name = models.CharField (max_length=256)
-    url = models.URLField (max_length=256, verify_exists=False)
+
+    url = models.URLField (
+        max_length=256, verify_exists=False, default='http://localhost/#'
+    )
+
     ignore = models.BooleanField (default=False)
 
     def images (self, ignore=False):
@@ -45,10 +48,20 @@ class Gallery (models.Model):
 class Image (models.Model):
 
     name = models.CharField (max_length=256)
-    url = models.URLField (max_length=256, verify_exists=False)
-    url_large = models.URLField (max_length=256, verify_exists=False)
-    ignore = models.BooleanField (default=False)
 
+    url = models.URLField (
+        max_length=256, verify_exists=False, default='http://localhost/#'
+    )
+
+    url_large = models.URLField (
+        max_length=256, verify_exists=False, default='http://localhost/#'
+    )
+
+    url_info = models.URLField (
+        max_length=256, verify_exists=False, default='http://localhost/#'
+    )
+
+    ignore = models.BooleanField (default=False)
     gallery = models.ForeignKey (Gallery)
     rate = models.DecimalField (max_digits=4, decimal_places=2)
 

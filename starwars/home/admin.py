@@ -19,18 +19,24 @@ class CollectionAdmin (admin.ModelAdmin):
 
 class ImageInline (admin.StackedInline):
 
-    fieldsets = [
-        (None, {'fields': ['gallery','name','rate','url','url_large','ignore']})
-    ]
+    fieldsets = [(
+        None, {
+            'fields': [
+                'gallery','name','rate','url','url_large','url_info','ignore'
+            ]
+        }
+    )]
 
     model = Image
     extra = 2
 
 class GalleryAdmin (admin.ModelAdmin):
 
-    fieldsets = [
-        (None, {'fields': ['collection','name','color','type','url','ignore']})
-    ]
+    fieldsets = [(
+        None, {
+            'fields': ['collection','name','color','type','url','ignore']
+        }
+    )]
 
     inlines = [ImageInline]
     list_display = ('id','collection','name','color','type','url','ignore')
@@ -39,9 +45,13 @@ class GalleryAdmin (admin.ModelAdmin):
 
 class ImageAdmin (admin.ModelAdmin):
 
-    fieldsets = [
-        (None, {'fields': ['gallery','name','url','url_large','rate','ignore']})
-    ]
+    fieldsets = [(
+        None, {
+            'fields': [
+                'gallery','name','url','url_large','url_info','rate','ignore'
+            ]
+        }
+    )]
 
     list_display = ('id','gallery','name','url','rate','ignore')
     list_filter = ['ignore','rate']
