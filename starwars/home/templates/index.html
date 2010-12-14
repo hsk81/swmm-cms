@@ -277,6 +277,28 @@ var fnGalleryArrowOnClick = function () {
 $(document).ready (fnGalleryArrowOnClick);
 
 /* -------------------------------------------------------------------------
+ * Gallery: Image Close
+ * ------------------------------------------------------------------------- */
+
+var fnGalleryImageCloseOnInit = function () {
+    $('div.img .close').css ('background-image',
+        'url("{{ MEDIA_URL }}ico/silk/bullet_cross.png")'
+    );
+
+    $('div.img .close').css ('opacity','0.3725');
+}
+
+var fnGalleryImageCloseOnHover = function () {
+    $('div.img .close').hover(function (event) {
+        if (event.type != 'mouseenter') {
+            $(event.target).css ('opacity','0.3725');
+        } else {
+            $(event.target).css ('opacity','1.0000');
+        }
+    });
+}
+
+/* -------------------------------------------------------------------------
  * Gallery: Image Magnify
  * ------------------------------------------------------------------------- */
 
@@ -286,7 +308,6 @@ var fnGalleryImageMagnifyOnInit = function () {
     );
 
     $('div.gallery .img .magnify').css ('opacity','0.3725');
-    $('div.gallery .img .magnify').css ('caption','...');
 }
 
 $(document).ready (fnGalleryImageMagnifyOnInit);
@@ -331,12 +352,23 @@ var fnGalleryImageMagnifyOnClick = function (obj) {
     css.border = '4px solid highlight'
 
     $.blockUI ({
-        message: '<div class="img x-large"><img alt="{0} [magnified; H1.00:W1.62]" src="{1}"/></div>'.format (
+        message: (
+            '<div class="img x-large">' +
+                '<img alt="{0} [magnified; H1.00:W1.62]" src="{1}"/>' +
+                '<div class="close" style="top:-{0};"/>'.format(
+                    css.height
+                ) +
+            '</div>'
+        ).format (
             obj.alt, obj.src
         ), css: css
-    })
+    });
+    
+    fnGalleryImageCloseOnInit ();
+    fnGalleryImageCloseOnHover ();
 
-    $('.blockOverlay').click ($.unblockUI)
+    $('div.img .close').click ($.unblockUI);
+    $('.blockOverlay').click ($.unblockUI);
 }
 
 /* -------------------------------------------------------------------------
@@ -393,12 +425,23 @@ var fnGalleryImageInfoOnClick = function (obj) {
     css.border = '4px solid highlight'
 
     $.blockUI ({
-        message: '<div class="img x-info"><img alt="{0} [info; H1.00:W?.??]" src="{1}"/></div>'.format (
+        message: (
+            '<div class="img x-info">' +
+                '<img alt="{0} [info; H1.00:W?.??]" src="{1}"/>' +
+                '<div class="close" style="top:-{0};"/>'.format(
+                    css.height
+                ) +
+            '</div>'
+        ).format (
             obj.alt, obj.src
         ), css: css
-    })
+    });
 
-    $('.blockOverlay').click ($.unblockUI)
+    fnGalleryImageCloseOnInit ();
+    fnGalleryImageCloseOnHover ();
+
+    $('div.img .close').click ($.unblockUI);
+    $('.blockOverlay').click ($.unblockUI);
 }
 
 /* -------------------------------------------------------------------------
@@ -406,6 +449,7 @@ var fnGalleryImageInfoOnClick = function (obj) {
  * ------------------------------------------------------------------------- */
 
 var fnGalleryImageRatingSetBackgroundImage = function (target) {
+    
     var st = $(target).parent ('.img').find ('.st')
     var nd = $(target).parent ('.img').find ('.nd')
     var rd = $(target).parent ('.img').find ('.rd')
@@ -754,13 +798,20 @@ $(window).resize (function () {
                                 <img alt="{{ image.name }} [H153:W248px]" src="{{ image.url }}"/>
                             </div>
                             <div class="footer {{ gallery.color }}"></div>
+                            
                             <div class="rating st"></div>
                             <div class="rating nd"></div>
                             <div class="rating rd"></div>
                             <div class="rating qd"></div>
                             <div class="rating qt"></div>
-                            <div class="magnify" onclick="fnGalleryImageMagnifyOnClick ({alt:'{{ image.name }}', src:'{{ image.url_large }}'});"></div>
-                            <div class="info" onclick="fnGalleryImageInfoOnClick ({alt:'{{ image.name }}', src:'{{ image.url_info }}'});"></div>
+
+                            <div class="magnify" 
+                                 onclick="fnGalleryImageMagnifyOnClick ({alt:'{{ image.name }}', src:'{{ image.url_large }}'});">
+                            </div>
+                            
+                            <div class="info" 
+                                 onclick="fnGalleryImageInfoOnClick ({alt:'{{ image.name }}', src:'{{ image.url_info }}'});">
+                            </div>
                         </div>
                     </li>{% endfor %}
                 </ul>
