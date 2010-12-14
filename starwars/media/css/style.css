@@ -531,6 +531,26 @@ div.img.x-info img {
 }
 
 /* -------------------------------------------------------------------------
+ * Gallery: Image Close
+ * ------------------------------------------------------------------------- */
+
+div.img .close {
+    float: right;
+    height: 32px;
+    width: 32px;
+    position: relative;
+}
+
+div.img .close {
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div.img .close {
+    cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
  * Gallery: Image Footer
  * ------------------------------------------------------------------------- */
 
