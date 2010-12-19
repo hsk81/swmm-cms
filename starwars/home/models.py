@@ -10,6 +10,9 @@ class Collection (models.Model):
     def __unicode__(self):
         return "%s" % self.name
 
+    def nbsp (self):
+        return "%s" % self.name.replace (' ', '&nbsp;')
+
 class Gallery (models.Model):
 
     class Meta:

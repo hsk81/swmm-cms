@@ -8,30 +8,6 @@
 <script type="text/javascript">
 
 /* -------------------------------------------------------------------------
- * Sub Menu: Icon & Text
- * ------------------------------------------------------------------------- */
-
-fnSubMenuIconOnHover = function () {
-    $('#show-figures-icon').hover (function (event) {
-        if (event.type != 'mouseenter') {
-            $('#show-figures-text').css ('background','none')
-        } else {
-            $('#show-figures-text').css ('background','highlight')
-        }
-    });
-
-    $('#show-vehicles-icon').hover (function (event) {
-        if (event.type != 'mouseenter') {
-            $('#show-vehicles-text').css ('background','none')
-        } else {
-            $('#show-vehicles-text').css ('background','highlight')
-        }
-    });
-}
-
-$(document).ready (fnSubMenuIconOnHover);
-
-/* -------------------------------------------------------------------------
  * Gallery: Icon Layout
  * ------------------------------------------------------------------------- */
 
@@ -103,52 +79,28 @@ fnGalleryIconLayoutOnClick = function () {
 $(document).ready (fnGalleryIconLayoutOnClick);
 
 /* -------------------------------------------------------------------------
- * Gallery: Icon/Text Vehicle
+ * Gallery: Type
  * ------------------------------------------------------------------------- */
 
-fnGalleryTextVehicleOnClick = function () {
-    $('#text-vehicle').click(function (event) {
-        $.post ('{% url home:ajax.show-vehicle %}', function (data) {
+fnGalleryTypeFiguresOnClick = function () {
+    $('#gallery-type-figures').click (function (event) {
+        $.post ('{% url home:ajax.show-figures %}', function (data) {
             location.reload ();
         });
     });
 }
 
-$(document).ready (fnGalleryTextVehicleOnClick);
+$(document).ready (fnGalleryTypeFiguresOnClick);
 
-fnGalleryIconVehicleOnClick = function () {
-    $('#icon-vehicle').click(function (event) {
-        $.post ('{% url home:ajax.show-vehicle %}', function (data) {
+fnGalleryTypeVehiclesOnClick = function () {
+    $('#gallery-type-vehicles').click (function (event) {
+        $.post ('{% url home:ajax.show-vehicles %}', function (data) {
             location.reload ();
         });
     });
 }
 
-$(document).ready (fnGalleryIconVehicleOnClick);
-
-/* -------------------------------------------------------------------------
- * Gallery: Icon/Text Figure
- * ------------------------------------------------------------------------- */
-
-fnGalleryTextFigureOnClick = function () {
-    $('#text-figure').click(function (event) {
-        $.post ('{% url home:ajax.show-figure %}', function (data) {
-            location.reload ();
-        });
-    });
-}
-
-$(document).ready (fnGalleryTextFigureOnClick);
-
-fnGalleryIconFigureOnClick = function () {
-    $('#icon-figure').click(function (event) {
-        $.post ('{% url home:ajax.show-figure %}', function (data) {
-            location.reload ();
-        });
-    });
-}
-
-$(document).ready (fnGalleryIconFigureOnClick);
+$(document).ready (fnGalleryTypeVehiclesOnClick);
 
 /* -------------------------------------------------------------------------
  * Gallery: Area
@@ -685,7 +637,7 @@ $(window).resize (function () {
 </script>
 
 <!-- --------------------------------------------------------------------------
-+ Gallery:  Image Rating
++ Gallery: Image Rating
 --------------------------------------------------------------------------- -->
 
 {% for gallery in galleries %}{% for image in gallery.images %}
@@ -700,7 +652,7 @@ $(window).resize (function () {
 --------------------------------------------------------------------------- -->
 
 {% block menu-ext %}
-<td class="menu-tbl-item icons">
+<td class="menu-tbl-item spacer">
 </td>
 
 <td class="menu-tbl-item icons">
@@ -725,30 +677,36 @@ $(window).resize (function () {
                         <tbody>
                             <tr align="center">
                             {% for cc in collections %}{% ifequal collection cc %}
-                            <td class="sub-menu-tbl-item-lhs active">
-                                <a href="{% url home:view.galleries_by_collection cc.id %}">{{ cc }}</a>
+                            <td class="sub-menu-tbl-item active">
+                                <a href="{% url home:view.galleries_by_collection cc.id %}">{{ cc.nbsp|safe }}</a>
                             </td>{% else %}
-                            <td class="sub-menu-tbl-item-lhs">
-                                <a href="{% url home:view.galleries_by_collection cc.id %}">{{ cc }}</a>
+                            <td class="sub-menu-tbl-item">
+                                <a href="{% url home:view.galleries_by_collection cc.id %}">{{ cc.nbsp|safe }}</a>
                             </td>{% endifequal %}{% endfor %}
 
-                            <td class="sub-menu-tbl-item-rhs text" id="show-vehicles-text">
-                                <a id="text-vehicle">Vehicles</a>
-                            </td>
-                            <td class="sub-menu-tbl-item-rhs icon" id="show-vehicles-icon">
-                            <img alt="Show Vehicles"
-                                 src="{{ MEDIA_URL }}ico/silk/car.png"
-                                 id="icon-vehicle" />
+                            <td class="sub-menu-tbl-item spacer">
                             </td>
 
-                            <td class="sub-menu-tbl-item-rhs text" id="show-figures-text">
-                                <a id="text-figure">Figures</a>
+                            {% ifequal type 'figure' %}
+                            <td class="sub-menu-tbl-item rhs active">
+                                <a href="#" id="gallery-type-figures">Figures</a>
                             </td>
-                            <td class="sub-menu-tbl-item-rhs icon" id="show-figures-icon">
-                            <img alt="Show Figures"
-                                 src="{{ MEDIA_URL }}ico/silk/user_suit.png"
-                                 id="icon-figure" />
-                            </tr>
+                            {% else %}
+                            <td class="sub-menu-tbl-item rhs">
+                                <a href="#" id="gallery-type-figures">Figures</a>
+                            </td>
+                            {% endifequal %}
+                            
+                            {% ifequal type 'vehicle' %}
+                            <td class="sub-menu-tbl-item rhs active">
+                                <a href="#" id="gallery-type-vehicles">Vehicles</a>
+                            </td>
+                            {% else %}
+                            <td class="sub-menu-tbl-item rhs">
+                                <a href="#" id="gallery-type-vehicles">Vehicles</a>
+                            </td>
+                            {% endifequal %}
+
                         </tbody>
                     </table>
                 </div>{% endblock %}

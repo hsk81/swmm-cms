@@ -95,7 +95,7 @@ body {
 }
 
 /* -------------------------------------------------------------------------
- * Menu
+ * Menu:
  * ------------------------------------------------------------------------- */
 
 #menu {
@@ -124,7 +124,14 @@ body {
 }
 
 /* -------------------------------------------------------------------------
- * Menu Icons
+ * Menu: Spacer
+ * ------------------------------------------------------------------------- */
+
+.menu-tbl-item.spacer {
+    width: 100%;
+}
+/* -------------------------------------------------------------------------
+ * Menu: Icons
  * ------------------------------------------------------------------------- */
 
 .menu-tbl-item.icons {
@@ -164,28 +171,18 @@ body {
 }
 
 #sub-menu-tbl {
-    width: 100%;
+    width: auto;
 }
 
 #sub-menu-tbl tbody tr td {
-    height: 16px;
     padding: 5px;
     border: 1px dotted #948b54;
 }
 
-.sub-menu-tbl-item-lhs {
-    float: left;
-    margin-right: 1px;
-}
-
 #sub-menu-tbl tbody tr td:hover,
-.sub-menu-tbl-item-lhs.active {
+.sub-menu-tbl-item.active {
     background: highlight;
     border: 1px dotted #948b54;
-}
-
-#sub-menu-tbl tbody tr td a {
-    display: table-cell;
 }
 
 #sub-menu-tbl tbody tr td a {
@@ -197,18 +194,22 @@ body {
 }
 
 /* -------------------------------------------------------------------------
- * Sub Menu: Icon & Text
+ * Sub Menu: Spacer
  * ------------------------------------------------------------------------- */
 
-.sub-menu-tbl-item-rhs {
-    float: right;
+.sub-menu-tbl-item.spacer {
+    width: 100%;
 }
 
-.sub-menu-tbl-item-rhs {
-    cursor: pointer;
+/* -------------------------------------------------------------------------
+ * Sub Menu: Right-Hand-Side
+ * ------------------------------------------------------------------------- */
+
+.sub-menu-tbl-item.rhs {
+    width: 100%;
 }
 
-.sub-menu-tbl-item-rhs {
+.sub-menu-tbl-item.rhs {
     text-align: right;
     text-decoration: none;
     font-size: x-small;
@@ -216,18 +217,8 @@ body {
     color: white;
 }
 
-#sub-menu-tbl tbody tr td.text {
-    padding-left: 0px;
-    border-left: none;
-}
-
-#sub-menu-tbl tbody tr td.text:hover {
-    background: none;
-}
-
-#sub-menu-tbl tbody tr td.icon {
-    padding-right: 0px;
-    border-right: none;
+.sub-menu-tbl-item.rhs {
+    cursor: pointer;
 }
 
 /* -------------------------------------------------------------------------
