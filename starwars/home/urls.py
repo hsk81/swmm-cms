@@ -54,13 +54,13 @@ urlpatterns = patterns('django.views.generic.simple',
     url (
         r'^ajax/show-vehicle/$',
         Ajax.show_vehicle,
-        name='ajax.show-vehicle'
+        name='ajax.show-vehicles'
     ),
 
     url (
         r'^ajax/show-figure/$',
         Ajax.show_figure,
-        name='ajax.show-figure'
+        name='ajax.show-figures'
     ),
 
     url (

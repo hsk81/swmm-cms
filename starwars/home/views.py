@@ -34,17 +34,27 @@ class View:
         print >> sys.stderr, "== Time Stamp: %s" % request.session['timestamp']
         print >> sys.stderr, "== "
 
-        return View.galleries_all (request)
+        if Gallery.objects.count () > 0:
+            return View.galleries_by_collection (request, 1)
+        else:
+            return View.galleries_all (request)
 
     main = staticmethod (main)
+
+    def type_or_default (request):
+
+        return request.session.has_key ('type') and request.session['type'] \
+               or 'figure'
+
+    type_or_default = staticmethod (type_or_default)
 
     def galleries_all (request):
 
         cs = Collection.objects.all ()
+
         gs = Gallery.objects.filter (
             ignore=False,
-            type=request.session.has_key ('type') and request.session['type']
-                or 'figure'
+            type=View.type_or_default (request)
         )
 
         try: return direct_to_template (
@@ -52,7 +62,8 @@ class View:
             template = 'index.html',
             extra_context = {
                 'collections': cs,
-                'galleries': gs
+                'galleries': gs,
+                'type': View.type_or_default (request)
             }
         )
 
@@ -64,11 +75,11 @@ class View:
 
         collection = Collection.objects.get (pk=id)
         cs = Collection.objects.all ()
+
         gs = Gallery.objects.filter (
             collection=collection,
             ignore=False,
-            type=request.session.has_key ('type') and request.session['type']
-                or 'figure'
+            type=View.type_or_default (request)
         )
 
         try: return direct_to_template (
@@ -77,7 +88,8 @@ class View:
             extra_context = {
                 'collection' : collection,
                 'collections': cs,
-                'galleries': gs
+                'galleries': gs,
+                'type': View.type_or_default (request)
             }
         )
 
