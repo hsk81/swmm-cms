@@ -88,5 +88,5 @@ INSTALLED_APPS = (
  ## 'django.contrib.flatpages',
  ## 'django.contrib.comments',
 
-    'home', 'about', 'comment', 'contact'
+    'property', 'home', 'about', 'comment', 'contact'
 )

@@ -1,8 +1,10 @@
 from django.http import Http404, HttpResponse
 from django.template import TemplateDoesNotExist
 from django.views.generic.simple import direct_to_template
+
 from datetime import datetime
 from home.models import *
+from property.views import *
 
 import sys
 import json
@@ -63,7 +65,8 @@ class View:
             extra_context = {
                 'collections': cs,
                 'galleries': gs,
-                'type': View.type_or_default (request)
+                'type': View.type_or_default (request),
+                'properties': PropertyController.values (request)
             }
         )
 
@@ -89,7 +92,8 @@ class View:
                 'collection' : collection,
                 'collections': cs,
                 'galleries': gs,
-                'type': View.type_or_default (request)
+                'type': View.type_or_default (request),
+                'properties':  PropertyController.values (request)
             }
         )
 

@@ -31,18 +31,20 @@
                 <tr>
                     <td id="header-tbl-lhs" align="center">
                         {% block header-title-lhs %}<div id="title-lhs">
-                            <img alt="Micro Machines"src="{{ MEDIA_URL }}img/micro-machines.gif"/>
+                            <img alt="{{ properties.lhs_image_alt }}"
+                                 src="{{ properties.lhs_image_url }}"/>
                         </div>{% endblock %}
                     </td>
                     <td id="header-tbl-mid">
                         {% block header-title %}<div id="title">
-                        <h1><a href="#">Star&nbsp;Wars Micro&nbsp;Machines</a></h1>
-                        <p>Complete Figure Collection</p>
+                        <h1><a href="#">{{ properties.title|safe }}</a></h1>
+                        <p>{{ properties.sub_title|safe }}</p>
                         </div>{% endblock %}
                     </td>
                     <td id="header-tbl-rhs" align="center">
                         {% block header-title-rhs %}<div id="title-rhs">
-                            <img alt="Star Wars" src="{{ MEDIA_URL }}img/star-wars.gif"/>
+                            <img alt="{{ properties.rhs_image_alt }}"
+                                 src="{{ properties.rhs_image_url }}"/>
                         </div>{% endblock %}
                     </td>
                 </tr>

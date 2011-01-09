@@ -4,7 +4,7 @@ from django.conf.urls.defaults import *
 from home.views import *
 from home.models import *
 
-urlpatterns = patterns('django.views.generic.simple',
+urlpatterns = patterns ('django.views.generic.simple',
 
  ## url (
  ##     r'^$', 'direct_to_template', {
