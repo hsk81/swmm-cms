@@ -678,10 +678,10 @@ $(window).resize (function () {
                             <tr align="center">
                             {% for cc in collections %}{% ifequal collection cc %}
                             <td class="sub-menu-tbl-item active">
-                                <a href="{% url home:view.galleries_by_collection cc.id %}">{{ cc.nbsp|safe }}</a>
+                                <a href="{% url home:view.galleries-by-collection cc.id %}">{{ cc.nbsp|safe }}</a>
                             </td>{% else %}
                             <td class="sub-menu-tbl-item">
-                                <a href="{% url home:view.galleries_by_collection cc.id %}">{{ cc.nbsp|safe }}</a>
+                                <a href="{% url home:view.galleries-by-collection cc.id %}">{{ cc.nbsp|safe }}</a>
                             </td>{% endifequal %}{% endfor %}
 
                             <td class="sub-menu-tbl-item spacer">

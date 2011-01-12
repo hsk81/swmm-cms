@@ -26,13 +26,13 @@ urlpatterns = patterns ('django.views.generic.simple',
     url(
         r'^all/$',
         View.galleries_all,
-        name="view.galleries_all"
+        name="view.galleries-all"
     ),
 
     url(
         r'^(?P<id>\d+)/$',
         View.galleries_by_collection,
-        name="view.galleries_by_collection"
+        name="view.galleries-by-collection"
     ),
 
     ##
