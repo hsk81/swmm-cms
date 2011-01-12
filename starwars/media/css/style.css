@@ -699,6 +699,53 @@ div.gallery .imgs {
 }
 
 /* -------------------------------------------------------------------------
+ * About:
+ * ------------------------------------------------------------------------- */
+
+#about-tbl {
+    height: auto;
+    width: 100%;
+}
+
+#about-tbl {
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+#about-tbl-lhs {
+    vertical-align: middle;
+    border-right: 1px solid white;
+    width: 33%;
+}
+
+#about-tbl-lhs img {
+    height: 316px;
+    width: 256px;
+}
+
+#about-tbl-rhs {
+    vertical-align: middle;
+    border-left: 1px solid white;
+    height: 480px;
+    width: 67%;
+}
+
+#about-tbl-rhs p {
+    margin: 2px;
+}
+
+#about-tbl-rhs p {
+    text-align: justify;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: small;
+    color: white;
+    margin: 2px;
+}
+
+/* -------------------------------------------------------------------------
  * Bottom Bar
  * ------------------------------------------------------------------------- */
 
