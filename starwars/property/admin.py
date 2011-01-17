@@ -2,23 +2,33 @@ from django.contrib.sessions.models import Session
 from django.contrib import admin
 from property.models import *
 
-class PropertyValueAdmin (admin.ModelAdmin):
+class PropertyTextAdmin (admin.ModelAdmin):
 
     fieldsets = [(
-        None, {'fields': ['data']}
+        None, {'fields': ['property','text']}
+    )]
+
+    list_display = ['text','property']
+
+admin.site.register (PropertyText, PropertyTextAdmin)
+
+class PropertyDataAdmin (admin.ModelAdmin):
+
+    fieldsets = [(
+        None, {'fields': ['property','data']}
     )]
 
     list_display = ['data','property']
 
-admin.site.register (PropertyValue, PropertyValueAdmin)
+admin.site.register (PropertyData, PropertyDataAdmin)
 
-class PropertyValueInline (admin.StackedInline):
+class PropertyDataInline (admin.StackedInline):
 
     fieldsets = [(
         None, {'fields': ['data']}
     )]
 
-    model = PropertyValue
+    model = PropertyData
     extra = 1
 
 class PropertyAdmin (admin.ModelAdmin):
@@ -27,7 +37,7 @@ class PropertyAdmin (admin.ModelAdmin):
         None, {'fields': ['name','type']}
     )]
 
-    inlines = [PropertyValueInline]
+    inlines = [PropertyDataInline]
     list_display = ['name','type']
 
 admin.site.register (Property, PropertyAdmin)
