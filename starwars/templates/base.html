@@ -6,7 +6,10 @@
     {% endblock %}
 
     {% block css-base %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}css/style.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="{{ MEDIA_URL }}css/style.css" />
     {% endblock %}
 
     {% block css-base-ext %}
@@ -31,8 +34,8 @@
                 <tr>
                     <td id="header-tbl-lhs" align="center">
                         {% block header-title-lhs %}<div id="title-lhs">
-                            <img alt="{{ properties.lhs_image_alt }}"
-                                 src="{{ properties.lhs_image_url }}"/>
+                            <img alt="{{ properties.lhs_image_desc }}"
+                                 src="{{ properties.lhs_image_href }}"/>
                         </div>{% endblock %}
                     </td>
                     <td id="header-tbl-mid">
@@ -43,8 +46,8 @@
                     </td>
                     <td id="header-tbl-rhs" align="center">
                         {% block header-title-rhs %}<div id="title-rhs">
-                            <img alt="{{ properties.rhs_image_alt }}"
-                                 src="{{ properties.rhs_image_url }}"/>
+                            <img alt="{{ properties.rhs_image_desc }}"
+                                 src="{{ properties.rhs_image_href }}"/>
                         </div>{% endblock %}
                     </td>
                 </tr>
