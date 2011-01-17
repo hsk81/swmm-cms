@@ -13,59 +13,51 @@ urlpatterns = patterns ('django.views.generic.simple',
  ##     }, name="master"
  ## ),
 
-    ##
-    ## urls: views
-    ##
-
     url(
         r'^$',
-        View.main,
+        HomeController.main,
         name="view.main"
     ),
 
     url(
         r'^all/$',
-        View.galleries_all,
+        HomeController.galleries_all,
         name="view.galleries-all"
     ),
 
     url(
         r'^(?P<id>\d+)/$',
-        View.galleries_by_collection,
+        HomeController.galleries_by_collection,
         name="view.galleries-by-collection"
     ),
 
-    ##
-    ## urls: ajax
-    ##
-
     url (
         r'^ajax/query-layout/$',
-        Ajax.query_layout,
+        HomeController.query_layout,
         name='ajax.query-layout'
     ),
 
     url (
         r'^ajax/toggle-layout/$',
-        Ajax.toggle_layout,
+        HomeController.toggle_layout,
         name='ajax.toggle-layout'
     ),
 
     url (
         r'^ajax/show-vehicle/$',
-        Ajax.show_vehicle,
+        HomeController.show_vehicle,
         name='ajax.show-vehicles'
     ),
 
     url (
         r'^ajax/show-figure/$',
-        Ajax.show_figure,
+        HomeController.show_figure,
         name='ajax.show-figures'
     ),
 
     url (
         r'^ajax/update-rate/$',
-        Ajax.update_rate,
+        HomeController.update_rate,
         name='ajax.update-rate'
     ),
 

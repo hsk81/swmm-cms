@@ -9,7 +9,7 @@ from property.views import *
 import sys
 import json
 
-class View:
+class HomeController:
 
     def init (request):
 
@@ -24,7 +24,7 @@ class View:
             request.session['timestamp'] = datetime.now ()
             request.session.save ()
 
-            View.init (request)
+            HomeController.init (request)
 
         else:
 
@@ -37,9 +37,9 @@ class View:
         print >> sys.stderr, "== "
 
         if Gallery.objects.count () > 0:
-            return View.galleries_by_collection (request, 1)
+            return HomeController.galleries_by_collection (request, 1)
         else:
-            return View.galleries_all (request)
+            return HomeController.galleries_all (request)
 
     main = staticmethod (main)
 
@@ -55,8 +55,8 @@ class View:
         cs = Collection.objects.all ()
 
         gs = Gallery.objects.filter (
-            ignore=False,
-            type=View.type_or_default (request)
+            ignore = False,
+            type = HomeController.type_or_default (request)
         )
 
         try: return direct_to_template (
@@ -65,8 +65,8 @@ class View:
             extra_context = {
                 'collections': cs,
                 'galleries': gs,
-                'type': View.type_or_default (request),
-                'properties': PropertyController.values (request)
+                'type': HomeController.type_or_default (request),
+                'properties': PropertyController.datas (request)
             }
         )
 
@@ -80,9 +80,9 @@ class View:
         cs = Collection.objects.all ()
 
         gs = Gallery.objects.filter (
-            collection=collection,
-            ignore=False,
-            type=View.type_or_default (request)
+            collection = collection,
+            ignore = False,
+            type = HomeController.type_or_default (request)
         )
 
         try: return direct_to_template (
@@ -92,16 +92,14 @@ class View:
                 'collection' : collection,
                 'collections': cs,
                 'galleries': gs,
-                'type': View.type_or_default (request),
-                'properties':  PropertyController.values (request)
+                'type': HomeController.type_or_default (request),
+                'properties':  PropertyController.datas (request)
             }
         )
 
         except TemplateDoesNotExist: raise Http404()
 
     galleries_by_collection = staticmethod (galleries_by_collection)
-
-class Ajax:
 
     def query_layout (request):
 

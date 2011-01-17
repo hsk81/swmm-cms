@@ -44,7 +44,11 @@ class AboutController:
 
         try: return direct_to_template (
             request, template = 'about.html', extra_context = {
-                'properties': PropertyController.values (request)
+                'properties': dict([
+                    PropertyController.data (request, 'about-href'),
+                    PropertyController.data (request, 'about-desc'),
+                    PropertyController.text (request, 'about-text')
+                ])
             }
         )
 

@@ -2,23 +2,51 @@ from property.models import *
 
 class PropertyController:
 
-    def value (request, name):
+    def data (request, name):
 
-        return {
-            name.replace ('-','_'): Property.value (name)
-        }
+        return (
+            name.replace ('-','_'), Property.data (name)
+        )
 
-    value = staticmethod (value)
+    data = staticmethod (data)
 
-    def values (request):
+    def datas (request):
+
+        properties = map(
+            lambda pd: pd.property, PropertyData.objects.all()
+        )
 
         return dict (
             map (
                 lambda p: (
-                    p.name.replace ('-','_'), Property.value (p.name)
-                ), Property.objects.all()
+                    p.name.replace ('-','_'), Property.data (p.name)
+                ), properties
             )
         )
 
-    values = staticmethod (values)
+    datas = staticmethod (datas)
+
+    def text (request, name):
+
+        return (
+            name.replace ('-','_'), Property.text (name)
+        )
+
+    text = staticmethod (text)
+
+    def texts (request):
+
+        properties = map(
+            lambda pd: pd.property, PropertyText.objects.all()
+        )
+
+        return dict (
+            map (
+                lambda p: (
+                    p.name.replace ('-','_'), Property.text (p.name)
+                ), properties
+            )
+        )
+
+    texts = staticmethod (texts)
     

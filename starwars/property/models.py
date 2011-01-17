@@ -20,30 +20,60 @@ class Property (models.Model):
     def __unicode__(self):
         return "%s" % self.name
 
-    def values (name):
-        
-        return PropertyValue.objects.filter (
+    def datas (name):
+
+        datas = PropertyData.objects.filter (
             property = Property.objects.get (name = name)
         )
 
-    values = staticmethod (values)
+        return datas
 
-    def value (name): ## first
+    datas = staticmethod (datas)
 
-        return Property.values (name)[0]
+    def data (name): ## first-or-default
 
-    value = staticmethod (value)
+        data = Property.datas (name)
 
-    def values_ (self):
-        return Property.values (self.name)
+        if len (data) > 0: return data[0]
+        else:              return None
 
-    def value_ (self):
-        return Property.value (self.name)
+    data = staticmethod (data)
 
-class PropertyValue (models.Model):
+    def texts (name):
+
+        texts = PropertyText.objects.filter (
+            property = Property.objects.get (name = name)
+        )
+
+        return texts
+
+    texts = staticmethod (texts)
+
+    def text (name): ## first-or-default
+
+        texts = Property.texts (name)
+
+        if len (texts) > 0: return texts[0]
+        else:               return None
+
+    text = staticmethod (text)
+
+class PropertyData (models.Model):
+
+    class Meta:
+
+        verbose_name_plural = 'property data'
 
     property = models.ForeignKey (Property)
     data = models.CharField (max_length=256)
 
     def __unicode__(self):
         return "%s" % self.data
+
+class PropertyText (models.Model):
+
+    property = models.ForeignKey (Property)
+    text = models.TextField ()
+
+    def __unicode__(self):
+        return "%s" % self.text

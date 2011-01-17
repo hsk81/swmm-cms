@@ -9,7 +9,7 @@ urlpatterns = patterns ('django.views.generic.simple',
         r'^$', 'direct_to_template', {
             'template': 'comment.html',
             'extra_context': {
-                'properties': PropertyController.values (None)
+                'properties': PropertyController.datas (None)
             }
         }, name="master"
     ),
