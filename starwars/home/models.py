@@ -70,7 +70,10 @@ class Image (models.Model):
 
     def update_rate (self, value):
 
-        self.rate = '%s' % ((63.0/64.0)*float (self.rate) + (1.0/64.0)*value)
+        if (value >= 0.0) and (value <= 5.0):
+            self.rate = '%s' % ((63.0/64.0)*float (self.rate)+(1.0/64.0)*value)
+        else:
+            pass
 
     def round (rate):
 
