@@ -2,6 +2,7 @@ from django.http import Http404, HttpResponse
 from django.template import TemplateDoesNotExist
 from django.views.generic.simple import direct_to_template
 
+from time import time
 from datetime import datetime
 from home.models import *
 from property.views import *
@@ -174,14 +175,45 @@ class HomeController:
 
         if request.POST.has_key ('id') and request.POST.has_key ('rate'):
 
-            image = Image.objects.get (pk = request.POST['id'])
-            image.update_rate (float (request.POST['rate']))
-            image.save ()
+            if request.session.has_key ("image-id%s" % request.POST['id']):
 
-            js_string = json.dumps ({
-                'success': True,
-                'rate': image.rate
-            })
+                dt = datetime.now () - datetime.fromtimestamp (
+                    float (request.session["image-id%s" % request.POST['id']])
+                )
+
+                if dt.seconds < 60: ## rating only once per minute!
+
+                    js_string = json.dumps ({
+                        'success': False
+                    })
+
+                else:
+
+                    request.session["image-id%s" % request.POST['id']] \
+                        = "%s" % time ()
+                    
+                    image = Image.objects.get (pk = request.POST['id'])
+                    image.update_rate (float (request.POST['rate']))
+                    image.save ()
+
+                    js_string = json.dumps ({
+                        'success': True,
+                        'rate': image.rate
+                    })
+
+            else:
+
+                request.session["image-id%s" % request.POST['id']] \
+                    = "%s" % time ()
+
+                image = Image.objects.get (pk = request.POST['id'])
+                image.update_rate (float (request.POST['rate']))
+                image.save ()
+
+                js_string = json.dumps ({
+                    'success': True,
+                    'rate': image.rate
+                })
 
         else:
 
