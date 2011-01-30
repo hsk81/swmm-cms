@@ -4,8 +4,8 @@ from django.views.generic.simple import direct_to_template
 
 from time import time
 from datetime import datetime
-from home.models import *
 from property.views import *
+from home.models import *
 
 import sys
 import json
@@ -18,7 +18,7 @@ class HomeController:
 
     init = staticmethod (init)
 
-    def main (request):
+    def default (request):
 
         if request.session.has_key ('timestamp') != True:
 
@@ -36,6 +36,12 @@ class HomeController:
         print >> sys.stderr, "== Session ID: %s" % request.session.session_key
         print >> sys.stderr, "== Time Stamp: %s" % request.session['timestamp']
         print >> sys.stderr, "== "
+
+        return HomeController.main (request)
+
+    default = staticmethod (default)
+
+    def main (request):
 
         if Gallery.objects.count () > 0:
             return HomeController.galleries_by_collection (request, 1)

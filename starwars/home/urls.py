@@ -16,7 +16,7 @@ urlpatterns = patterns ('django.views.generic.simple',
     url(
         r'^$',
         HomeController.main,
-        name="view.main"
+        name="default"
     ),
 
     url(
