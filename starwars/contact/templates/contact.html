@@ -1,10 +1,55 @@
 {% extends "base.html" %}
 
 {% block content %}<div id="content">
-    <table id="content-tbl">
+    <table id="contact-tbl">
         <tbody>
             <tr>
-                <td id="content-tbl-center"><h1>Contact</h1></td>
+                <td id="contact-tbl-lhs">
+                    <img alt="Send Email" 
+                         src="{{ MEDIA_URL }}img/email-send.png"
+                         style="width: 128px; height: 128px;"/>
+                </td>
+
+                <td id="contact-tbl-rhs">
+                    <div class="contact">
+                    <form action="MAILTO:serdarkalfa@hotmail.com" method="post" enctype="text/plain">
+                    <table class="table">
+
+                        <tr>
+                            <td align="center">
+                            <b>&middot; Name &middot;</b>
+                            </td>
+                            <td class="input-cell">
+                            <input class="input" type="text" name="name">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td align="center">
+                            <b>&middot; Email &middot;</b>
+                            </td>
+                            <td class="input-cell">
+                            <input class="input" type="text" name="mail">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan=2>
+                            <textarea class="textarea" type="text" name="comment" rows="20" cols="64"></textarea>
+                            </td>
+                        </tr>
+
+                        <tr align="right">
+                            <td colspan=2>
+                            <input type="submit" value="Send">
+                            <input type="reset" value="Reset">
+                            </td>
+                        </tr>
+
+                    </table>
+                    </form>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>
