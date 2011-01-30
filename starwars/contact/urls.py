@@ -1,17 +1,22 @@
-from django.conf               import settings
+from django.conf import settings
 from django.conf.urls.defaults import *
 
-from property.views import *
+from contact.views import *
+from contact.models import *
 
 urlpatterns = patterns ('django.views.generic.simple',
 
-    url (
-        r'^$', 'direct_to_template', {
-            'template': 'contact.html',
-            'extra_context': {
-                'properties': PropertyController.datas (None)
-            }
-        }, name="master"
-    ),
+ ## url (
+ ##     r'^$', 'direct_to_template', {
+ ##         'template': 'contact.html',
+ ##         'extra_context': {
+ ##             'properties': PropertyController.datas (None)
+ ##         }
+ ##     }, name="master"
+ ## ),
+
+    url(
+        r'^$', ContactController.default, name="default"
+    )
 
 )

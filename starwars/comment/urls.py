@@ -11,7 +11,7 @@ urlpatterns = patterns ('django.views.generic.simple',
             'extra_context': {
                 'properties': PropertyController.datas (None)
             }
-        }, name="master"
+        }, name="default"
     ),
 
 )

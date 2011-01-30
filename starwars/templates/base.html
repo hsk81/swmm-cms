@@ -86,16 +86,16 @@
                             <tbody>
                                 <tr align="center">
                                     {% block menu-home %}<td class="menu-tbl-item">
-                                        <a href="{% url home:view.main %}">Home</a>
+                                        <a href="{% url home:default %}">Home</a>
                                     </td>{% endblock %}
                                     {% block menu-about %}<td class="menu-tbl-item">
                                         <a href="{% url about:default %}">About</a>
                                     </td>{% endblock %}
                                     {% block menu-comment %}<td class="menu-tbl-item">
-                                        <a href="{% url comment:master %}">Comment</a>
+                                        <a href="{% url comment:default %}">Comment</a>
                                     </td>{% endblock %}
                                     {% block menu-contact %}<td class="menu-tbl-item">
-                                        <a href="{% url contact:master %}">Contact</a>
+                                        <a href="{% url contact:default %}">Contact</a>
                                     </td>{% endblock %}
                                     
                                     {% block menu-ext %}
