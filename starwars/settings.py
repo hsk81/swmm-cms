@@ -66,6 +66,10 @@ TEMPLATE_DIRS = (
     os.path.join (SITE_ROOT, 'templates/'),
 )
 
+FIXTURE_DIRS = (
+    os.path.join (SITE_ROOT, 'fixtures/'),
+)
+
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 SESSION_FILE_PATH = os.path.join (SITE_ROOT, 'session/')
 SESSION_COOKIE_AGE = 28800 ## secs: 8h
