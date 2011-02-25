@@ -1,9 +1,11 @@
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import TemplateDoesNotExist
 from django.views.generic.simple import direct_to_template
+from django.core.mail import send_mail
 
 from time import time
 from datetime import datetime
+from contact.forms import *
 from property.views import *
 
 import sys
@@ -42,12 +44,47 @@ class ContactController:
 
     def main (request):
 
+        if request.method == 'POST':
+
+            form = ContactForm (request.POST)
+
+            if form.is_valid ():
+                
+                sender = form.cleaned_data['sender']
+                email = form.cleaned_data['email']
+                message = form.cleaned_data['message']
+
+                send_mail (
+                    'Star Wars - Micro Machines', 
+                    message, 
+                    sender, 
+                    ['swmm.sk@gmail.com', 'serdarkalfa@hotmail.com']                    
+                )
+
+                return HttpResponseRedirect ('/contact/?sender=%s&email=%s' % (sender, email))
+
+        else:
+
+            if request.GET.has_key ('sender') and request.GET.has_key ('email'):
+
+                form = ContactForm ({
+                    'sender': request.GET['sender'],
+                    'email': request.GET['email'],
+                    'message': 'Your email has been sent! Thank you.'
+                })
+
+            else:
+
+                form = ContactForm ()
+
         try: return direct_to_template (
             request, template = 'contact.html', extra_context = {
-                'properties': PropertyController.datas (None)
+                'properties': PropertyController.datas (None),
+                'form': form
             }
         )
 
-        except TemplateDoesNotExist: raise Http404()
+        except TemplateDoesNotExist: raise Http404 ()
 
     main = staticmethod (main)
+

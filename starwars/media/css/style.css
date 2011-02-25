@@ -831,13 +831,28 @@ div.gallery .imgs {
     width: 93%;
 }
 
-#contact-tbl-rhs .contact .input {
+#contact-tbl-rhs .contact .input-cell input {
     width: 100%;
 }
 
-#contact-tbl-rhs .contact .textarea {
+#contact-tbl-rhs .contact .input-cell.invalid input {
+    background-color: #ffeeee;
+    border: 1px solid #ff0000;
+}
+
+#contact-tbl-rhs .contact .input-area {
     width: 100%;
     height: 100%;
+}
+
+#contact-tbl-rhs .contact .input-area textarea {
+    width: 100%;
+    height: 100%;
+}
+
+#contact-tbl-rhs .contact .input-area.invalid textarea {
+    background-color: #ffeeee;
+    border: 1px solid #ff0000;
 }
 
 /* -------------------------------------------------------------------------
