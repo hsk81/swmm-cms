@@ -61,7 +61,7 @@ class ContactController:
                     ['swmm.sk@gmail.com', 'serdarkalfa@hotmail.com']                    
                 )
 
-                return HttpResponseRedirect ('/contact/?sender=%s&email=%s' % (sender, email))
+                return HttpResponseRedirect ('?sender=%s&email=%s' % (sender, email))
 
         else:
 
