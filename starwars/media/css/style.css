@@ -800,11 +800,33 @@ div.gallery .imgs {
     width: 33%;
 }
 
+#comment-tbl-lhs .threads {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+
+#comment-tbl-lhs .threads .thread {
+    border: 1px dotted fuchsia;
+}
+
 #comment-tbl-rhs {
     vertical-align: middle;
     border-left: 1px solid white;
     height: 480px;
     width: 67%;
+}
+
+#comment-tbl-rhs .comments {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+
+#comment-tbl-rhs .comments .comment {
+    border: 1px dotted fuchsia;
 }
 
 /* -------------------------------------------------------------------------
