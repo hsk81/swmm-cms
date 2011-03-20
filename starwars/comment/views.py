@@ -2,7 +2,6 @@ from django.http import Http404, HttpResponse
 from django.template import TemplateDoesNotExist
 from django.views.generic.simple import direct_to_template
 
-from time import time
 from datetime import datetime
 from property.views import *
 from comment.models import *
