@@ -7,11 +7,12 @@ class Collection (models.Model):
     def galleries (self, ignore=False):
         return self.gallery_set.filter (ignore=ignore)
 
+    def nbsp (self):
+        return "%s" % self.name.replace (' ', '&nbsp;')
+
     def __unicode__(self):
         return "%s" % self.name
 
-    def nbsp (self):
-        return "%s" % self.name.replace (' ', '&nbsp;')
 
 class Gallery (models.Model):
 
