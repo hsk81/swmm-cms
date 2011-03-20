@@ -779,6 +779,34 @@ div.gallery .imgs {
 }
 
 /* -------------------------------------------------------------------------
+ * Comment:
+ * ------------------------------------------------------------------------- */
+
+#comment-tbl {
+    height: auto;
+    width: 100%;
+}
+
+#comment-tbl {
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+#comment-tbl-lhs {
+    vertical-align: middle;
+    border-right: 1px solid white;
+    width: 33%;
+}
+
+#comment-tbl-rhs {
+    vertical-align: middle;
+    border-left: 1px solid white;
+    height: 480px;
+    width: 67%;
+}
+/* -------------------------------------------------------------------------
  * Contact:
  * ------------------------------------------------------------------------- */
 
