@@ -1,21 +1,69 @@
 {% extends "base.html" %}
 
+<!-- --------------------------------------------------------------------------
++ JavaScript Ext:
+--------------------------------------------------------------------------- -->
+
+{% block javascript-ext %}
+<script type="text/javascript">
+
+/* -------------------------------------------------------------------------
+ * Comment: Threads
+ * ------------------------------------------------------------------------- */
+
+var fnThreadsAreaOnInit = function() {
+    $('#comment-tbl-lhs .threads').css (
+        'height', $('#comment-tbl-lhs').height ()
+    );
+}
+
+$(document).ready (fnThreadsAreaOnInit);
+
+/* -------------------------------------------------------------------------
+ * Comment: Comments
+ * ------------------------------------------------------------------------- */
+
+var fnCommentsAreaOnInit = function() {
+    $('#comment-tbl-rhs .comments').css (
+        'height', $('#comment-tbl-rhs').height ()
+    );
+}
+
+$(document).ready (fnCommentsAreaOnInit);
+
+/* -------------------------------------------------------------------------
+ * Window: Resize
+ * ------------------------------------------------------------------------- */
+
+$(window).resize (function () {
+    fnThreadsAreaOnInit ();
+    fnCommentsAreaOnInit ();
+});
+
+</script>
+
+{% endblock javascript-ext %}
+
+<!-- --------------------------------------------------------------------------
++ Content:
+--------------------------------------------------------------------------- -->
+
 {% block content %}<div id="content">
     <table id="comment-tbl">
         <tbody>
             <tr>
                 <td id="comment-tbl-lhs">
-                    <div id="threads-id"><ul class="threads">
+                    <ul class="threads">
                     {% for thread in threads %}
-                    <li>{{ thread.name }}</li>
+                    <li class="thread">{{ thread.name }}</li>
                     {% endfor %}
-                    </ul></div>
+                    </ul>
                 </td>
 
                 <td id="comment-tbl-rhs">
                     <div id="comments-id"><ul class="comments">
                     {% for comment in comments %}
-                    <li>{{ comment }}</li>
+                    <li class="comment">{{ comment }}</li>
                     {% endfor %}
                     </ul></div>
                 </td>
