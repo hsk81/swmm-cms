@@ -12,6 +12,17 @@ import json
 
 class HomeController:
 
+    def info (request):
+
+        js_string = json.dumps ({
+            'application': 'home',
+            'version': 'v0.0.1'
+        })
+
+        return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
+
+    info = staticmethod (info)
+
     def init (request):
 
         pass

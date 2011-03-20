@@ -5,11 +5,15 @@
         <tbody>
             <tr>
                 <td id="comment-tbl-lhs">
-                    <div/>
+                    {% for thread in threads %}
+                    <div>{{ thread.name }}</div>
+                    {% endfor %}
                 </td>
 
                 <td id="comment-tbl-rhs">
-                    <div/>
+                    {% for comment in comments %}
+                    <div>{{ comment }}</div>
+                    {% endfor %}
                 </td>
             </tr>
         </tbody>
