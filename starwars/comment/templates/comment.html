@@ -61,6 +61,10 @@ $(window).resize (function () {
                             {{ thread.name }}
                         </a>
                     </li>
+                    {% empty %}
+                    <li class="comment {% cycle 'oodd' 'even' %}">
+                        <div class="none">No threads defined!</div>
+                    </li>
                     {% endfor %}
                     </ul>
                 </td>
@@ -71,6 +75,10 @@ $(window).resize (function () {
                     <li class="comment {% cycle 'oodd' 'even' %}">
                         <div class="head">[{{ comment.username }} @ {{ comment.timestamp }}]</div>
                         <div class="body">{{ comment.text }}</div>
+                    </li>
+                    {% empty %}
+                    <li class="comment {% cycle 'oodd' 'even' %}">
+                        <div class="none">No comments here; select a thread!</div>
                     </li>
                     {% endfor %}
                     </ul>

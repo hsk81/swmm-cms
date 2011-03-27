@@ -796,6 +796,7 @@ div.gallery .imgs {
 }
 
 #comment-tbl-lhs {
+    background-color: #aaaaaa;
     border-right: 1px solid white;
     width: 33%;
 }
@@ -841,6 +842,7 @@ div.gallery .imgs {
 }
 
 #comment-tbl-rhs {
+    background-color: #aaaaaa;
     border-left: 1px solid white;
     width: 67%;
 }
@@ -874,6 +876,10 @@ div.gallery .imgs {
 #comment-tbl-rhs .comments .comment .body {
     text-align: justify;
     padding: 4px;
+}
+
+#comment-tbl-rhs .comments .comment .none {
+    text-align: center
 }
 
 #comment-tbl-rhs .comments .comment.oodd {
