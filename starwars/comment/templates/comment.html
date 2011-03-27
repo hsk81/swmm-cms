@@ -8,36 +8,37 @@
 <script type="text/javascript">
 
 /* -------------------------------------------------------------------------
- * Comment: Threads
+ * Comment: Area
  * ------------------------------------------------------------------------- */
 
-var fnThreadsAreaOnInit = function() {
+var fnCommentAreaOnInit = function() {
+
+    var lhsHeightDefault = 476;
+    var lhsHeight =
+        
+        $('#comment-tbl-lhs .threads .thread').length * $(
+            '#comment-tbl-lhs .threads .thread'
+        ).outerHeight ();
+
+    if (lhsHeight < lhsHeightDefault) { lhsHeight = lhsHeightDefault }
+
     $('#comment-tbl-lhs .threads').css (
-        'height', $('#comment-tbl-lhs').height ()
+        'height', lhsHeight
     );
-}
 
-$(document).ready (fnThreadsAreaOnInit);
-
-/* -------------------------------------------------------------------------
- * Comment: Comments
- * ------------------------------------------------------------------------- */
-
-var fnCommentsAreaOnInit = function() {
     $('#comment-tbl-rhs .comments').css (
-        'height', $('#comment-tbl-rhs').height ()
+        'height', lhsHeight
     );
 }
 
-$(document).ready (fnCommentsAreaOnInit);
+$(document).ready (fnCommentAreaOnInit);
 
 /* -------------------------------------------------------------------------
  * Window: Resize
  * ------------------------------------------------------------------------- */
 
 $(window).resize (function () {
-    fnThreadsAreaOnInit ();
-    fnCommentsAreaOnInit ();
+    fnCommentAreaOnInit ();
 });
 
 </script>
@@ -55,17 +56,24 @@ $(window).resize (function () {
                 <td id="comment-tbl-lhs">
                     <ul class="threads">
                     {% for thread in threads %}
-                    <li class="thread">{{ thread.name }}</li>
+                    <li class="thread {% cycle 'oodd' 'even' %}">
+                        <a href="{% url comment:thread thread.id %}">
+                            {{ thread.name }}
+                        </a>
+                    </li>
                     {% endfor %}
                     </ul>
                 </td>
 
                 <td id="comment-tbl-rhs">
-                    <div id="comments-id"><ul class="comments">
+                    <ul class="comments">
                     {% for comment in comments %}
-                    <li class="comment">{{ comment }}</li>
+                    <li class="comment {% cycle 'oodd' 'even' %}">
+                        <div class="head">[{{ comment.username }} @ {{ comment.timestamp }}]</div>
+                        <div class="body">{{ comment.text }}</div>
+                    </li>
                     {% endfor %}
-                    </ul></div>
+                    </ul>
                 </td>
             </tr>
         </tbody>

@@ -51,10 +51,10 @@ class CommentController:
 
     default = staticmethod (default)
 
-    def main (request):
+    def main (request, id = 0):
 
         threads = Thread.objects.all ()
-        comments = Comment.objects.all ()
+        comments = Comment.objects.filter (thread__id = id)
 
         try: return direct_to_template (
             request, template = 'comment.html', extra_context = {
@@ -67,3 +67,9 @@ class CommentController:
         except TemplateDoesNotExist: raise Http404()
 
     main = staticmethod (main)
+
+    def thread (request, id):
+
+        return CommentController.main (request, id)
+
+    thread = staticmethod (thread)
