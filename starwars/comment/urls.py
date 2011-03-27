@@ -17,4 +17,10 @@ urlpatterns = patterns ('django.views.generic.simple',
         name="default"
     ),
 
+    url(
+        r'^thread/(?P<id>\d+)/$',
+        CommentController.thread,
+        name="thread"
+    ),
+
 )

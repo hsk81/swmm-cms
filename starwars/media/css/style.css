@@ -787,17 +787,21 @@ div.gallery .imgs {
     width: 100%;
 }
 
-#comment-tbl {
+#comment-tbl-lhs {
     text-align: center;
     text-decoration: none;
+    font-size: medium;
     font-weight: bold;
     color: white;
 }
 
 #comment-tbl-lhs {
-    vertical-align: middle;
     border-right: 1px solid white;
     width: 33%;
+}
+
+#comment-tbl-lhs .threads {
+    overflow: auto;
 }
 
 #comment-tbl-lhs .threads {
@@ -807,14 +811,37 @@ div.gallery .imgs {
     position: relative;
 }
 
+#comment-tbl-lhs .threads {
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
 #comment-tbl-lhs .threads .thread {
-    border: 1px dotted fuchsia;
+    padding: 16px;
+}
+
+#comment-tbl-lhs .threads .thread a {
+}
+
+#comment-tbl-lhs .threads .thread.oodd {
+    background-color: #888888;
+}
+
+#comment-tbl-lhs .threads .thread.even {
+    background-color: #aaaaaa;
 }
 
 #comment-tbl-rhs {
-    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    font-size: x-small;
+    font-weight: bold;
+    color: white;
+}
+
+#comment-tbl-rhs {
     border-left: 1px solid white;
-    height: 480px;
     width: 67%;
 }
 
@@ -825,8 +852,36 @@ div.gallery .imgs {
     position: relative;
 }
 
+#comment-tbl-rhs .comments {
+    overflow: auto;
+}
+
+#comment-tbl-rhs .comments {
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
 #comment-tbl-rhs .comments .comment {
-    border: 1px dotted fuchsia;
+    text-align: left;
+    height: auto;
+    padding: 4px;
+}
+
+#comment-tbl-rhs .comments .comment .head {
+}
+
+#comment-tbl-rhs .comments .comment .body {
+    text-align: justify;
+    padding: 4px;
+}
+
+#comment-tbl-rhs .comments .comment.oodd {
+    background-color: #888888;
+}
+
+#comment-tbl-rhs .comments .comment.even {
+    background-color: #aaaaaa;
 }
 
 /* -------------------------------------------------------------------------
