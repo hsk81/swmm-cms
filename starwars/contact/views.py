@@ -1,9 +1,7 @@
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import TemplateDoesNotExist
 from django.views.generic.simple import direct_to_template
-from django.core.mail import send_mail
 
-from time import time
 from datetime import datetime
 from contact.forms import *
 from property.views import *
@@ -12,6 +10,17 @@ import sys
 import json
 
 class ContactController:
+
+    def info (request):
+
+        js_string = json.dumps ({
+            'application': 'contact',
+            'version': 'v0.0.1'
+        })
+
+        return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
+
+    info = staticmethod (info)
 
     def init (request):
 
@@ -47,13 +56,13 @@ class ContactController:
         if request.method == 'POST':
 
             form = ContactForm (request.POST)
-
             if form.is_valid ():
                 
                 sender = form.cleaned_data['sender']
                 email = form.cleaned_data['email']
                 message = form.cleaned_data['message']
 
+                from django.core.mail import send_mail
                 send_mail (
                     'Star Wars - Micro Machines', 
                     message, 
@@ -61,7 +70,9 @@ class ContactController:
                     ['swmm.sk@gmail.com', 'serdarkalfa@hotmail.com']                    
                 )
 
-                return HttpResponseRedirect ('?sender=%s&email=%s' % (sender, email))
+                return HttpResponseRedirect (
+                    '?sender=%s&email=%s' % (sender, email)
+                )
 
         else:
 
@@ -87,4 +98,3 @@ class ContactController:
         except TemplateDoesNotExist: raise Http404 ()
 
     main = staticmethod (main)
-

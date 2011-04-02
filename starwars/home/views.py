@@ -2,10 +2,9 @@ from django.http import Http404, HttpResponse
 from django.template import TemplateDoesNotExist
 from django.views.generic.simple import direct_to_template
 
-from time import time
 from datetime import datetime
-from property.views import *
 from home.models import *
+from property.views import *
 
 import sys
 import json
@@ -207,7 +206,7 @@ class HomeController:
                 else:
 
                     request.session["image-id%s" % request.POST['id']] \
-                        = "%s" % time ()
+                        = "%s" % datetime.now ()
                     
                     image = Image.objects.get (pk = request.POST['id'])
                     image.update_rate (float (request.POST['rate']))
@@ -221,7 +220,7 @@ class HomeController:
             else:
 
                 request.session["image-id%s" % request.POST['id']] \
-                    = "%s" % time ()
+                    = "%s" % datetime.now ()
 
                 image = Image.objects.get (pk = request.POST['id'])
                 image.update_rate (float (request.POST['rate']))
