@@ -18,15 +18,21 @@ urlpatterns = patterns ('django.views.generic.simple',
     ),
 
     url(
-        r'^all/$',
-        HomeController.galleries_all,
-        name="view.galleries-all"
-    ),
-
-    url(
         r'^(?P<id>\d+)/$',
         HomeController.galleries_by_collection,
         name="view.galleries-by-collection"
+    ),
+
+    url (
+        r'^show-vehicles/(?P<id>\d+)/$',
+        HomeController.show_vehicle,
+        name='view.show-vehicles'
+    ),
+
+    url (
+        r'^show-figures/(?P<id>\d+)/$',
+        HomeController.show_figure,
+        name='view.show-figures'
     ),
 
     url (
@@ -39,18 +45,6 @@ urlpatterns = patterns ('django.views.generic.simple',
         r'^ajax/toggle-layout/$',
         HomeController.toggle_layout,
         name='ajax.toggle-layout'
-    ),
-
-    url (
-        r'^ajax/show-vehicle/$',
-        HomeController.show_vehicle,
-        name='ajax.show-vehicles'
-    ),
-
-    url (
-        r'^ajax/show-figure/$',
-        HomeController.show_figure,
-        name='ajax.show-figures'
     ),
 
     url (
