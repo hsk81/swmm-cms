@@ -13,7 +13,7 @@ urlpatterns = patterns ('django.views.generic.simple',
 
     url(
         r'^$',
-        CommentController.main,
+        CommentController.default,
         name="default"
     ),
 

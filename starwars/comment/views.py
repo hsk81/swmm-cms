@@ -3,8 +3,8 @@ from django.template import TemplateDoesNotExist
 from django.views.generic.simple import direct_to_template
 
 from datetime import datetime
-from property.views import *
 from comment.models import *
+from property.views import *
 
 import sys
 import json
