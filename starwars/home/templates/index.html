@@ -79,30 +79,6 @@ fnGalleryIconLayoutOnClick = function () {
 $(document).ready (fnGalleryIconLayoutOnClick);
 
 /* -------------------------------------------------------------------------
- * Gallery: Type
- * ------------------------------------------------------------------------- */
-
-fnGalleryTypeFiguresOnClick = function () {
-    $('#gallery-type-figures').click (function (event) {
-        $.post ('{% url home:ajax.show-figures %}', function (data) {
-            location.reload ();
-        });
-    });
-}
-
-$(document).ready (fnGalleryTypeFiguresOnClick);
-
-fnGalleryTypeVehiclesOnClick = function () {
-    $('#gallery-type-vehicles').click (function (event) {
-        $.post ('{% url home:ajax.show-vehicles %}', function (data) {
-            location.reload ();
-        });
-    });
-}
-
-$(document).ready (fnGalleryTypeVehiclesOnClick);
-
-/* -------------------------------------------------------------------------
  * Gallery: Area
  * ------------------------------------------------------------------------- */
 
@@ -380,7 +356,7 @@ var fnGalleryImageInfoOnClick = function (obj) {
     $.blockUI ({
         message: (
             '<div class="img x-info">' +
-                '<img alt="{0} [info; H1.00:W?.??]" src="{1}"/>' +
+                '<img alt="{0} [info; H1.00:W1.62]" src="{1}"/>' +
                 '<div class="close" style="top:-{0};"/>'.format(
                     css.height
                 ) +
@@ -692,21 +668,21 @@ $(window).resize (function () {
 
                             {% ifequal type 'figure' %}
                             <td class="sub-menu-tbl-item rhs active">
-                                <a href="#" id="gallery-type-figures">Figures</a>
+                                <a href="{% url home:view.show-figures collection.id %}" id="gallery-type-figures">Figures</a>
                             </td>
                             {% else %}
                             <td class="sub-menu-tbl-item rhs">
-                                <a href="#" id="gallery-type-figures">Figures</a>
+                                <a href="{% url home:view.show-figures collection.id %}" id="gallery-type-figures">Figures</a>
                             </td>
                             {% endifequal %}
                             
                             {% ifequal type 'vehicle' %}
                             <td class="sub-menu-tbl-item rhs active">
-                                <a href="#" id="gallery-type-vehicles">Vehicles</a>
+                                <a href="{% url home:view.show-vehicles collection.id %}" id="gallery-type-vehicles">Vehicles</a>
                             </td>
                             {% else %}
                             <td class="sub-menu-tbl-item rhs">
-                                <a href="#" id="gallery-type-vehicles">Vehicles</a>
+                                <a href="{% url home:view.show-vehicles collection.id %}" id="gallery-type-vehicles">Vehicles</a>
                             </td>
                             {% endifequal %}
 

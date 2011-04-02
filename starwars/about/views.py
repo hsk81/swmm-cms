@@ -11,6 +11,17 @@ import json
 
 class AboutController:
 
+    def info (request):
+
+        js_string = json.dumps ({
+            'application': 'about',
+            'version': 'v0.0.1'
+        })
+
+        return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
+
+    info = staticmethod (info)
+
     def default (request):
 
         if request.session.has_key ('timestamp') != True:
@@ -63,4 +74,3 @@ class AboutController:
         except TemplateDoesNotExist: raise Http404()
 
     main = staticmethod (main)
-    

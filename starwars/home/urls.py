@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.conf.urls.defaults import *
 
 from home.views import *
@@ -6,29 +5,34 @@ from home.models import *
 
 urlpatterns = patterns ('django.views.generic.simple',
 
- ## url (
- ##     r'^$', 'direct_to_template', {
- ##         'template': 'index.html',
- ##         'extra_context': {'galleries': Gallery.objects.all()}
- ##     }, name="master"
- ## ),
-
     url(
-        r'^$',
-        HomeController.main,
-        name="default"
+        r'^info/$',
+        HomeController.info,
+        name="info"
     ),
 
     url(
-        r'^all/$',
-        HomeController.galleries_all,
-        name="view.galleries-all"
+        r'^$',
+        HomeController.default,
+        name="default"
     ),
 
     url(
         r'^(?P<id>\d+)/$',
         HomeController.galleries_by_collection,
         name="view.galleries-by-collection"
+    ),
+
+    url (
+        r'^show-vehicles/(?P<id>\d+)/$',
+        HomeController.show_vehicle,
+        name='view.show-vehicles'
+    ),
+
+    url (
+        r'^show-figures/(?P<id>\d+)/$',
+        HomeController.show_figure,
+        name='view.show-figures'
     ),
 
     url (
@@ -41,18 +45,6 @@ urlpatterns = patterns ('django.views.generic.simple',
         r'^ajax/toggle-layout/$',
         HomeController.toggle_layout,
         name='ajax.toggle-layout'
-    ),
-
-    url (
-        r'^ajax/show-vehicle/$',
-        HomeController.show_vehicle,
-        name='ajax.show-vehicles'
-    ),
-
-    url (
-        r'^ajax/show-figure/$',
-        HomeController.show_figure,
-        name='ajax.show-figures'
     ),
 
     url (

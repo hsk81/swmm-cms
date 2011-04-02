@@ -1,17 +1,26 @@
-from django.conf               import settings
 from django.conf.urls.defaults import *
 
-from property.views import *
+from comment.views import *
+from comment.models import *
 
 urlpatterns = patterns ('django.views.generic.simple',
 
-    url (
-        r'^$', 'direct_to_template', {
-            'template': 'comment.html',
-            'extra_context': {
-                'properties': PropertyController.datas (None)
-            }
-        }, name="default"
+    url(
+        r'^info/$',
+        CommentController.info,
+        name="info"
+    ),
+
+    url(
+        r'^$',
+        CommentController.default,
+        name="default"
+    ),
+
+    url(
+        r'^thread/(?P<id>\d+)/$',
+        CommentController.thread,
+        name="thread"
     ),
 
 )

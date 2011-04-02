@@ -66,6 +66,10 @@ TEMPLATE_DIRS = (
     os.path.join (SITE_ROOT, 'templates/'),
 )
 
+FIXTURE_DIRS = (
+    os.path.join (SITE_ROOT, 'fixtures/'),
+)
+
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 SESSION_FILE_PATH = os.path.join (SITE_ROOT, 'session/')
 SESSION_COOKIE_AGE = 28800 ## secs: 8h
@@ -75,6 +79,12 @@ SESSION_COOKIE_PATH = '/'
 SESSION_COOKIE_SECURE = False
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_SAVE_EVERY_REQUEST = False
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'swmm.sk'
+EMAIL_HOST_PASSWORD = 'micromachines'
+EMAIL_USE_TLS = True
 
 INSTALLED_APPS = (
     'django.contrib.auth',

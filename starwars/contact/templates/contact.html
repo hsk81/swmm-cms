@@ -12,8 +12,7 @@
 
                 <td id="contact-tbl-rhs">
                     <div class="contact">
-                    <form method="post"
-                          enctype="text/plain">
+                    <form action="{% url contact:default %}" method="post">{% csrf_token %}
                     
                     <table class="table">
 
@@ -21,8 +20,8 @@
                             <td align="center">
                             <b>&middot; Name &middot;</b>
                             </td>
-                            <td class="input-cell">
-                            <input class="input" type="text" name="name">
+                            <td class="input-cell {% if form.sender.errors %}invalid{% endif %}">
+                            {{ form.sender }}
                             </td>
                         </tr>
 
@@ -30,17 +29,15 @@
                             <td align="center">
                             <b>&middot; Email &middot;</b>
                             </td>
-                            <td class="input-cell">
-                            <input class="input" type="text" name="mail">
+                            
+                            <td class="input-cell {% if form.email.errors %}invalid{% endif %}">
+                            {{ form.email}}
                             </td>
                         </tr>
 
                         <tr>
-                            <td colspan=2>
-                            <textarea class="textarea" 
-                                      name="comment"
-                                      rows="20"
-                                      cols="64"></textarea>
+                            <td class="input-area {% if form.message.errors %}invalid{% endif %}" colspan=2>
+                            {{ form.message }}
                             </td>
                         </tr>
 

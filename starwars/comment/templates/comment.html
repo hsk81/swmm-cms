@@ -1,11 +1,144 @@
 {% extends "base.html" %}
 
+<!-- --------------------------------------------------------------------------
++ JavaScript Ext:
+--------------------------------------------------------------------------- -->
+
+{% block javascript-ext %}
+<script type="text/javascript">
+
+/* -------------------------------------------------------------------------
+ * Comment: Area
+ * ------------------------------------------------------------------------- */
+
+var fnCommentAreaOnInit = function() {
+
+    var lhsHeightDefault = 476;
+    var lhsHeight = parseInt(
+        $('#comment-tbl-lhs .threads .thread').length * $(
+            '#comment-tbl-lhs .threads .thread'
+        ).outerHeight ()
+    );
+
+    if (lhsHeight < lhsHeightDefault)
+    {
+        lhsHeight = lhsHeightDefault;
+    };
+
+    $('#comment-tbl-lhs .threads').css (
+        'height', lhsHeight
+    );
+
+    var rhsHeight = parseInt (
+        {% if form %}
+        $('#comment-tbl-rhs .contact').css ('height')
+        {% else %}
+        -4
+        {% endif %}
+    );
+
+    $('#comment-tbl-rhs .comments').css (
+        'height', lhsHeight - rhsHeight - 4
+    );
+}
+
+$(document).ready (fnCommentAreaOnInit);
+
+/* -------------------------------------------------------------------------
+ * Window: Resize
+ * ------------------------------------------------------------------------- */
+
+$(window).resize (function () {
+    fnCommentAreaOnInit ();
+});
+
+</script>
+
+{% endblock javascript-ext %}
+
+<!-- --------------------------------------------------------------------------
++ Content:
+--------------------------------------------------------------------------- -->
+
 {% block content %}<div id="content">
-    <table id="content-tbl">
+
+    <table id="comment-tbl">
         <tbody>
             <tr>
-                <td id="content-tbl-center"><h1>Comment</h1></td>
+                <td id="comment-tbl-lhs">
+                    <ul class="threads">
+                    {% for thread in threads %}
+                    <li class="thread {% cycle 'oodd' 'even' %}">
+                        <a href="{% url comment:thread thread.id %}">
+                            {{ thread.name }}
+                        </a>
+                    </li>
+                    {% empty %}
+                    <li class="comment {% cycle 'oodd' 'even' %}">
+                        <div class="none">No threads defined!</div>
+                    </li>
+                    {% endfor %}
+                    </ul>
+                </td>
+
+                <td id="comment-tbl-rhs">
+                    <ul class="comments">
+                    {% for comment in comments %}
+                    <li class="comment {% cycle 'oodd' 'even' %}">
+                        <div class="head">[{{ comment.username }} @ {{ comment.timestamp }}]</div>
+                        <div class="body">{{ comment.text }}</div>
+                    </li>
+                    {% empty %}
+                    <li class="comment {% cycle 'oodd' 'even' %}">
+                        <div class="none">No comments here; select a thread!</div>
+                    </li>
+                    {% endfor %}
+                    </ul>
+
+                    {% if form %}
+                    <div class="contact">
+                    <form action="{% url comment:thread thread_id %}" method="post">{% csrf_token %}
+                    <table class="table">
+
+                        <tr>
+                            <td align="center">
+                            <b>&middot; Name &middot;</b>
+                            </td>
+                            <td class="input-cell {% if form.sender.errors %}invalid{% endif %}">
+                            {{ form.sender }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td align="center">
+                            <b>&middot; Email &middot;</b>
+                            </td>
+
+                            <td class="input-cell {% if form.email.errors %}invalid{% endif %}">
+                            {{ form.email}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="input-area {% if form.message.errors %}invalid{% endif %}" colspan=2>
+                            {{ form.message }}
+                            </td>
+                        </tr>
+
+                        <tr align="right">
+                            <td colspan=2>
+                            <input type="submit" value="Send">
+                            <input type="reset" value="Reset">
+                            </td>
+                        </tr>
+
+                    </table>
+                    </form>
+                    </div>
+                    {% endif %}
+                </td>
             </tr>
         </tbody>
     </table>
+
 </div>{% endblock %}
