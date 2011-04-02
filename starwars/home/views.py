@@ -53,10 +53,7 @@ class HomeController:
 
     def main (request):
 
-        if Gallery.objects.count () > 0:
-            return HomeController.galleries_by_collection (request, 1)
-        else:
-            return HomeController.galleries_all (request)
+        return HomeController.galleries_by_collection (request, 1)
 
     main = staticmethod (main)
 
@@ -67,34 +64,9 @@ class HomeController:
 
     type_or_default = staticmethod (type_or_default)
 
-    def galleries_all (request):
-
-        cs = Collection.objects.all ()
-
-        gs = Gallery.objects.filter (
-            ignore = False,
-            type = HomeController.type_or_default (request)
-        )
-
-        try: return direct_to_template (
-            request,
-            template = 'index.html',
-            extra_context = {
-                'collections': cs,
-                'galleries': gs,
-                'type': HomeController.type_or_default (request),
-                'properties': PropertyController.datas (request)
-            }
-        )
-
-        except TemplateDoesNotExist: raise Http404()
-
-    galleries_all = staticmethod (galleries_all)
-
     def galleries_by_collection (request, id):
 
         collection = Collection.objects.get (pk=id)
-        cs = Collection.objects.all ()
 
         gs = Gallery.objects.filter (
             collection = collection,
@@ -102,6 +74,8 @@ class HomeController:
             type = HomeController.type_or_default (request)
         )
 
+        cs = Collection.objects.all ()
+        
         try: return direct_to_template (
             request,
             template = 'index.html',
@@ -161,29 +135,17 @@ class HomeController:
 
     toggle_layout = staticmethod (toggle_layout)
 
-    def show_vehicle (request):
-
+    def show_vehicle (request, id):
+        
         request.session['type'] = 'vehicle'
-
-        js_string = json.dumps ({
-            'type': request.session['type'],
-            'success': True
-        })
-
-        return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
+        return HomeController.galleries_by_collection (request, id)
 
     show_vehicle = staticmethod (show_vehicle)
 
-    def show_figure (request):
+    def show_figure (request, id):
 
         request.session['type'] = 'figure'
-
-        js_string = json.dumps ({
-            'type': request.session['type'],
-            'success': True
-        })
-
-        return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
+        return HomeController.galleries_by_collection (request, id)
 
     show_figure = staticmethod (show_figure)
 
