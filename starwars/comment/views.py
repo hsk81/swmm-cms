@@ -1,8 +1,9 @@
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import TemplateDoesNotExist
 from django.views.generic.simple import direct_to_template
 
 from datetime import datetime
+from comment.forms import *
 from comment.models import *
 from property.views import *
 
@@ -47,11 +48,14 @@ class CommentController:
         print >> sys.stderr, "== Time Stamp: %s" % request.session['timestamp']
         print >> sys.stderr, "== "
 
-        return CommentController.main (request)
+        if Thread.objects.count () > 0:
+            return CommentController.thread (request, 1)
+        else:
+            return CommentController.main (request)
 
     default = staticmethod (default)
 
-    def main (request, id = 0):
+    def main (request, id = 0, form = None):
 
         threads = Thread.objects.all ()
         comments = Comment.objects.filter (thread__id = id)
@@ -59,8 +63,10 @@ class CommentController:
         try: return direct_to_template (
             request, template = 'comment.html', extra_context = {
                 'threads': threads,
-                'comments': comments,
-                'properties': PropertyController.datas (request)
+                'comments': comments.order_by('-timestamp'),
+                'properties': PropertyController.datas (request),
+                'thread_id': id,
+                'form': form,
             }
         )
 
@@ -70,6 +76,30 @@ class CommentController:
 
     def thread (request, id):
 
-        return CommentController.main (request, id)
+        if request.method == 'POST':
+
+            form = CommentForm (request.POST)
+            if form.is_valid ():
+
+                sender = form.cleaned_data['sender']
+                email = form.cleaned_data['email']
+                message = form.cleaned_data['message']
+
+                Comment (
+                    thread = Thread.objects.get (pk = id),
+                    username = sender,
+                    text = message,
+                    email = email
+                ).save ()
+
+                return HttpResponseRedirect (
+                    '?sender=%s&email=%s' % (sender, email)
+                )
+
+        else:
+
+            form = CommentForm ()
+
+        return CommentController.main (request, id, form)
 
     thread = staticmethod (thread)
