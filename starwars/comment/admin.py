@@ -1,15 +1,21 @@
 from django.contrib import admin
 from comment.models import *
 
+class AttributesInline (admin.TabularInline):
+    model = Comment.attributes.through
+
 class CommentAdmin (admin.ModelAdmin):
 
-    fieldsets = [(None, {'fields': ['thread','username','email', 'attributes', 'text']})]
-    list_display = ('thread','timestamp','username','email','id')    
+    fieldsets = [(None, {'fields': ['thread','username','email','text']})]
+    list_display = ('id','thread','timestamp','username','email')
     search_fields = ['username', 'email', 'text', 'thread__name']
+
+    inlines = [AttributesInline]
+    exclude = ('attributes',)
 
 class CommentInline (admin.StackedInline):
 
-    fieldsets = [(None, {'fields': ['username','email', 'attributes', 'text']})]    
+    fieldsets = [(None, {'fields': ['username','email','text']})]
     model = Comment
     extra = 1
 
