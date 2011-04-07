@@ -6,6 +6,7 @@ from datetime import datetime
 from comment.forms import *
 from comment.models import *
 from property.views import *
+from attribute.models import *
 
 import sys
 import json
@@ -81,19 +82,55 @@ class CommentController:
             form = CommentForm (request.POST)
             if form.is_valid ():
 
-                sender = form.cleaned_data['sender']
-                email = form.cleaned_data['email']
-                message = form.cleaned_data['message']
-
-                Comment (
+                comment = Comment (
                     thread = Thread.objects.get (pk = id),
-                    username = sender,
-                    text = message,
-                    email = email
-                ).save ()
+                    username = form.cleaned_data['sender'],
+                    text = form.cleaned_data['message'],
+                    email = form.cleaned_data['email'],
+                )
+
+                comment.save ()
+
+                for (key,value) in request.META.items ():
+
+                    if key == None or value == None:
+
+                        continue
+
+                    else:
+
+                        key = repr (key[0:32])
+                        value = repr (value)
+
+                    keys = AttributeKey.objects.filter (content = key)
+                    if not keys:
+                        attribute_key = AttributeKey (content = key)
+                        attribute_key.save ()
+                    else:
+                        attribute_key = keys[0]
+
+                    values = AttributeValue.objects.filter (content = value)
+                    if not values:
+                        attribute_value = AttributeValue (content = value)
+                        attribute_value.save ()
+                    else:
+                        attribute_value = values[0]
+
+                    attributes = Attribute.objects.filter (
+                        key = attribute_key, value = attribute_value
+                    )
+
+                    if not attributes:
+                        attribute = Attribute (
+                            key = attribute_key, value = attribute_value
+                        ); attribute.save ()
+                    else:
+                        attribute = attributes[0]
+
+                    comment.attributes.add (attribute)
 
                 return HttpResponseRedirect (
-                    '?sender=%s&email=%s' % (sender, email)
+                    '?sender=%s&email=%s' % (comment.username, comment.email)
                 )
 
         else:

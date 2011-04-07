@@ -3,14 +3,13 @@ from comment.models import *
 
 class CommentAdmin (admin.ModelAdmin):
 
-    fieldsets = [(None, {'fields': ['thread','username','email', 'text']})]
+    fieldsets = [(None, {'fields': ['thread','username','email', 'attributes', 'text']})]
     list_display = ('thread','timestamp','username','email','id')    
     search_fields = ['username', 'email', 'text', 'thread__name']
 
 class CommentInline (admin.StackedInline):
 
-    fieldsets = [(None, {'fields': ['username','email', 'text']})]
-    
+    fieldsets = [(None, {'fields': ['username','email', 'attributes', 'text']})]    
     model = Comment
     extra = 1
 

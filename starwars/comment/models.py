@@ -1,4 +1,5 @@
 from django.db import models
+from attribute.models import *
 
 class Thread (models.Model):
 
@@ -19,6 +20,8 @@ class  Comment (models.Model):
     timestamp = models.DateTimeField (auto_now_add=True)
     username = models.CharField (max_length=256)
     email = models.EmailField (max_length=256)
+
+    attributes = models.ManyToManyField (Attribute)
 
     def __unicode__(self):
         return "%s @ %s" % (self.thread, self.timestamp)
