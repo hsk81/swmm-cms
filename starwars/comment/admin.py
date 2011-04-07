@@ -2,7 +2,9 @@ from django.contrib import admin
 from comment.models import *
 
 class AttributesInline (admin.TabularInline):
+
     model = Comment.attributes.through
+    extra = 1
 
 class CommentAdmin (admin.ModelAdmin):
 

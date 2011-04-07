@@ -94,11 +94,12 @@ class CommentController:
                 for (key,value) in request.META.items ():
 
                     if key == None or value == None:
+                        continue
 
+                    elif key == 'HTTP_COOKIE' or key == 'CSRF_COOKIE':
                         continue
 
                     else:
-
                         key = repr (key[0:32])
                         value = repr (value)
 
