@@ -93,11 +93,7 @@ class CommentController:
 
                 for (key,value) in request.META.items ():
 
-                    if key == None or value == None:
-
-                        continue
-
-                    elif key == 'HTTP_COOKIE' or key == 'CSRF_COOKIE':
+                    if key != 'HTTP_USER_AGENT' and key != 'REMOTE_ADDR':
 
                         continue
 
