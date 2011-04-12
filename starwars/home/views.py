@@ -2,6 +2,9 @@ from django.http import Http404, HttpResponse
 from django.template import TemplateDoesNotExist
 from django.views.generic.simple import direct_to_template
 
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
+
 from datetime import datetime
 from home.models import *
 from property.views import *
@@ -11,6 +14,7 @@ import json
 
 class HomeController:
 
+    @csrf_exempt
     def info (request):
 
         js_string = json.dumps ({
@@ -22,12 +26,14 @@ class HomeController:
 
     info = staticmethod (info)
 
+    @csrf_protect
     def init (request):
 
         pass
 
     init = staticmethod (init)
 
+    @csrf_protect
     def default (request):
 
         if request.session.has_key ('timestamp') != True:
@@ -51,12 +57,14 @@ class HomeController:
 
     default = staticmethod (default)
 
+    @csrf_protect
     def main (request):
 
         return HomeController.galleries_by_collection (request, 1)
 
     main = staticmethod (main)
 
+    @csrf_protect
     def type_or_default (request):
 
         return request.session.has_key ('type') and request.session['type'] \
@@ -64,6 +72,7 @@ class HomeController:
 
     type_or_default = staticmethod (type_or_default)
 
+    @csrf_protect
     def galleries_by_collection (request, id):
 
         collection = Collection.objects.get (pk=id)
@@ -100,6 +109,7 @@ class HomeController:
 
     galleries_by_collection = staticmethod (galleries_by_collection)
 
+    @csrf_protect
     def query_layout (request):
 
         if request.session.has_key ('overflow') != True:
@@ -114,7 +124,8 @@ class HomeController:
         return HttpResponse (u'%s\n' % js_string, mimetype='application/json')
 
     query_layout = staticmethod (query_layout)
-    
+
+    @csrf_protect
     def toggle_layout (request):
 
         if request.POST.has_key ('overflow') != True:
@@ -126,6 +137,7 @@ class HomeController:
         else:
 
             request.session['overflow'] = request.POST['overflow']
+            
             js_string = json.dumps ({
                 'overflow': request.session['overflow'],
                 'success': True
@@ -135,6 +147,7 @@ class HomeController:
 
     toggle_layout = staticmethod (toggle_layout)
 
+    @csrf_protect
     def show_vehicle (request, id):
         
         request.session['type'] = 'vehicle'
@@ -142,6 +155,7 @@ class HomeController:
 
     show_vehicle = staticmethod (show_vehicle)
 
+    @csrf_protect
     def show_figure (request, id):
 
         request.session['type'] = 'figure'
@@ -149,6 +163,7 @@ class HomeController:
 
     show_figure = staticmethod (show_figure)
 
+    @csrf_protect
     def update_rate (request):
 
         if request.POST.has_key ('id') and request.POST.has_key ('rate'):

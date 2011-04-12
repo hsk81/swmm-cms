@@ -2,6 +2,9 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import TemplateDoesNotExist
 from django.views.generic.simple import direct_to_template
 
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
+
 from datetime import datetime
 from contact.forms import *
 from property.views import *
@@ -11,6 +14,7 @@ import json
 
 class ContactController:
 
+    @csrf_exempt
     def info (request):
 
         js_string = json.dumps ({
@@ -22,12 +26,14 @@ class ContactController:
 
     info = staticmethod (info)
 
+    @csrf_protect
     def init (request):
 
         pass
 
     init = staticmethod (init)
 
+    @csrf_protect
     def default (request):
 
         if request.session.has_key ('timestamp') != True:
@@ -51,6 +57,7 @@ class ContactController:
 
     default = staticmethod (default)
 
+    @csrf_protect
     def main (request):
 
         if request.method == 'POST':

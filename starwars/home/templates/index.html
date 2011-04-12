@@ -29,10 +29,11 @@ fnGalleryIconLayoutOnInit = function () {
             fnClr ($('div.gallery .imgs'));
             $('div.gallery-v-spacer.last').css ('display','inline')
             $('div.gallery .arrow').css ('display','inline')
+            $('div.gallery .imgs').css ('left','0px')
         } else {
             $('div.gallery .area').css ('overflow', 'visible')
-            fnClr ($('div.gallery .wrapper'));
             fnSet ($('div.gallery .imgs'));
+            fnClr ($('div.gallery .wrapper'));
             $('div.gallery-v-spacer.last').css ('display','none')
             $('div.gallery .arrow').css ('display','none')
             $('div.gallery .imgs').css ('left','0px')

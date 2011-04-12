@@ -2,6 +2,9 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import TemplateDoesNotExist
 from django.views.generic.simple import direct_to_template
 
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
+
 from datetime import datetime
 from comment.forms import *
 from comment.models import *
@@ -13,6 +16,7 @@ import json
 
 class CommentController:
 
+    @csrf_exempt
     def info (request):
 
         js_string = json.dumps ({
@@ -24,12 +28,14 @@ class CommentController:
 
     info = staticmethod (info)
 
+    @csrf_protect
     def init (request):
 
         pass
 
     init = staticmethod (init)
 
+    @csrf_protect
     def default (request):
 
         if request.session.has_key ('timestamp') != True:
@@ -56,6 +62,7 @@ class CommentController:
 
     default = staticmethod (default)
 
+    @csrf_protect
     def main (request, id = 0, form = None):
 
         threads = Thread.objects.all ()
@@ -75,6 +82,7 @@ class CommentController:
 
     main = staticmethod (main)
 
+    @csrf_protect
     def thread (request, id):
 
         if request.method == 'POST':
