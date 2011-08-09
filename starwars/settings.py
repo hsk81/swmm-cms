@@ -1,4 +1,4 @@
-DEBUG = False
+DEBUG = True ## enables debug mode
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
