@@ -1,0 +1,23 @@
+SWMM CMS
+========
+
+A simple Django based CMS for your favourite collection(s).
+
+Summary
+-------
+
+An online exposition that shows a friend's complete Star Wars Micro Machines 
+collection. It has four tabs home, about, comment and contact.
+
+The home tab shows directly the galleries, which are put into episodes. A 
+gallery is a series of images with a leading portrait displaying a Star Wars 
+figure or vehicle from a particular episode.
+
+If an image is clicked on it's zoomed and on a second click it shrinks back 
+to its original size. Each image (except the first portrait) can be rated. 
+Further there is an information icon, which leads to an extra view with 
+further information about the related Micro Machine.
+
+The about tab displays my friend - the collection owner - there is the 
+possibility to make comments in the next tab, and contact him using the last 
+tab.
