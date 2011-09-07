@@ -1,11 +1,6 @@
 SWMM CMS
 ========
 
-A simple Django based CMS for your favourite collection(s).
-
-Summary
--------
-
 An online exposition that shows a friend's complete Star Wars Micro Machines 
 collection. It has four tabs home, about, comment and contact.
 
