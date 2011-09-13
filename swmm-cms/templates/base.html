@@ -93,7 +93,7 @@
                             <tbody>
                                 <tr align="center">
                                     {% block menu-home %}<td class="menu-tbl-item">
-                                        <a href="{% url home:default %}">Home</a>
+                                        <a href="{% url exhib:default %}">Home</a>
                                     </td>{% endblock %}
                                     {% block menu-about %}<td class="menu-tbl-item">
                                         <a href="{% url about:default %}">About</a>
@@ -115,7 +115,7 @@
 
                     {% block top-bar-rhs %}<td id="top-bar-tbl-rhs">
                         <form name="cse" id="searchbox" action="http://www.google.com/cse">
-                            <input type="hidden" name="cref" value="http://blackhan.ch/starwars/home" />
+                            <input type="hidden" name="cref" value="http://swmm-cms.net/home" />
                             <input type="hidden" name="ie" value="utf-8" />
                             <input type="hidden" name="hl" value="" />
                             <input name="q" type="text" id="s"/>

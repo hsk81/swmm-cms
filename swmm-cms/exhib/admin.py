@@ -1,5 +1,5 @@
 from django.contrib import admin
-from home.models import *
+from models import *
 
 class GalleryInline (admin.TabularInline):
 

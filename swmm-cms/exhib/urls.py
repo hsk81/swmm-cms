@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 
-from home.views import *
-from home.models import *
+from views import *
+from models import *
 
 urlpatterns = patterns ('django.views.generic.simple',
 

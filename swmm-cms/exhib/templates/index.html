@@ -22,7 +22,7 @@ fnGalleryIconLayoutOnInit = function () {
         el.css ('border-bottom', '1px solid white');
     }
 
-    $.post ('{% url home:ajax.query-layout %}', function (data) {
+    $.post ('{% url exhib:ajax.query-layout %}', function (data) {
         if (data.overflow == 'hidden') {
             $('div.gallery .area').css ('overflow', 'hidden')
             fnSet ($('div.gallery .wrapper'));
@@ -71,7 +71,7 @@ fnGalleryIconLayoutOnClick = function () {
             $('div.gallery .imgs').css ('left','0px')
         }
 
-        $.post ('{% url home:ajax.toggle-layout %}', {
+        $.post ('{% url exhib:ajax.toggle-layout %}', {
             'overflow': galleryArea.css ('overflow')
         });
     });
@@ -533,7 +533,7 @@ var fnGalleryImageRatingOnHover = function () {
 $(document).ready (fnGalleryImageRatingOnHover);
 
 var fnGalleryImageRatingOnTimer = function (target) {
-    $.post ('{% url home:ajax.update-rate %}', {
+    $.post ('{% url exhib:ajax.update-rate %}', {
         'rate': $(target).parent ('.img').find ('.st').attr ('rate'),
         'id': $(target).parent ('.img').attr ('id').replace ('img-id','')
     })
@@ -657,10 +657,10 @@ $(window).resize (function () {
                             <tr align="center">
                             {% for cc in collections %}{% ifequal collection cc %}
                             <td class="sub-menu-tbl-item active">
-                                <a href="{% url home:view.galleries-by-collection cc.id %}">{{ cc.nbsp|safe }}</a>
+                                <a href="{% url exhib:view.galleries-by-collection cc.id %}">{{ cc.nbsp|safe }}</a>
                             </td>{% else %}
                             <td class="sub-menu-tbl-item">
-                                <a href="{% url home:view.galleries-by-collection cc.id %}">{{ cc.nbsp|safe }}</a>
+                                <a href="{% url exhib:view.galleries-by-collection cc.id %}">{{ cc.nbsp|safe }}</a>
                             </td>{% endifequal %}{% endfor %}
 
                             <td class="sub-menu-tbl-item spacer"
@@ -669,21 +669,21 @@ $(window).resize (function () {
 
                             {% ifequal type 'figure' %}
                             <td class="sub-menu-tbl-item rhs active">
-                                <a href="{% url home:view.show-figures collection.id %}" id="gallery-type-figures">Figures</a>
+                                <a href="{% url exhib:view.show-figures collection.id %}" id="gallery-type-figures">Figures</a>
                             </td>
                             {% else %}
                             <td class="sub-menu-tbl-item rhs">
-                                <a href="{% url home:view.show-figures collection.id %}" id="gallery-type-figures">Figures</a>
+                                <a href="{% url exhib:view.show-figures collection.id %}" id="gallery-type-figures">Figures</a>
                             </td>
                             {% endifequal %}
                             
                             {% ifequal type 'vehicle' %}
                             <td class="sub-menu-tbl-item rhs active">
-                                <a href="{% url home:view.show-vehicles collection.id %}" id="gallery-type-vehicles">Vehicles</a>
+                                <a href="{% url exhib:view.show-vehicles collection.id %}" id="gallery-type-vehicles">Vehicles</a>
                             </td>
                             {% else %}
                             <td class="sub-menu-tbl-item rhs">
-                                <a href="{% url home:view.show-vehicles collection.id %}" id="gallery-type-vehicles">Vehicles</a>
+                                <a href="{% url exhib:view.show-vehicles collection.id %}" id="gallery-type-vehicles">Vehicles</a>
                             </td>
                             {% endifequal %}
 

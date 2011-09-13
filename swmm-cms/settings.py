@@ -10,7 +10,7 @@ MANAGERS = ADMINS
 import os
 SITE_ROOT = os.path.realpath (os.path.dirname (__file__))
 SITE_NAME = 'swmm-cms'
-SITE_HOST = 'swmm-cmsnet'
+SITE_HOST = 'swmm-cms.net'
 SITE_ID   = 1
 
 import socket
@@ -94,5 +94,5 @@ INSTALLED_APPS = (
  ## 'django.contrib.flatpages',
  ## 'django.contrib.comments',
 
-    'attribute', 'property', 'home', 'about', 'comment', 'contact'
+    'attribute', 'property', 'exhib', 'about', 'comment', 'contact'
 )

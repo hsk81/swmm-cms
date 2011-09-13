@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
 
 from datetime import datetime
-from home.models import *
+from models import *
 from property.views import *
 
 import sys
