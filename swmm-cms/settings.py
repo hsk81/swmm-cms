@@ -9,8 +9,8 @@ MANAGERS = ADMINS
 
 import os
 SITE_ROOT = os.path.realpath (os.path.dirname (__file__))
-SITE_NAME = 'starwars'
-SITE_HOST = 'blackhan.ch'
+SITE_NAME = 'swmm-cms'
+SITE_HOST = 'swmm-cmsnet'
 SITE_ID   = 1
 
 import socket
@@ -78,8 +78,8 @@ SESSION_SAVE_EVERY_REQUEST = False
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'swmm.sk'
-EMAIL_HOST_PASSWORD = 'micromachines'
+EMAIL_HOST_USER = 'swmm-cms.usr'
+EMAIL_HOST_PASSWORD = 'swmm-cms.pwd'
 EMAIL_USE_TLS = True
 
 INSTALLED_APPS = (
