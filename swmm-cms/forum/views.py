@@ -6,21 +6,21 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
 
 from datetime import datetime
-from comment.forms import *
-from comment.models import *
 from property.views import *
 from attribute.models import *
+from forms import *
+from models import *
 
 import sys
 import json
 
-class CommentController:
+class ForumController:
 
     @csrf_exempt
     def info (request):
 
         js_string = json.dumps ({
-            'application': 'comment',
+            'application': 'forum',
             'version': 'v0.0.1'
         })
 
@@ -43,7 +43,7 @@ class CommentController:
             request.session['timestamp'] = datetime.now ()
             request.session.save ()
 
-            CommentController.init (request)
+            ForumController.init (request)
 
         else:
 
@@ -56,9 +56,9 @@ class CommentController:
         print >> sys.stderr, "== "
 
         if Thread.objects.count () > 0:
-            return CommentController.thread (request, 1)
+            return ForumController.thread (request, 1)
         else:
-            return CommentController.main (request)
+            return ForumController.main (request)
 
     default = staticmethod (default)
 
@@ -69,7 +69,7 @@ class CommentController:
         comments = Comment.objects.filter (thread__id = id)
 
         try: return direct_to_template (
-            request, template = 'comment.html', extra_context = {
+            request, template = 'forum.html', extra_context = {
                 'threads': threads,
                 'comments': comments.order_by('-timestamp'),
                 'properties': PropertyController.datas (request),
@@ -145,6 +145,6 @@ class CommentController:
 
             form = CommentForm ()
 
-        return CommentController.main (request, id, form)
+        return ForumController.main (request, id, form)
 
     thread = staticmethod (thread)

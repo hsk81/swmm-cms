@@ -1,5 +1,5 @@
 from django.contrib import admin
-from comment.models import *
+from models import *
 
 class AttributesInline (admin.TabularInline):
 

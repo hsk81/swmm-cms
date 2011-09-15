@@ -7,7 +7,7 @@ urlpatterns = patterns ('',
 
     (r'^home/', include('exhib.urls', namespace='exhib')),
     (r'^about/', include('about.urls', namespace='about')),
-    (r'^comment/', include('comment.urls', namespace='comment')),
+    (r'^comment/', include('forum.urls', namespace='forum')),
     (r'^contact/', include('contact.urls', namespace='contact')),
 
     (r'^admin/', include(admin.site.urls)),
