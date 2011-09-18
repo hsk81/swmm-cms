@@ -635,10 +635,14 @@ $(window).resize (function () {
 </td>
 
 <td class="menu-tbl-item icons">
-<img alt="Toggle Layout"
-     src="{{ MEDIA_URL }}ico/silk/layout.png"
-     title="Toggle Layout"
-     id="icon-layout" />
+<div id="icon-layout"><ul>
+  <li ><img 
+    alt="{{ properties.menu_layout }}"
+    src="{{ MEDIA_URL }}ico/silk/layout.png"
+    title="{{ properties.menu_layout }}"
+  /></li>
+  <li>{{ properties.menu_layout|safe }}</li>
+</ul></div>
 </td>
 {% endblock %}
 

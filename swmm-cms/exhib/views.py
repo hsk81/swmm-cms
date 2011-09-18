@@ -93,15 +93,7 @@ class HomeController:
                 'collections': cs,
                 'galleries': gs,
                 'type': HomeController.type_or_default (request),
-                'properties':  dict ([
-                    PropertyController.data (request, 'lhs-image-href'),
-                    PropertyController.data (request, 'lhs-image-desc'),
-                    PropertyController.data (request, 'rhs-image-href'),
-                    PropertyController.data (request, 'rhs-image-desc'),
-
-                    PropertyController.data (request, 'sub-title'),
-                    PropertyController.data (request, 'title')
-                ])
+                'properties': PropertyController.datas (request),
             }
         )
 

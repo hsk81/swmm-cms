@@ -101,7 +101,7 @@ class ContactController:
 
         try: return direct_to_template (
             request, template = 'contact.html', extra_context = {
-                'properties': PropertyController.datas (None),
+                'properties': PropertyController.datas (request),
                 'form': form
             }
         )

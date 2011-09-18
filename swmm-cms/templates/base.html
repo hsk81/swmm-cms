@@ -93,16 +93,16 @@
                             <tbody>
                                 <tr align="center">
                                     {% block menu-home %}<td class="menu-tbl-item">
-                                        <a href="{% url exhib:default %}">Home</a>
+                                        <a href="{% url exhib:default %}">{{ properties.menu_home|safe }}</a>
                                     </td>{% endblock %}
                                     {% block menu-about %}<td class="menu-tbl-item">
-                                        <a href="{% url about:default %}">About</a>
+                                        <a href="{% url about:default %}">{{ properties.menu_about|safe }}</a>
                                     </td>{% endblock %}
                                     {% block menu-forum %}<td class="menu-tbl-item">
-                                        <a href="{% url forum:default %}">Forum</a>
+                                        <a href="{% url forum:default %}">{{ properties.menu_forum|safe }}</a>
                                     </td>{% endblock %}
                                     {% block menu-contact %}<td class="menu-tbl-item">
-                                        <a href="{% url contact:default %}">Contact</a>
+                                        <a href="{% url contact:default %}">{{ properties.menu_contact|safe }}</a>
                                     </td>{% endblock %}
                                     
                                     {% block menu-ext %}

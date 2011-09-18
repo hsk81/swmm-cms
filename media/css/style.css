@@ -119,6 +119,7 @@ body {
 
 #menu-tbl {
     width: auto;
+    height: 36px;
 }
 
 #menu-tbl tbody tr td {
@@ -162,6 +163,25 @@ body {
     font-size: x-small;
     font-weight: normal;
     color: white;
+}
+
+.menu-tbl-item.icons div {
+}
+
+.menu-tbl-item.icons div ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+.menu-tbl-item.icons div ul li {
+    display:table-cell;
+    vertical-align:middle;
+}
+
+.menu-tbl-item.icons div ul li {
+    line-height: 0;
 }
 
 /* -------------------------------------------------------------------------
