@@ -6,8 +6,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
 
 from datetime import datetime
-from models import *
 from property.views import *
+from models import *
 
 import sys
 import json
@@ -68,7 +68,7 @@ class HomeController:
     def type_or_default (request):
 
         return request.session.has_key ('type') and request.session['type'] \
-               or 'figure'
+            or 'figure'
 
     type_or_default = staticmethod (type_or_default)
 

@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_protect
 from datetime import datetime
 from contact.forms import *
 from property.views import *
+from property.models import *
 
 import sys
 import json
@@ -71,10 +72,9 @@ class ContactController:
 
                 from django.core.mail import send_mail
                 send_mail (
-                    'Star Wars - Micro Machines', 
-                    message, 
-                    sender, 
-                    ['swmm.sk@gmail.com', 'serdarkalfa@hotmail.com']                    
+                    'Star Wars - Micro Machines', message, sender, map (
+                        lambda p: str (p), Property.datas ('contact-email')
+                    )
                 )
 
                 return HttpResponseRedirect (

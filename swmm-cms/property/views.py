@@ -16,13 +16,9 @@ class PropertyController:
             lambda pd: pd.property, PropertyData.objects.all()
         )
 
-        return dict (
-            map (
-                lambda p: (
-                    p.name.replace ('-','_'), Property.data (p.name)
-                ), properties
-            )
-        )
+        return dict (map (
+            lambda p: (p.name.replace ('-','_'), Property.data (p.name)), properties
+        ))
 
     datas = staticmethod (datas)
 
@@ -40,13 +36,9 @@ class PropertyController:
             lambda pd: pd.property, PropertyText.objects.all()
         )
 
-        return dict (
-            map (
-                lambda p: (
-                    p.name.replace ('-','_'), Property.text (p.name)
-                ), properties
-            )
-        )
+        return dict (map (
+            lambda p: (p.name.replace ('-','_'), Property.text (p.name)), properties
+        ))
 
     texts = staticmethod (texts)
     

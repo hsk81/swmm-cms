@@ -75,8 +75,8 @@ SESSION_SAVE_EVERY_REQUEST = False
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'swmm-cms.usr'
-EMAIL_HOST_PASSWORD = 'swmm-cms.pwd'
+EMAIL_HOST_USER = 'swmm.cms.usr'
+EMAIL_HOST_PASSWORD = 'swmm.cms.pwd'
 EMAIL_USE_TLS = True
 
 INSTALLED_APPS = (
