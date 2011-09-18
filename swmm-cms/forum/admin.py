@@ -19,6 +19,7 @@ class CommentAdmin (admin.ModelAdmin):
 class CommentInline (admin.StackedInline):
 
     fieldsets = [(None, {'fields': ['username','email','text']})]
+    ordering = ['-timestamp']
     model = Comment
     extra = 1
 
