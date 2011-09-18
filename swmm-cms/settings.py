@@ -8,15 +8,12 @@ ADMINS = (
 MANAGERS = ADMINS
 
 import os
+import socket
+
 SITE_ROOT = os.path.realpath (os.path.dirname (__file__))
 SITE_NAME = 'swmm-cms'
-SITE_HOST = 'swmm-cms.net'
+SITE_HOST = socket.gethostname ()
 SITE_ID   = 1
-
-import socket
-if socket.gethostname() != SITE_HOST:
-
-    SITE_HOST = 'localhost'
 
 DATABASES = {
     'default': {
