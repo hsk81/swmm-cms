@@ -72,9 +72,13 @@ class ContactController:
 
                 from django.core.mail import send_mail
                 send_mail (
-                    'Star Wars - Micro Machines', message, sender, map (
-                        lambda p: str (p), Property.datas ('contact-email')
-                    )
+                    subject = 'Contact: %s with %s' % (sender, email),
+                    message = message,
+                    from_email = str (Property.data ('sender-contact-email')),
+                    recipient_list = map (lambda p: str (p),
+                        Property.datas ('receiver-contact-email')),
+                    auth_user = str (Property.data ('sender-contact-user')),
+                    auth_password = str (Property.data ('sender-contact-password'))
                 )
 
                 return HttpResponseRedirect (
