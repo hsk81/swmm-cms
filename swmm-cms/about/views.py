@@ -61,9 +61,10 @@ class AboutController:
     def main (request):
 
         try: return direct_to_template (
-            request, template = 'about.html', extra_context = {
-                'properties': PropertyController.datas (request),
-            }
+            request, template = 'about.html', extra_context = {'properties': dict (
+                PropertyController.datas (request).viewitems () |
+                PropertyController.texts (request).viewitems ()
+            )}
         )
 
         except TemplateDoesNotExist: raise Http404()
