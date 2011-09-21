@@ -62,8 +62,8 @@ class AboutController:
 
         try: return direct_to_template (
             request, template = 'about.html', extra_context = {'properties': dict (
-                PropertyController.datas (request).viewitems () |
-                PropertyController.texts (request).viewitems ()
+                PropertyController.datas (request),
+             ** PropertyController.texts (request)
             )}
         )
 
